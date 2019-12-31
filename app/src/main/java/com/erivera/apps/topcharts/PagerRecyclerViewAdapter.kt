@@ -35,20 +35,6 @@ class PagerRecyclerViewAdapter<T> : BindingRecyclerViewAdapter<T>() {
         item: T
     ) {
         if (item is HomeTab) {
-            val context = binding.root.context
-//            val ivId = context.resources.getIdentifier(
-//                "gradient_tab_${position + 1}",
-//                "drawable",
-//                context.getPackageName()
-//            )
-//            if(ivId != 0){
-//                binding.root.backgroundGradient.setImageDrawable(
-//                    ContextCompat.getDrawable(
-//                        context,
-//                        ivId
-//                    )
-//                )
-//            }
             item.list.value?.let {
                 (binding.root.tabRecyclerView.adapter as? TopListAdapter)?.setList(it)
             }

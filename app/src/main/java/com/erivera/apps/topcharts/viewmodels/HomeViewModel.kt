@@ -1,7 +1,6 @@
 package com.erivera.apps.topcharts.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.erivera.apps.topcharts.BR
 import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
+import com.erivera.apps.topcharts.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.models.domain.Artist
 import com.erivera.apps.topcharts.models.domain.HomeTab
 import com.erivera.apps.topcharts.models.domain.TopListHeader
@@ -38,13 +38,29 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             val artistList = mutableListOf<TopListItem>()
             with(artistList) {
+                //TODO: make term amount dynamic
                 addArtistsSection(repository.getShortTermArtists(), this, "Short Term (4 Weeks)")
                 addArtistsSection(repository.getMediumTermArtists(), this, "Mid Term (6 Months)")
                 addArtistsSection(repository.getLongTermArtists(), this, "Long Term (Years)")
             }
             swapOutList("Artists", artistList)
-            Log.i("sad", "safaedf")
+
+            val trackList = mutableListOf<TopListItem>()
+            with(trackList) {
+                addTracksSection(repository.getShortTermTracks(), this, "Short Term (4 Weeks)")
+                addTracksSection(repository.getMediumTermTracks(), this, "Mid Term (6 Months)")
+                addTracksSection(repository.getLongTermTracks(), this, "Long Term (Years)")
+            }
+            swapOutList("Songs", trackList)
         }
+    }
+
+    fun getTabName(position: Int): String {
+        return tabList.value?.getOrNull(position)?.title ?: "Unknown"
+    }
+
+    fun getHomeTitle(): String {
+        return "Your Top"
     }
 
     private fun swapOutList(title: String, newList: MutableList<TopListItem>) {
@@ -70,8 +86,28 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         return Artist(
             name = artistsRetrofit.name ?: "",
             photoUrl = artistsRetrofit.images?.firstOrNull()?.url ?: "",
-            position = position
+            position = position,
+            uri = artistsRetrofit.uri ?: ""
         )
+    }
+
+    private fun addTracksSection(
+        responseList: List<TrackRetrofit>,
+        masterList: MutableList<TopListItem>,
+        headerString: String
+    ) {
+        with(masterList) {
+            if (responseList.isNotEmpty()) {
+                add(TopListHeader(headerString))
+                responseList.mapIndexed { index, trackRetrofit ->
+                    //add(transformTrack(trackRetrofit, index + 1))
+                }
+            }
+        }
+    }
+
+    private fun transformTrack(trackRetrofit: TrackRetrofit, position: Int): Artist {
+        return Artist("", "", 0, "")
     }
 
     fun getTabBinding(): ItemBinding<HomeTab> {

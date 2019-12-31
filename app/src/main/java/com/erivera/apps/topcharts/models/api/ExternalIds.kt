@@ -2,9 +2,9 @@ package com.erivera.apps.topcharts.models.api
 
 import com.google.gson.annotations.SerializedName
 
-class ExternalUrls {
+class ExternalIds {
 
-    @SerializedName("spotify")
-    var spotify: String? = null
+    @SerializedName("isrc")
+    var isrc: String? = null
 
 }

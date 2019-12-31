@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Log
 import com.erivera.apps.topcharts.SingletonHolder
 import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
+import com.erivera.apps.topcharts.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.repository.network.RetrofitFactory
 import com.erivera.apps.topcharts.repository.network.SpotifyService
 import retrofit2.HttpException
@@ -45,8 +46,41 @@ class Repository(applicationContext: Context) {
         return getArtists("10", TermLength.SHORT_TERM.value)
     }
 
+    suspend fun getLongTermTracks(): List<TrackRetrofit> {
+        return getTracks("10", TermLength.LONG_TERM.value)
+    }
+
+    suspend fun getMediumTermTracks(): List<TrackRetrofit> {
+        return getTracks("10", TermLength.MEDIUM_TERM.value)
+    }
+
+    suspend fun getShortTermTracks(): List<TrackRetrofit> {
+        return getTracks("10", TermLength.SHORT_TERM.value)
+    }
+
     private suspend fun getArtists(limit: String, termLength: String): List<ArtistsRetrofit> {
         val response = spotifyService?.getArtists(limit, termLength)
+        try {
+            if (response?.isSuccessful == true) {
+                Log.i(javaClass.simpleName, "Response: ${response.body()}")
+                return response.body()?.items ?: mutableListOf()
+                //Do something with response e.g show to the UI.
+            } else {
+                Log.e(
+                    javaClass.simpleName,
+                    "Error - code: ${response?.code()} json: ${response?.errorBody()?.string()}"
+                )
+            }
+        } catch (e: HttpException) {
+            Log.e(javaClass.simpleName, "Exception ${e.message}")
+        } catch (e: Throwable) {
+            Log.e(javaClass.simpleName, "Ooops: Something else went wrong")
+        }
+        return mutableListOf()
+    }
+
+    private suspend fun getTracks(limit: String, termLength: String): List<TrackRetrofit> {
+        val response = spotifyService?.getTracks(limit, termLength)
         try {
             if (response?.isSuccessful == true) {
                 Log.i(javaClass.simpleName, "Response: ${response.body()}")

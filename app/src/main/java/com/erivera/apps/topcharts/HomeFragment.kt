@@ -1,17 +1,18 @@
 package com.erivera.apps.topcharts
 
-import android.animation.ArgbEvaluator
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.viewpager2.widget.ViewPager2
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.erivera.apps.topcharts.databinding.FragmentHomeBinding
 import com.erivera.apps.topcharts.models.domain.HomeTab
 import com.erivera.apps.topcharts.viewmodels.HomeViewModel
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -37,48 +38,16 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        parentFragment?.parentFragment?.view?.findViewById<DrawerLayout>(R.id.drawerLayout)?.let {
+            NavigationUI.setupWithNavController(homeToolbar, findNavController(), it)
+            homeToolbar.title = ""
+            homeTitle.text = homeViewModel.getHomeTitle()
+        }
         view.rootHomeLayout.addStatusBarTopPadding()
-//        TabLayoutMediator(homeTabLayout, homeViewPager) { tab, position ->
-//            tab.text = "OBJECT ${(position + 1)}"
-//        }.attach()
-    }
-
-    private val onPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-        ) {
-            //updateColor(position, positionOffset)
-            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        view.homeViewPager.post {
+            TabLayoutMediator(homeTabLayout, homeViewPager) { tab, position ->
+                tab.text = homeViewModel.getTabName(position)
+            }.attach()
         }
-    }
-
-    fun updateColor(position: Int, positionOffset: Float) {
-        val itemCount = homeViewPager.adapter?.itemCount?.minus(1) ?: 0
-        val argbEvaluator = ArgbEvaluator()
-        val colors = arrayListOf(Color.DKGRAY, Color.BLUE, Color.CYAN)
-
-        if (position < itemCount && position < (colors.lastIndex)) {
-            (argbEvaluator.evaluate(
-                positionOffset,
-                colors[position],
-                colors[position + 1]
-            ) as? Int)?.let {
-                rootHomeLayout.setBackgroundColor(it)
-            }
-        } else {
-            rootHomeLayout.setBackgroundColor(colors.last())
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        view?.homeViewPager?.registerOnPageChangeCallback(onPageChangeCallback)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        view?.homeViewPager?.unregisterOnPageChangeCallback(onPageChangeCallback)
     }
 }
