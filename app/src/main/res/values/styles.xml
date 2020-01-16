@@ -55,6 +55,7 @@
 
     <style name="TextAppearance.AppTheme.Body2" parent="TextAppearance.MaterialComponents.Body2">
         <item name="fontFamily">@font/lekton_regular</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
     </style>
 
     <style name="TextAppearance.AppTheme.Button" parent="TextAppearance.MaterialComponents.Button">

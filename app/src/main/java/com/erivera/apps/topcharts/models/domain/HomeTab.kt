@@ -1,8 +1,10 @@
 package com.erivera.apps.topcharts.models.domain
 
 import androidx.lifecycle.MutableLiveData
+import kotlin.random.Random
 
 data class HomeTab(
     val title: String,
-    val list: MutableLiveData<List<TopListItem>> = MutableLiveData()
+    var list: MutableLiveData<List<TopListItem>> = MutableLiveData(),
+    val id: Int = Random.nextInt()
 )

@@ -4,6 +4,7 @@
     <color name="colorPrimaryDarkOnBoard">#FFF9F1</color>
     <color name="colorPrimaryDark">#D6A85B</color>
     <color name="colorAccent">#836A3A</color>
+    <color name="secondaryTextColor">#80000000</color>
     <color name="colorCard">#FFFFFF</color>
     <color name="colorOldAccent">#B3965C</color>
     <color name="headerColor">#FFFFFF</color>

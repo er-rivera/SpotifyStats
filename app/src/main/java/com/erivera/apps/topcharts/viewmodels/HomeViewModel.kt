@@ -2,69 +2,104 @@ package com.erivera.apps.topcharts.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.AsyncDifferConfig
+import androidx.recyclerview.widget.DiffUtil
 import com.erivera.apps.topcharts.BR
 import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.models.api.TrackRetrofit
-import com.erivera.apps.topcharts.models.domain.Artist
-import com.erivera.apps.topcharts.models.domain.HomeTab
-import com.erivera.apps.topcharts.models.domain.TopListHeader
-import com.erivera.apps.topcharts.models.domain.TopListItem
+import com.erivera.apps.topcharts.models.domain.*
 import com.erivera.apps.topcharts.repository.Repository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.tatarka.bindingcollectionadapter2.ItemBinding
+import me.tatarka.bindingcollectionadapter2.collections.AsyncDiffObservableList
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
+    companion object {
+        const val SONGS = "Songs"
+        const val ARTISTS = "Artists"
+        const val GENRES = "Genres"
+    }
+
     private val repository = Repository.getInstance(application)
 
-    private val _tabList = MutableLiveData<List<HomeTab>>()
+    private val diffConfig =
+        AsyncDifferConfig.Builder<HomeTab>(object : DiffUtil.ItemCallback<HomeTab>() {
+            override fun areContentsTheSame(oldItem: HomeTab, newItem: HomeTab): Boolean {
+                return oldItem.id == newItem.id && newItem.list == oldItem.list
+            }
 
-    val tabList: LiveData<List<HomeTab>>
+            override fun areItemsTheSame(oldItem: HomeTab, newItem: HomeTab): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }).build()
+
+    private val _tabList = AsyncDiffObservableList<HomeTab>(diffConfig)
+
+    val tabList: AsyncDiffObservableList<HomeTab>
         get() = _tabList
 
     init {
         val list = mutableListOf<HomeTab>()
-        list.add(HomeTab("Songs"))
-        list.add(HomeTab("Artists"))
-        list.add(HomeTab("Genres"))
-        _tabList.value = list
+        list.add(HomeTab(SONGS))
+        list.add(HomeTab(ARTISTS))
+        list.add(HomeTab(GENRES))
+        _tabList.update(list)
     }
 
     fun loadItems() {
 
         viewModelScope.launch {
+            delay(1000)
+            val currentList = mutableListOf<HomeTab>()?.apply {
+                _tabList.map { value -> this.add(value.copy()) }
+            }
             val artistList = mutableListOf<TopListItem>()
             with(artistList) {
                 //TODO: make term amount dynamic
-                addArtistsSection(repository.getShortTermArtists(), this, "Short Term (4 Weeks)")
-                addArtistsSection(repository.getMediumTermArtists(), this, "Mid Term (6 Months)")
-                addArtistsSection(repository.getLongTermArtists(), this, "Long Term (Years)")
+                add(TopListHeader("Header"))
+                add(Artist("0", "Here is A Title", "", 0, ""))
+                delay(1000)
+//                addArtistsSection(repository.getShortTermArtists(), this, "Short Term (4 Weeks)")
+//                addArtistsSection(repository.getMediumTermArtists(), this, "Mid Term (6 Months)")
+//               addArtistsSection(repository.getLongTermArtists(), this, "Long Term (Years)")
             }
-            swapOutList("Artists", artistList)
+            swapOutList(ARTISTS, artistList, currentList)
 
-            val trackList = mutableListOf<TopListItem>()
-            with(trackList) {
-                addTracksSection(repository.getShortTermTracks(), this, "Short Term (4 Weeks)")
-                addTracksSection(repository.getMediumTermTracks(), this, "Mid Term (6 Months)")
-                addTracksSection(repository.getLongTermTracks(), this, "Long Term (Years)")
+            val songList = mutableListOf<TopListItem>()
+            with(songList) {
+                add(TopListHeader("Header"))
+                add(Song("1", "Here is A Title", "", "", 1, ""))
+                delay(1000)
+//                addTracksSection(repository.getShortTermTracks(), this, "Short Term (4 Weeks)")
+//                addTracksSection(repository.getMediumTermTracks(), this, "Mid Term (6 Months)")
+//                addTracksSection(repository.getLongTermTracks(), this, "Long Term (Years)")
             }
-            swapOutList("Songs", trackList)
+            swapOutList(SONGS, songList, currentList)
+            _tabList.update(currentList)
         }
     }
 
     fun getTabName(position: Int): String {
-        return tabList.value?.getOrNull(position)?.title ?: "Unknown"
+        return tabList.getOrNull(position)?.title ?: "Unknown"
     }
 
     fun getHomeTitle(): String {
         return "Your Top"
     }
 
-    private fun swapOutList(title: String, newList: MutableList<TopListItem>) {
-        _tabList.value?.find { it.title == title }?.list?.postValue(newList)
+    private fun swapOutList(
+        title: String,
+        newList: MutableList<TopListItem>,
+        currentList: MutableList<HomeTab>
+    ) {
+        val item = currentList.find { it.title == title }
+        item?.list = MutableLiveData<List<TopListItem>>()?.apply {
+            value = newList
+        }
     }
 
     private fun addArtistsSection(
@@ -84,6 +119,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun transformArtist(artistsRetrofit: ArtistsRetrofit, position: Int): Artist {
         return Artist(
+            id = artistsRetrofit.id ?: "",
             name = artistsRetrofit.name ?: "",
             photoUrl = artistsRetrofit.images?.firstOrNull()?.url ?: "",
             position = position,
@@ -100,14 +136,23 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             if (responseList.isNotEmpty()) {
                 add(TopListHeader(headerString))
                 responseList.mapIndexed { index, trackRetrofit ->
-                    //add(transformTrack(trackRetrofit, index + 1))
+                    add(transformTrack(trackRetrofit, index + 1))
                 }
             }
         }
     }
 
-    private fun transformTrack(trackRetrofit: TrackRetrofit, position: Int): Artist {
-        return Artist("", "", 0, "")
+    private fun transformTrack(trackRetrofit: TrackRetrofit, position: Int): Song {
+        val artistName = trackRetrofit.artists?.map { it.name }?.joinToString(",") ?: ""
+        val albumName = trackRetrofit.album?.name ?: "Unknown"
+        return Song(
+            id = trackRetrofit.id ?: "",
+            titleName = trackRetrofit.name ?: "",
+            description = "$artistName • $albumName",
+            photoUrl = trackRetrofit.album?.images?.first()?.url ?: "",
+            position = position,
+            uri = trackRetrofit.uri ?: ""
+        )
     }
 
     fun getTabBinding(): ItemBinding<HomeTab> {
