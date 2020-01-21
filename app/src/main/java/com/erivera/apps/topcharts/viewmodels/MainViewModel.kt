@@ -1,14 +1,13 @@
 package com.erivera.apps.topcharts.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.erivera.apps.topcharts.repository.Repository
 import com.spotify.sdk.android.authentication.AuthenticationResponse
+import javax.inject.Inject
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = Repository.getInstance(application)
+class MainViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
     private val _authenticationResponseLiveData = MutableLiveData<AuthenticationResponse>()
 
@@ -20,7 +19,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         repository.startService()
     }
 
-    fun setAuthenticationResponse(authenticationResponse: AuthenticationResponse){
+    fun setAuthenticationResponse(authenticationResponse: AuthenticationResponse) {
         _authenticationResponseLiveData.value = authenticationResponse
     }
 }

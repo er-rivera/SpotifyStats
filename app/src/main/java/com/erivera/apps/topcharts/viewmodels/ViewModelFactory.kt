@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.repository.dagger
+package com.erivera.apps.topcharts.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,8 +1,8 @@
 package com.erivera.apps.topcharts.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
@@ -16,18 +16,18 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.collections.AsyncDiffObservableList
+import javax.inject.Inject
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel() {
     companion object {
         const val SONGS = "Songs"
         const val ARTISTS = "Artists"
         const val GENRES = "Genres"
     }
 
-    private val repository = Repository.getInstance(application)
-
     private val diffConfig =
         AsyncDifferConfig.Builder<HomeTab>(object : DiffUtil.ItemCallback<HomeTab>() {
+            @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(oldItem: HomeTab, newItem: HomeTab): Boolean {
                 return oldItem.id == newItem.id && newItem.list == oldItem.list
             }

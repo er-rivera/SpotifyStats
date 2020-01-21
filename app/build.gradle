@@ -90,7 +90,6 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
 
     implementation "com.google.dagger:dagger:$rootProject.dagger_version"
-    implementation "com.google.dagger:dagger-android:$rootProject.dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
 }

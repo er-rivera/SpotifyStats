@@ -3,16 +3,30 @@ package com.erivera.apps.topcharts
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import com.erivera.apps.topcharts.dagger.ParentDependency
 import com.erivera.apps.topcharts.viewmodels.MainViewModel
+import com.erivera.apps.topcharts.viewmodels.ViewModelFactory
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationResponse
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    private val mainViewModel by lazy { ViewModelProviders.of(this).get(MainViewModel::class.java) }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
+    private val mainViewModel by lazy {
+        ViewModelProvider(
+            this,
+            viewModelFactory
+        ).get(MainViewModel::class.java)
+    }
+
+    @Inject
+    lateinit var parentDependency: ParentDependency
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MainApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
@@ -32,7 +46,8 @@ class MainActivity : AppCompatActivity() {
                 // Auth flow returned an error
                 AuthenticationResponse.Type.ERROR -> {
                 }
-                else -> {}
+                else -> {
+                }
             }
         }
     }

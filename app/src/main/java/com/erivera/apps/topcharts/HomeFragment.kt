@@ -1,12 +1,12 @@
 package com.erivera.apps.topcharts
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.erivera.apps.topcharts.databinding.FragmentHomeBinding
@@ -16,10 +16,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : InjectableFragment() {
 
-    private val homeViewModel
-            by lazy { ViewModelProviders.of(this.requireActivity()).get(HomeViewModel::class.java) }
+    private val homeViewModel by lazy { ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +33,11 @@ class HomeFragment : Fragment() {
         binding.viewModel = homeViewModel
         binding.adapter = PagerRecyclerViewAdapter<HomeTab>()
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().applicationContext as MainApplication).appComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

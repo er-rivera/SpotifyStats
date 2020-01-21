@@ -1,14 +1,14 @@
 package com.erivera.apps.topcharts
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.erivera.apps.topcharts.databinding.FragmentLoginBinding
 import com.erivera.apps.topcharts.viewmodels.MainViewModel
@@ -17,19 +17,13 @@ import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
 
 
-class LoginFragment : Fragment(), LoginInteractionListener {
-    private val mainViewModel by lazy { ViewModelProviders.of(this.requireActivity()).get(MainViewModel::class.java) }
+class LoginFragment : InjectableFragment(), LoginInteractionListener {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mainViewModel.authenticationResponseLiveData.observe(this, Observer {
-            it?.let { authReponse ->
-                this.view?.let {view ->
-                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainFragment)
-                    mainViewModel.saveSpotifyCredential(authReponse.accessToken)
-                }
-            }
-        })
+    private val mainViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            viewModelFactory
+        ).get(MainViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -47,12 +41,30 @@ class LoginFragment : Fragment(), LoginInteractionListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainViewModel.authenticationResponseLiveData.observe(this, Observer {
+            it?.let { authReponse ->
+                view.let { view ->
+                    Navigation.findNavController(view)
+                        .navigate(R.id.action_loginFragment_to_mainFragment)
+                    mainViewModel.saveSpotifyCredential(authReponse.accessToken)
+                }
+            }
+        })
         view.addStatusBarTopPadding()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().applicationContext as MainApplication).appComponent.inject(this)
+    }
+
     override fun loginButtonClick() {
-        val builder = AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI)
-        builder.setScopes(arrayOf("streaming","user-read-recently-played","user-top-read"))
+        val builder = AuthenticationRequest.Builder(
+            CLIENT_ID,
+            AuthenticationResponse.Type.TOKEN,
+            REDIRECT_URI
+        )
+        builder.setScopes(arrayOf("streaming", "user-read-recently-played", "user-top-read"))
         AuthenticationClient.openLoginActivity(requireActivity(), REQUEST_CODE, builder.build())
         Log.i(javaClass.simpleName, "Click")
     }

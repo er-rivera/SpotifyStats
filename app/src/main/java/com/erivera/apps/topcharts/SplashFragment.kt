@@ -1,23 +1,22 @@
 package com.erivera.apps.topcharts
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.erivera.apps.topcharts.repository.dagger.ViewModelFactory
 import com.erivera.apps.topcharts.viewmodels.SplashViewModel
-import javax.inject.Inject
 
-class SplashFragment : Fragment() {
+class SplashFragment : InjectableFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val splashViewModel by lazy { ViewModelProviders.of(this).get(SplashViewModel::class.java) }
+    private val splashViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory).get(
+            SplashViewModel::class.java
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +26,11 @@ class SplashFragment : Fragment() {
             initObservers(this)
             splashViewModel.checkLoginStatus()
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().applicationContext as MainApplication).appComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,10 +43,12 @@ class SplashFragment : Fragment() {
             rootView.postDelayed({
                 when (routeState) {
                     StartupRouteState.Login -> {
-                        Navigation.findNavController(rootView).navigate(R.id.action_splashFragment_to_loginFragment)
+                        Navigation.findNavController(rootView)
+                            .navigate(R.id.action_splashFragment_to_loginFragment)
                     }
                     StartupRouteState.Home -> {
-                        Navigation.findNavController(rootView).navigate(R.id.action_splashFragment_to_mainFragment)
+                        Navigation.findNavController(rootView)
+                            .navigate(R.id.action_splashFragment_to_mainFragment)
                     }
                 }
             }, 2000)
