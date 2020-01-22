@@ -1,9 +1,6 @@
 package com.erivera.apps.topcharts.dagger
 
-import com.erivera.apps.topcharts.repository.LocalDataSource
-import com.erivera.apps.topcharts.repository.LocalDataSourceImpl
-import com.erivera.apps.topcharts.repository.Repository
-import com.erivera.apps.topcharts.repository.RepositoryImpl
+import com.erivera.apps.topcharts.repository.*
 import dagger.Binds
 import dagger.Module
 
@@ -18,4 +15,7 @@ abstract class AppModule {
 
     @Binds
     abstract fun providesLocalDataSource(localDataSource: LocalDataSourceImpl): LocalDataSource
+
+    @Binds
+    abstract fun providesRemoteDataSource(remoteDataSource: RemoteDataSourceImpl): RemoteDataSource
 }

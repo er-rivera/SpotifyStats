@@ -3,7 +3,7 @@ package com.erivera.apps.topcharts.repository
 import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.models.api.TrackRetrofit
 
-interface Repository{
+interface Repository {
     fun saveSpotifyClientId(id: String)
 
     suspend fun hasValidSpotifyClientId(): Boolean
