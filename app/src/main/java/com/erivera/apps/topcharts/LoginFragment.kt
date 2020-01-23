@@ -2,7 +2,6 @@ package com.erivera.apps.topcharts
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,6 @@ import com.erivera.apps.topcharts.databinding.FragmentLoginBinding
 import com.erivera.apps.topcharts.viewmodels.MainViewModel
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
-import com.spotify.sdk.android.authentication.AuthenticationResponse
-
 
 class LoginFragment : InjectableFragment(), LoginInteractionListener {
 
@@ -36,21 +33,25 @@ class LoginFragment : InjectableFragment(), LoginInteractionListener {
             container, false
         )
         binding.listener = this
+        binding.mainViewModel = mainViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.authenticationResponseLiveData.observe(this, Observer {
-            it?.let { authReponse ->
-                view.let { view ->
+        view.addStatusBarTopPadding()
+        initObservers()
+    }
+
+    private fun initObservers(){
+        mainViewModel.screenNavigationLiveData.observe(this, Observer {
+            if(it != null && it){
+                view?.let { view ->
                     Navigation.findNavController(view)
                         .navigate(R.id.action_loginFragment_to_mainFragment)
-                    mainViewModel.saveSpotifyCredential(authReponse.accessToken)
                 }
             }
         })
-        view.addStatusBarTopPadding()
     }
 
     override fun onAttach(context: Context) {
@@ -58,20 +59,9 @@ class LoginFragment : InjectableFragment(), LoginInteractionListener {
         (requireActivity().applicationContext as MainApplication).appComponent.inject(this)
     }
 
-    override fun loginButtonClick() {
-        val builder = AuthenticationRequest.Builder(
-            CLIENT_ID,
-            AuthenticationResponse.Type.TOKEN,
-            REDIRECT_URI
-        )
-        builder.setScopes(arrayOf("streaming", "user-read-recently-played", "user-top-read"))
-        AuthenticationClient.openLoginActivity(requireActivity(), REQUEST_CODE, builder.build())
-        Log.i(javaClass.simpleName, "Click")
-    }
-
-    companion object {
-        const val REQUEST_CODE = 1337
-        private const val REDIRECT_URI = "https://github.com/er-rivera/SpotifyStats/"
-        private const val CLIENT_ID = "8796497bbe804de1af6eb358bdcdc53f"
+    override fun loginButtonClick(request: AuthenticationRequest?) {
+        request?.let {
+            AuthenticationClient.openLoginActivity(requireActivity(), MainActivity.REQUEST_CODE, it)
+        }
     }
 }

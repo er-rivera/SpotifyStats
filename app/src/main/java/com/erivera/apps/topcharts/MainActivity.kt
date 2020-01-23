@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.erivera.apps.topcharts.dagger.ParentDependency
 import com.erivera.apps.topcharts.viewmodels.MainViewModel
+import com.erivera.apps.topcharts.viewmodels.SpotifyRemoteViewModel
 import com.erivera.apps.topcharts.viewmodels.ViewModelFactory
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationResponse
@@ -22,6 +23,13 @@ class MainActivity : AppCompatActivity() {
         ).get(MainViewModel::class.java)
     }
 
+    private val spotifyRemoteViewModel by lazy {
+        ViewModelProvider(
+            this,
+            viewModelFactory
+        ).get(SpotifyRemoteViewModel::class.java)
+    }
+
     @Inject
     lateinit var parentDependency: ParentDependency
 
@@ -34,13 +42,14 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 //        // Check if result comes from the correct activity
-        if (requestCode == LoginFragment.REQUEST_CODE) {
+        if (requestCode == REQUEST_CODE) {
             val response = AuthenticationClient.getResponse(resultCode, data)
 
             when (response.type) {
                 // Response was successful and contains auth token
                 AuthenticationResponse.Type.TOKEN -> {
-                    mainViewModel.setAuthenticationResponse(response)
+                    mainViewModel.navigateToNextScreen()
+                    mainViewModel.saveSpotifyCredential(response.accessToken)
                 }
 
                 // Auth flow returned an error
@@ -50,5 +59,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    companion object {
+        const val REQUEST_CODE = 1337
     }
 }

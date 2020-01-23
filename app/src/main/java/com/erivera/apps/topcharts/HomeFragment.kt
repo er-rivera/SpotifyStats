@@ -12,13 +12,26 @@ import androidx.navigation.ui.NavigationUI
 import com.erivera.apps.topcharts.databinding.FragmentHomeBinding
 import com.erivera.apps.topcharts.models.domain.HomeTab
 import com.erivera.apps.topcharts.viewmodels.HomeViewModel
+import com.erivera.apps.topcharts.viewmodels.SpotifyRemoteViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : InjectableFragment() {
 
-    private val homeViewModel by lazy { ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java) }
+    private val homeViewModel by lazy {
+        ViewModelProvider(
+            this,
+            viewModelFactory
+        ).get(HomeViewModel::class.java)
+    }
+
+    private val spotifyRemoteViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            viewModelFactory
+        ).get(SpotifyRemoteViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,5 +66,6 @@ class HomeFragment : InjectableFragment() {
                 tab.text = homeViewModel.getTabName(position)
             }.attach()
         }
+        spotifyRemoteViewModel.connect()
     }
 }

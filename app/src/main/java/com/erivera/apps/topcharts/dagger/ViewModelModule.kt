@@ -2,10 +2,7 @@ package com.erivera.apps.topcharts.dagger
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.erivera.apps.topcharts.viewmodels.HomeViewModel
-import com.erivera.apps.topcharts.viewmodels.MainViewModel
-import com.erivera.apps.topcharts.viewmodels.SplashViewModel
-import com.erivera.apps.topcharts.viewmodels.ViewModelFactory
+import com.erivera.apps.topcharts.viewmodels.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -30,4 +27,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SplashViewModel::class)
     internal abstract fun postSplashViewModel(viewModel: SplashViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SpotifyRemoteViewModel::class)
+    internal abstract fun postSpotifyRemoteViewModel(viewModel: SpotifyRemoteViewModel): ViewModel
 }
