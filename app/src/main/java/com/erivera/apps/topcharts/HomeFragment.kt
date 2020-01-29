@@ -66,6 +66,15 @@ class HomeFragment : InjectableFragment() {
                 tab.text = homeViewModel.getTabName(position)
             }.attach()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
         spotifyRemoteViewModel.connect()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        spotifyRemoteViewModel.disconnect()
     }
 }
