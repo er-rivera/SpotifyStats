@@ -1,7 +1,6 @@
 package com.erivera.apps.topcharts
 
 import android.content.Context
-import android.util.Log
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
@@ -21,12 +20,15 @@ class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : Spoti
 
     var isConnected = false
 
+    var currentPlayerState: PlayerState? = null
+
     private val connectionListener: Connector.ConnectionListener =
         object : Connector.ConnectionListener {
             override fun onConnected(spotifyAppRemote: SpotifyAppRemote) {
                 mSpotifyAppRemote = spotifyAppRemote
                 playerStateSubscriber = spotifyAppRemote.playerApi.subscribeToPlayerState()?.apply {
                     setEventCallback { playerState ->
+                        currentPlayerState = playerState
                         listenerList.forEach {
                             it.onNextPlayerState(playerState)
                         }
@@ -88,18 +90,22 @@ class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : Spoti
     }
 
     override fun next() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mSpotifyAppRemote.playerApi.skipNext()
     }
 
     override fun previous() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mSpotifyAppRemote.playerApi.skipPrevious()
     }
 
-    override fun play() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun resume() {
+        mSpotifyAppRemote.playerApi.resume()
     }
 
     override fun pause() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mSpotifyAppRemote.playerApi.pause()
+    }
+
+    override fun isPaused(): Boolean? {
+        return currentPlayerState?.isPaused
     }
 }

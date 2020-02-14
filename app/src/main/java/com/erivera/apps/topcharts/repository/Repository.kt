@@ -1,5 +1,7 @@
 package com.erivera.apps.topcharts.repository
 
+import com.erivera.apps.topcharts.models.api.AlbumResponse
+import com.erivera.apps.topcharts.models.api.AlbumRetrofit
 import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.models.api.TrackRetrofit
 
@@ -21,4 +23,6 @@ interface Repository {
     suspend fun getShortTermTracks(): List<TrackRetrofit>
 
     fun startService()
+
+    suspend fun getAlbum(albumId: String): AlbumResponse
 }

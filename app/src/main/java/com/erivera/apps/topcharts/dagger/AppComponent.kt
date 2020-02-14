@@ -16,6 +16,7 @@ interface AppComponent {
 
     fun inject(mainActivity: MainActivity)
     fun inject(fragment: HomeFragment)
+    fun inject(fragment: PlayerFragment)
     fun inject(fragment: LoginFragment)
     fun inject(fragment: MainFragment)
     fun inject(fragment: SplashFragment)

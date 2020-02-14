@@ -1,6 +1,8 @@
 package com.erivera.apps.topcharts.repository
 
 import android.util.Log
+import com.erivera.apps.topcharts.models.api.AlbumResponse
+import com.erivera.apps.topcharts.models.api.AlbumRetrofit
 import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.repository.network.RetrofitFactory
@@ -36,6 +38,27 @@ class RemoteDataSourceImpl @Inject constructor() : RemoteDataSource {
             Log.e(javaClass.simpleName, "Ooops: Something else went wrong")
         }
         return mutableListOf()
+    }
+
+    override suspend fun getAlbum(albumId: String): AlbumResponse {
+        val response = spotifyService?.getAlbum(albumId)
+        try {
+            if (response?.isSuccessful == true) {
+                Log.i(javaClass.simpleName, "Response: ${response.body()}")
+                return response.body() ?: AlbumResponse()
+                //Do something with response e.g show to the UI.
+            } else {
+                Log.e(
+                    javaClass.simpleName,
+                    "Error - code: ${response?.code()} json: ${response?.errorBody()?.string()}"
+                )
+            }
+        } catch (e: HttpException) {
+            Log.e(javaClass.simpleName, "Exception ${e.message}")
+        } catch (e: Throwable) {
+            Log.e(javaClass.simpleName, "Ooops: Something else went wrong")
+        }
+        return AlbumResponse()
     }
 
     override suspend fun getTracks(limit: String, termLength: String): List<TrackRetrofit> {

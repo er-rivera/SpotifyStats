@@ -15,11 +15,13 @@ interface SpotifyRemoteManager {
 
     fun previous()
 
-    fun play()
+    fun resume()
 
     fun pause()
 
-    interface ViewModelListener{
+    fun isPaused(): Boolean?
+
+    interface ViewModelListener {
         fun onConnected()
         fun onFailure(error: Throwable)
         fun onNextPlayerState(playerState: PlayerState)

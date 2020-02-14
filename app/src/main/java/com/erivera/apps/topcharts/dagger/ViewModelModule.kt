@@ -25,6 +25,11 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(PlayerViewModel::class)
+    internal abstract fun postPlayerViewModel(viewModel: PlayerViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(SplashViewModel::class)
     internal abstract fun postSplashViewModel(viewModel: SplashViewModel): ViewModel
 

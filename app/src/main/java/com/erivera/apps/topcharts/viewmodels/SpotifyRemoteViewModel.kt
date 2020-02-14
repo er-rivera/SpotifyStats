@@ -16,6 +16,10 @@ class SpotifyRemoteViewModel @Inject constructor(private val spotifyRemoteManage
 
     val currentTrack: LiveData<Track> = _currentTrack
 
+    private val _isPlaying = MutableLiveData<Boolean>()
+
+    val isPlaying: LiveData<Boolean> = _isPlaying
+
     val listener = object : SpotifyRemoteManager.ViewModelListener {
         override fun onConnected() {
             Log.d(SpotifyRemoteViewModel::class.java.name, "onConnected")
@@ -26,7 +30,8 @@ class SpotifyRemoteViewModel @Inject constructor(private val spotifyRemoteManage
         }
 
         override fun onNextPlayerState(playerState: PlayerState) {
-            if(_currentTrack.value?.uri != playerState.track?.uri){
+            _isPlaying.value = playerState.isPaused
+            if (_currentTrack.value?.uri != playerState.track?.uri) {
                 _currentTrack.value = playerState.track
                 Log.d(SpotifyRemoteViewModel::class.java.name, "onNextPlayerState:$playerState")
             }
@@ -45,5 +50,23 @@ class SpotifyRemoteViewModel @Inject constructor(private val spotifyRemoteManage
     fun disconnect() {
         spotifyRemoteManager.disconnect()
         spotifyRemoteManager.removeListener(listener)
+    }
+
+    fun togglePlayPause(uri: String) {
+        spotifyRemoteManager.isPaused()?.let {
+            if (it) {
+                spotifyRemoteManager.resume()
+            } else {
+                spotifyRemoteManager.pause()
+            }
+        }
+    }
+
+    fun next() {
+        spotifyRemoteManager.next()
+    }
+
+    fun previous() {
+        spotifyRemoteManager.previous()
     }
 }
