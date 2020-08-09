@@ -1,9 +1,6 @@
 package com.erivera.apps.topcharts.repository.network
 
-import com.erivera.apps.topcharts.models.api.AlbumResponse
-import com.erivera.apps.topcharts.models.api.ArtistResponse
-import com.erivera.apps.topcharts.models.api.TrackResponse
-import com.erivera.apps.topcharts.models.api.UserResponse
+import com.erivera.apps.topcharts.models.api.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -21,4 +18,7 @@ interface SpotifyService {
 
     @GET("v1/albums/{id}")
     suspend fun getAlbum(@Path("id") albumId: String): Response<AlbumResponse>
+
+    @GET("v1/audio-features/{id}")
+    suspend fun getAudioFeatures(@Path("id") trackId: String): Response<AudioFeaturesResponse>
 }

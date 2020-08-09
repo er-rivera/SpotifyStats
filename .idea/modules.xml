@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GitHub-SpotifyStats.iml" filepath="$PROJECT_DIR$/GitHub-SpotifyStats.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GitHub-SpotifyStats.iml" filepath="$PROJECT_DIR$/GitHub-SpotifyStats.iml" group="SpotifyStats" />
       <module fileurl="file://$PROJECT_DIR$/SpotifyStats.iml" filepath="$PROJECT_DIR$/SpotifyStats.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/SpotifyStats-app.iml" filepath="$PROJECT_DIR$/app/SpotifyStats-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spotify-app-remote/spotify-app-remote.iml" filepath="$PROJECT_DIR$/spotify-app-remote/spotify-app-remote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="SpotifyStats/app" />
+      <module fileurl="file://$PROJECT_DIR$/spotify-app-remote/spotify-app-remote.iml" filepath="$PROJECT_DIR$/spotify-app-remote/spotify-app-remote.iml" group="SpotifyStats/spotify-app-remote" />
     </modules>
   </component>
 </project>

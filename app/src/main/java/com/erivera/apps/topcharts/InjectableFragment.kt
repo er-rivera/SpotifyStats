@@ -7,4 +7,8 @@ import javax.inject.Inject
 open class InjectableFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
+    override fun onAttachFragment(childFragment: Fragment) {
+        super.onAttachFragment(childFragment)
+    }
 }

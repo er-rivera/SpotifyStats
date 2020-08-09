@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.erivera.apps.topcharts.viewmodels.PlayerViewModel" />
+
+        <variable
+            name="listener"
+            type="com.erivera.apps.topcharts.PlayerInteractionListener" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/media_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_player_media_scene">
+
+        <TextView
+            android:id="@+id/nowPlayingTextView"
+            style="@style/TextAppearance.AppTheme.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.nowPlaying}"
+            app:layout_constraintBottom_toTopOf="@id/playlistTitleTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Sample" />
+
+        <TextView
+            android:id="@+id/playlistTitleTextView"
+            style="@style/TextAppearance.AppTheme.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.playlistName}"
+            app:layout_constraintBottom_toTopOf="@id/guidelineTop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nowPlayingTextView"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Sample" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/albumCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineTop"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/albumImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{viewModel.albumUrl}"
+            app:layout_constraintBottom_toBottomOf="@id/albumCardView"
+            app:layout_constraintEnd_toEndOf="@id/albumCardView"
+            app:layout_constraintStart_toStartOf="@id/albumCardView"
+            app:layout_constraintTop_toTopOf="@id/albumCardView"
+            app:viewListener="@{listener}" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="120dp" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            style="@style/TextAppearance.AppTheme.Headline6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:singleLine="true"
+            app:layout_constraintBottom_toTopOf="@id/descriptionTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:updateText="@{viewModel.trackTitle}"
+            tools:text="Sample and longer text and longer text" />
+
+        <TextView
+            android:id="@+id/descriptionTextView"
+            style="@style/TextAppearance.AppTheme.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/metadataSpace2"
+            app:layout_constraintEnd_toEndOf="@id/albumCardView"
+            app:layout_constraintStart_toStartOf="@id/albumCardView"
+            app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            app:updateText="@{viewModel.trackDescription}"
+            tools:text="Sample" />
+
+        <TextView
+            android:id="@+id/metadataSpace2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toTopOf="@id/centerIconLayout"
+            app:layout_constraintEnd_toEndOf="@id/albumCardView"
+            app:layout_constraintStart_toStartOf="@id/albumCardView"
+            app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/centerIconLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="@id/prevButton"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/nextButton"
+            app:layout_constraintStart_toEndOf="@id/prevButton"
+            app:layout_constraintTop_toBottomOf="@id/metadataSpace2"
+            app:layout_constraintVertical_bias="0" />
+
+        <ImageView
+            android:id="@+id/playButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{(view) -> listener.onPlayPauseClick()}"
+            android:padding="8dp"
+            android:src="@drawable/ic_play"
+            android:visibility="@{viewModel.playVisibility}"
+            app:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            app:layout_constraintEnd_toEndOf="@id/centerIconLayout"
+            app:layout_constraintStart_toStartOf="@id/centerIconLayout"
+            app:layout_constraintTop_toTopOf="@id/centerIconLayout"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/pauseButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{(view) -> listener.onPlayPauseClick()}"
+            android:padding="8dp"
+            android:src="@drawable/ic_pause"
+            android:visibility="@{viewModel.pauseVisibility}"
+            app:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            app:layout_constraintEnd_toEndOf="@id/centerIconLayout"
+            app:layout_constraintStart_toStartOf="@id/centerIconLayout"
+            app:layout_constraintTop_toTopOf="@id/centerIconLayout"
+            tools:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/prevButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{(view) -> listener.onPrevClick()}"
+            android:rotation="180"
+            android:src="@drawable/ic_prev"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/centerIconLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/metadataSpace2"
+            app:layout_constraintVertical_bias="0" />
+
+        <ImageView
+            android:id="@+id/nextButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{(view) -> listener.onNextClick()}"
+            android:src="@drawable/ic_ff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/centerIconLayout"
+            app:layout_constraintTop_toBottomOf="@id/metadataSpace2"
+            app:layout_constraintVertical_bias="0" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

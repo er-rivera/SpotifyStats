@@ -1,9 +1,6 @@
 package com.erivera.apps.topcharts.repository
 
-import com.erivera.apps.topcharts.models.api.AlbumResponse
-import com.erivera.apps.topcharts.models.api.AlbumRetrofit
-import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
-import com.erivera.apps.topcharts.models.api.TrackRetrofit
+import com.erivera.apps.topcharts.models.api.*
 
 interface RemoteDataSource {
 
@@ -14,6 +11,8 @@ interface RemoteDataSource {
     suspend fun getArtists(limit: String, termLength: String): List<ArtistsRetrofit>
 
     suspend fun getAlbum(albumId: String): AlbumResponse
+
+    suspend fun getAudioFeatures(trackId: String): AudioFeaturesResponse
 
     suspend fun hasValidToken(): Boolean
 }

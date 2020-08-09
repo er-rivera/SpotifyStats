@@ -3,6 +3,7 @@ package com.erivera.apps.topcharts.repository
 import android.util.Log
 import com.erivera.apps.topcharts.models.api.AlbumResponse
 import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
+import com.erivera.apps.topcharts.models.api.AudioFeaturesResponse
 import com.erivera.apps.topcharts.models.api.TrackRetrofit
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -49,6 +50,10 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getAlbum(albumId: String): AlbumResponse {
         return remoteDataSource.getAlbum(albumId)
+    }
+
+    override suspend fun getAudioFeatures(trackId: String): AudioFeaturesResponse {
+        return remoteDataSource.getAudioFeatures(trackId)
     }
 
     override fun startService() {

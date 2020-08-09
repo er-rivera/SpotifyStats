@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="300"
+        motion:motionInterpolator="linear" />
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            motion:layout_constraintGuide_percent="0.6" />
+        <Constraint
+            android:id="@+id/albumCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/guidelineTop"
+            motion:layout_constraintVertical_bias="0" />
+        <Constraint
+            android:id="@+id/albumCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/guidelineTop"
+            motion:layout_constraintVertical_bias="0" />
+        <Constraint
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@id/descriptionTextView"
+            motion:layout_constraintEnd_toEndOf="@id/albumCardView"
+            motion:layout_constraintStart_toStartOf="@id/albumCardView"
+            motion:layout_constraintTop_toBottomOf="@id/guidelineBottom" />
+        <Constraint
+            android:id="@+id/nextButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@id/centerIconLayout"
+            motion:layout_constraintTop_toBottomOf="@id/metadataSpace2"
+            motion:layout_constraintVertical_bias="0" />
+        <Constraint
+            android:id="@+id/metadataSpace2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            motion:layout_constraintBottom_toTopOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toEndOf="@id/albumCardView"
+            motion:layout_constraintStart_toStartOf="@id/albumCardView"
+            motion:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintVertical_chainStyle="packed" />
+        <Constraint
+            android:id="@+id/prevButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:rotation="180"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toStartOf="@id/centerIconLayout"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/metadataSpace2"
+            motion:layout_constraintVertical_bias="0" />
+        <Constraint
+            android:id="@+id/centerIconLayout"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            motion:layout_constraintBottom_toBottomOf="@id/prevButton"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintEnd_toStartOf="@id/nextButton"
+            motion:layout_constraintStart_toEndOf="@id/prevButton"
+            motion:layout_constraintTop_toBottomOf="@id/metadataSpace2"
+            motion:layout_constraintVertical_bias="0" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/nowPlayingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toTopOf="@id/playlistTitleTextView"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/playlistTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toTopOf="@id/playlistTitleTextView"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/albumCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            motion:layout_constraintHorizontal_bias="0"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/guidelineTop"
+            motion:layout_constraintVertical_bias="1" />
+
+        <Constraint
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintBottom_toTopOf="@id/descriptionTextView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintStart_toEndOf="@id/albumCardView"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/descriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/titleTextView"
+            motion:layout_constraintTop_toBottomOf="@id/titleTextView" />
+        <Constraint
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            motion:layout_constraintGuide_percent="1.0" />
+        <Constraint
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            motion:layout_constraintGuide_percent="0.0" />
+
+        <Constraint
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHeight_max="40dp"
+            motion:layout_constraintStart_toEndOf="@id/centerIconLayout"
+            motion:layout_constraintTop_toTopOf="@id/metadataSpace2" />
+        <Constraint
+            android:id="@+id/metadataSpace2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            motion:layout_constraintBottom_toTopOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toEndOf="@id/albumCardView"
+            motion:layout_constraintStart_toStartOf="@id/albumCardView"
+            motion:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintVertical_chainStyle="packed" />
+        <Constraint
+            android:id="@+id/prevButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:rotation="180"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintHeight_max="40dp"
+            motion:layout_constraintHorizontal_bias="0"
+            motion:layout_constraintStart_toStartOf="@id/titleTextView"
+            motion:layout_constraintEnd_toStartOf="@id/centerIconLayout"
+            motion:layout_constraintTop_toBottomOf="@id/metadataSpace2" />
+        <Constraint
+            android:id="@+id/centerIconLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintEnd_toStartOf="@id/nextButton"
+            motion:layout_constraintHeight_max="40dp"
+            motion:layout_constraintHorizontal_bias="0"
+            motion:layout_constraintStart_toEndOf="@id/prevButton"
+            motion:layout_constraintTop_toBottomOf="@id/metadataSpace2" />
+    </ConstraintSet>
+</MotionScene>

@@ -9,4 +9,11 @@
     <color name="colorOldAccent">#B3965C</color>
     <color name="headerColor">#FFFFFF</color>
     <color name="tabUnselected">#40836A3A</color>
+    <color name="colorGradient1">#d9ff43</color>
+    <color name="colorGradient2">#f67831</color>
+    <color name="colorGradient3">#ff1493</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="translucent">#00000000</color>
+    <color name="black_20">#33000000</color>
 </resources>

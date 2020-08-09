@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,166 +14,44 @@
             name="listener"
             type="com.erivera.apps.topcharts.PlayerInteractionListener" />
 
+        <variable
+            name="gridLayoutManager"
+            type="androidx.recyclerview.widget.GridLayoutManager" />
+
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        app:layoutDescription="@xml/fragment_player_scene"
         tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/nowPlayingTextView"
-            style="@style/TextAppearance.AppTheme.Headline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@{viewModel.nowPlaying}"
-            app:layout_constraintBottom_toTopOf="@id/playlistTitleTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <TextView
-            android:id="@+id/playlistTitleTextView"
-            style="@style/TextAppearance.AppTheme.Body1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
-            android:text="@{viewModel.playlistName}"
-            app:layout_constraintBottom_toTopOf="@id/albumImageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nowPlayingTextView"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintVertical_chainStyle="packed" />
-
         <ImageView
-            android:id="@+id/albumImageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:scaleType="centerCrop"
-            app:imageUrl="@{viewModel.albumUrl}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/playlistTitleTextView"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/titleTextView"
-            style="@style/TextAppearance.AppTheme.Headline6"
+            android:id="@+id/gradientView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:ellipsize="end"
-            android:gravity="start"
-            android:singleLine="true"
-            android:text="@{viewModel.trackTitle}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/albumImageView" />
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
 
-        <TextView
-            android:id="@+id/descriptionTextView"
-            style="@style/TextAppearance.AppTheme.Body1"
+        <ImageView
+            android:id="@+id/gradientOverlayView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@id/metadataSpace"
-            app:layout_constraintStart_toStartOf="@id/titleTextView"
-            app:layout_constraintTop_toBottomOf="@id/titleTextView"
-            app:updateText="@{viewModel.trackDescription}" />
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_black_white"
+            android:contentDescription="@null" />
 
-        <Space
-            android:id="@+id/metadataSpace"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintVertical_chainStyle="packed" />
+        <include
+            layout="@layout/player_media"
+            bind:listener="@{listener}"
+            bind:viewModel="@{viewModel}" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/centerIconLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:onClick="@{(view) -> listener.onPlayPauseClick()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/metadataSpace"
-            app:layout_constraintVertical_bias="0">
-
-            <ImageView
-                android:id="@+id/playButton"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:padding="6dp"
-                android:src="@drawable/ic_play"
-                android:visibility="@{viewModel.isPlaying() ? View.VISIBLE : View.GONE}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/pauseButton"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:padding="6dp"
-                android:src="@drawable/ic_pause"
-                android:visibility="@{viewModel.isPlaying() ? View.GONE : View.VISIBLE}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="gone" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/prevButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:onClick="@{(view) -> listener.onPrevClick()}"
-            android:padding="6dp"
-            android:rotation="180"
-            android:src="@drawable/ic_prev"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/centerIconLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/metadataSpace"
-            app:layout_constraintVertical_bias="0" />
-
-        <ImageView
-            android:id="@+id/nextButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:onClick="@{(view) -> listener.onNextClick()}"
-            android:src="@drawable/ic_ff"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/centerIconLayout"
-            app:layout_constraintTop_toBottomOf="@id/metadataSpace"
-            app:layout_constraintVertical_bias="0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            layout="@layout/player_scroll"
+            bind:gridLayoutManager="@{gridLayoutManager}"
+            bind:viewModel="@{viewModel}" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
