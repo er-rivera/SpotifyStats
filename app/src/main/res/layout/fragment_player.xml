@@ -21,12 +21,11 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layoutDescription="@xml/fragment_player_scene"
         tools:context=".MainActivity">
 
         <ImageView
@@ -48,10 +47,5 @@
             layout="@layout/player_media"
             bind:listener="@{listener}"
             bind:viewModel="@{viewModel}" />
-
-        <include
-            layout="@layout/player_scroll"
-            bind:gridLayoutManager="@{gridLayoutManager}"
-            bind:viewModel="@{viewModel}" />
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

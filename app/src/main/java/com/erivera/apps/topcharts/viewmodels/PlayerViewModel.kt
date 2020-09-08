@@ -71,7 +71,9 @@ class PlayerViewModel @Inject constructor(
 
     val albumColors: LiveData<Array<Int>> = _albumColors
 
-    private val _isPlaying = MutableLiveData<Boolean>()
+    private val _isPlaying = MutableLiveData<Boolean>().apply {
+        value = false
+    }
 
     val playVisibility: LiveData<Int> = Transformations.map(_isPlaying) {
         if (it) View.VISIBLE else View.INVISIBLE
@@ -289,10 +291,7 @@ class PlayerViewModel @Inject constructor(
             val palette = Palette.from(drawable.toBitmap()).generate()
             withContext(Dispatchers.Main) {
                 if (palette.swatches.isNotEmpty()) {
-                    val color1 = palette.swatches.getOrNull(0)?.rgb
-                    val color2 = palette.swatches.getOrNull(1)?.rgb
-                    val color3 = palette.swatches.getOrNull(2)?.rgb
-                    _albumColors.value = arrayOf(color1!!, color2!!, color3!!)
+                    _albumColors.value = palette.swatches.mapNotNull { it.rgb }.toTypedArray()
                 }
             }
         }

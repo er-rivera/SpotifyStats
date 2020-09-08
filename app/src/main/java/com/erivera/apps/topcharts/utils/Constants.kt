@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.utils
 
 object Constants {
     const val REDIRECT_URI = "https://github.com/er-rivera/SpotifyStats/"

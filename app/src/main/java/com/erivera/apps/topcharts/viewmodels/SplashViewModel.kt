@@ -13,7 +13,6 @@ class SplashViewModel @Inject constructor(val repository : Repository) : ViewMod
         get() = _navigationLiveData
 
     fun checkLoginStatus(){
-        repository.startService()
         viewModelScope.launch {
             if(repository.hasValidSpotifyClientId()){
                 _navigationLiveData.postValue(StartupRouteState.Home)

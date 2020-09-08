@@ -14,6 +14,10 @@ class RepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : Repository {
 
+    init {
+        startService()
+    }
+
     override fun saveSpotifyClientId(id: String) {
         localDataSource.saveSpotifyClientId(id)
     }

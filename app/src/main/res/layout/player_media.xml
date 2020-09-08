@@ -16,11 +16,10 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/media_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutDescription="@xml/fragment_player_media_scene">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/nowPlayingTextView"
@@ -28,26 +27,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewModel.nowPlaying}"
-            app:layout_constraintBottom_toTopOf="@id/playlistTitleTextView"
+            app:layout_constraintBottom_toTopOf="@id/guidelineTop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Sample" />
-
-        <TextView
-            android:id="@+id/playlistTitleTextView"
-            style="@style/TextAppearance.AppTheme.Body1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.playlistName}"
-            app:layout_constraintBottom_toTopOf="@id/guidelineTop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nowPlayingTextView"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Sample" />
+            tools:text="Now Playing" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/albumCardView"
@@ -72,6 +57,7 @@
             android:layout_height="0dp"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
+            android:layout_margin="5dp"
             app:imageUrl="@{viewModel.albumUrl}"
             app:layout_constraintBottom_toBottomOf="@id/albumCardView"
             app:layout_constraintEnd_toEndOf="@id/albumCardView"
@@ -91,23 +77,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="120dp" />
+            app:layout_constraintGuide_percent="0.6" />
 
         <TextView
             android:id="@+id/titleTextView"
-            style="@style/TextAppearance.AppTheme.Headline6"
+            style="@style/TextAppearance.AppTheme.Headline5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:singleLine="true"
             app:layout_constraintBottom_toTopOf="@id/descriptionTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/albumCardView"
             app:layout_constraintTop_toBottomOf="@id/guidelineBottom"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintVertical_chainStyle="packed"
             app:updateText="@{viewModel.trackTitle}"
-            tools:text="Sample and longer text and longer text" />
+            tools:text="Song of the Year with a really long name" />
 
         <TextView
             android:id="@+id/descriptionTextView"
@@ -115,11 +101,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/metadataSpace2"
-            app:layout_constraintEnd_toEndOf="@id/albumCardView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/albumCardView"
             app:layout_constraintTop_toBottomOf="@id/titleTextView"
             app:updateText="@{viewModel.trackDescription}"
-            tools:text="Sample" />
+            tools:text="Grammy Award Winning Artist" />
 
         <TextView
             android:id="@+id/metadataSpace2"
@@ -207,5 +193,5 @@
             app:layout_constraintStart_toEndOf="@id/centerIconLayout"
             app:layout_constraintTop_toBottomOf="@id/metadataSpace2"
             app:layout_constraintVertical_bias="0" />
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

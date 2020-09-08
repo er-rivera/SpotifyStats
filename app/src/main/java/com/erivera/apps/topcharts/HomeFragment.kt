@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.erivera.apps.topcharts.databinding.FragmentHomeBinding
 import com.erivera.apps.topcharts.models.domain.HomeTab
+import com.erivera.apps.topcharts.utils.addStatusBarTopPadding
 import com.erivera.apps.topcharts.viewmodels.HomeViewModel
 import com.erivera.apps.topcharts.viewmodels.SpotifyRemoteViewModel
 import com.google.android.material.tabs.TabLayoutMediator

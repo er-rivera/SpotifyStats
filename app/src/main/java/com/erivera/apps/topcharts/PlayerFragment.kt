@@ -4,18 +4,18 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.erivera.apps.topcharts.databinding.FragmentPlayerBinding
+import com.erivera.apps.topcharts.utils.CustomGradientDrawable
 import com.erivera.apps.topcharts.viewmodels.PlayerViewModel
 import com.erivera.apps.topcharts.viewmodels.SpotifyRemoteViewModel
 import kotlinx.android.synthetic.main.fragment_player.*
@@ -86,9 +86,21 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
         val firstColor = array[0]
         val secondColor = array[1]
         val thirdColor = array[2]
-        val gradient1 = CustomGradientDrawable(firstColor, secondColor, thirdColor)
-        val gradient2 = CustomGradientDrawable(secondColor, thirdColor, firstColor)
-        val gradient3 = CustomGradientDrawable(thirdColor, firstColor, secondColor)
+        val gradient1 = CustomGradientDrawable(
+            firstColor,
+            secondColor,
+            thirdColor
+        )
+        val gradient2 = CustomGradientDrawable(
+            secondColor,
+            thirdColor,
+            firstColor
+        )
+        val gradient3 = CustomGradientDrawable(
+            thirdColor,
+            firstColor,
+            secondColor
+        )
         val drawable = AnimationDrawable().apply {
             addFrame(gradient1, 5000)
             addFrame(gradient2, 5000)

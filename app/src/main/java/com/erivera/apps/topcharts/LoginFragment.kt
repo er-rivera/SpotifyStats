@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.erivera.apps.topcharts.databinding.FragmentLoginBinding
+import com.erivera.apps.topcharts.utils.addStatusBarTopPadding
 import com.erivera.apps.topcharts.viewmodels.MainViewModel
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest

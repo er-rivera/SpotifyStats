@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.erivera.apps.topcharts.utils.addStatusBarTopPadding
 import com.erivera.apps.topcharts.viewmodels.SplashViewModel
 
 class SplashFragment : InjectableFragment() {
@@ -39,7 +40,7 @@ class SplashFragment : InjectableFragment() {
     }
 
     private fun initObservers(rootView: View) {
-        splashViewModel.navigationLiveData.observe(this, Observer { routeState ->
+        splashViewModel.navigationLiveData.observe(viewLifecycleOwner, Observer { routeState ->
             rootView.postDelayed({
                 when (routeState) {
                     StartupRouteState.Login -> {
