@@ -2,17 +2,16 @@ package com.erivera.apps.topcharts.viewmodels
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.*
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.erivera.apps.topcharts.R
+import com.erivera.apps.topcharts.SpotifyRemoteManager
 import com.erivera.apps.topcharts.models.api.AudioFeaturesResponse
 import com.erivera.apps.topcharts.models.domain.AudioItem
 import com.erivera.apps.topcharts.repository.Repository
@@ -28,11 +27,11 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import javax.inject.Inject
 import kotlin.math.roundToInt
-import kotlin.math.roundToLong
 
 class PlayerViewModel @Inject constructor(
     private val appContext: Context,
-    val repository: Repository
+    private val repository: Repository,
+    private val spotifyRemoteManager: SpotifyRemoteManager
 ) : ViewModel() {
 
     private val diffConfig =
@@ -50,10 +49,6 @@ class PlayerViewModel @Inject constructor(
     private val _nowPlaying = MutableLiveData<String>()
 
     val nowPlaying: LiveData<String> = _nowPlaying
-
-    private val _playlistName = MutableLiveData<String>()
-
-    val playlistName: LiveData<String> = _playlistName
 
     private val _albumUrl = MutableLiveData<String>()
 
@@ -88,24 +83,40 @@ class PlayerViewModel @Inject constructor(
     val audioItemList: AsyncDiffObservableList<AudioItem> = _audioItemList
 
     private var track: Track? = null
+        set(value) {
+            value?.let {
+                updateTrackInfo(value)
+            }
+
+        }
 
     private val decimalFormat = DecimalFormat("#.##").apply {
         roundingMode = RoundingMode.CEILING
     }
 
-    fun updateTrackInfo(track: Track) {
-        this.track = track
+    val listener = object : SpotifyRemoteManager.ViewModelListener {
+        override fun onCurrentTrackChanged(track: Track) {
+            this@PlayerViewModel.track = track
+            Log.d(PlayerViewModel::class.java.name, "onCurrentTrackChanged:$track")
+        }
+
+        override fun onPauseStateChanged(isPaused: Boolean) {
+            _isPlaying.value = isPaused
+            Log.d(PlayerViewModel::class.java.name, "onPauseStateChanged:$isPaused")
+        }
+    }
+
+    init {
+        spotifyRemoteManager.addListener(listener)
+    }
+
+    private fun updateTrackInfo(track: Track) {
         _nowPlaying.value = "Now Playing:"
-        _playlistName.value = "N/A"
         _trackTitle.value = track.name
         _trackDescription.value =
             "${track.artists.joinToString(",", transform = { it.name })} - ${track.album.name}"
         updateAlbumInfo(track.album)
         updateAudioItemList(track.uri)
-    }
-
-    fun updatePlayState(isPlaying: Boolean) {
-        _isPlaying.value = isPlaying
     }
 
     private fun updateAlbumInfo(album: Album) {
@@ -273,20 +284,16 @@ class PlayerViewModel @Inject constructor(
         if (index != null && index != -1) {
             val resId =
                 appContext.resources.getIdentifier("pitch_$index", "string", appContext.packageName)
-            retVal = appContext.resources.getString(resId) ?: ""
+            retVal = appContext.resources.getString(resId)
         }
         return retVal
-    }
-
-    fun getUri(): String? {
-        return track?.uri
     }
 
     fun getItemBinding(): ItemBinding<AudioItem> {
         return ItemBinding.of(BR.audioItem, R.layout.view_grid_player_info)
     }
 
-    fun analyzeDrawable(drawable: Drawable) {
+    private fun analyzeDrawable(drawable: Drawable) {
         viewModelScope.launch(Dispatchers.IO) {
             val palette = Palette.from(drawable.toBitmap()).generate()
             withContext(Dispatchers.Main) {
@@ -295,5 +302,22 @@ class PlayerViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun togglePlayPause() {
+        spotifyRemoteManager.togglePlayPause()
+    }
+
+    fun next() {
+        spotifyRemoteManager.next()
+    }
+
+    fun previous() {
+        spotifyRemoteManager.previous()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        spotifyRemoteManager.removeListener(listener)
     }
 }

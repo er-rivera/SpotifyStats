@@ -1,13 +1,11 @@
 package com.erivera.apps.topcharts
 
 import android.content.Context
+import android.util.Log
 import com.erivera.apps.topcharts.utils.Constants
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
-import com.spotify.android.appremote.api.error.CouldNotFindSpotifyApp
-import com.spotify.android.appremote.api.error.NotLoggedInException
-import com.spotify.android.appremote.api.error.UserNotAuthorizedException
 import com.spotify.protocol.client.Subscription
 import com.spotify.protocol.types.PlayerState
 import javax.inject.Inject
@@ -21,6 +19,8 @@ class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : Spoti
 
     var isConnected = false
 
+    var isPaused = false
+
     var currentPlayerState: PlayerState? = null
 
     private val connectionListener: Connector.ConnectionListener =
@@ -29,32 +29,28 @@ class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : Spoti
                 mSpotifyAppRemote = spotifyAppRemote
                 playerStateSubscriber = spotifyAppRemote.playerApi.subscribeToPlayerState()?.apply {
                     setEventCallback { playerState ->
-                        currentPlayerState = playerState
                         listenerList.forEach {
-                            it.onNextPlayerState(playerState)
+                            it.onPauseStateChanged(playerState.isPaused)
                         }
+                        isPaused = playerState.isPaused
+                        playerState?.track?.let { track ->
+                            if(currentPlayerState?.track?.uri != track.uri){
+                                listenerList.forEach {
+                                    it.onCurrentTrackChanged(track)
+                                }
+                            }
+                        }
+                        currentPlayerState = playerState
                     }
                     setErrorCallback { throwable ->
-                        listenerList.forEach {
-                            it.onNextPlayerError(throwable)
-                        }
-
+                        Log.d(SpotifyRemoteManagerImpl::class.java.name, "onNextPlayerError:$throwable")
                     }
                 }
-                listenerList.forEach {
-                    it.onConnected()
-                }
+                Log.d(SpotifyRemoteManagerImpl::class.java.name, "onConnected")
             }
 
             override fun onFailure(error: Throwable) {
-                if (error is NotLoggedInException || error is UserNotAuthorizedException) {
-                    // Show login button and trigger the login flow from auth library when clicked
-                } else if (error is CouldNotFindSpotifyApp) {
-                    // Show button to download Spotify
-                }
-                listenerList.forEach {
-                    it.onFailure(error)
-                }
+                Log.d(SpotifyRemoteManagerImpl::class.java.name, "onFailure:$error")
             }
         }
 
@@ -84,10 +80,18 @@ class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : Spoti
 
     override fun addListener(viewModelListener: SpotifyRemoteManager.ViewModelListener) {
         listenerList.add(viewModelListener)
+        connect()
+        currentPlayerState?.track?.let {
+            viewModelListener.onCurrentTrackChanged(track = it)
+        }
+        isPaused()?.let {
+            viewModelListener.onPauseStateChanged(isPaused = it)
+        }
     }
 
     override fun removeListener(viewModelListener: SpotifyRemoteManager.ViewModelListener) {
         listenerList.remove(viewModelListener)
+        disconnect()
     }
 
     override fun next() {
@@ -98,15 +102,25 @@ class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : Spoti
         mSpotifyAppRemote.playerApi.skipPrevious()
     }
 
-    override fun resume() {
+    private fun resume() {
         mSpotifyAppRemote.playerApi.resume()
     }
 
-    override fun pause() {
+    private fun pause() {
         mSpotifyAppRemote.playerApi.pause()
     }
 
-    override fun isPaused(): Boolean? {
+    private fun isPaused(): Boolean? {
         return currentPlayerState?.isPaused
+    }
+
+    override fun togglePlayPause() {
+        isPaused()?.let {
+            if (it) {
+                resume()
+            } else {
+                pause()
+            }
+        }
     }
 }

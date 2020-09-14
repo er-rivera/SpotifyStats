@@ -1,6 +1,6 @@
 package com.erivera.apps.topcharts
 
-import com.spotify.protocol.types.PlayerState
+import com.spotify.protocol.types.Track
 
 interface SpotifyRemoteManager {
     fun connect()
@@ -15,16 +15,11 @@ interface SpotifyRemoteManager {
 
     fun previous()
 
-    fun resume()
-
-    fun pause()
-
-    fun isPaused(): Boolean?
+    fun togglePlayPause()
 
     interface ViewModelListener {
-        fun onConnected()
-        fun onFailure(error: Throwable)
-        fun onNextPlayerState(playerState: PlayerState)
-        fun onNextPlayerError(error: Throwable)
+        fun onCurrentTrackChanged(track: Track)
+
+        fun onPauseStateChanged(isPaused: Boolean)
     }
 }

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.erivera.apps.topcharts.dagger.ParentDependency
 import com.erivera.apps.topcharts.viewmodels.MainViewModel
-import com.erivera.apps.topcharts.viewmodels.SpotifyRemoteViewModel
 import com.erivera.apps.topcharts.viewmodels.ViewModelFactory
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationResponse
@@ -21,13 +20,6 @@ class MainActivity : AppCompatActivity() {
             this,
             viewModelFactory
         ).get(MainViewModel::class.java)
-    }
-
-    private val spotifyRemoteViewModel by lazy {
-        ViewModelProvider(
-            this,
-            viewModelFactory
-        ).get(SpotifyRemoteViewModel::class.java)
     }
 
     @Inject

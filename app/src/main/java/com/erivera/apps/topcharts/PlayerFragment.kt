@@ -1,23 +1,18 @@
 package com.erivera.apps.topcharts
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.erivera.apps.topcharts.databinding.FragmentPlayerBinding
 import com.erivera.apps.topcharts.utils.CustomGradientDrawable
 import com.erivera.apps.topcharts.viewmodels.PlayerViewModel
-import com.erivera.apps.topcharts.viewmodels.SpotifyRemoteViewModel
 import kotlinx.android.synthetic.main.fragment_player.*
 
 
@@ -28,13 +23,6 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
             this,
             viewModelFactory
         ).get(PlayerViewModel::class.java)
-    }
-
-    private val spotifyRemoteViewModel by lazy {
-        ViewModelProvider(
-            requireActivity(),
-            viewModelFactory
-        ).get(SpotifyRemoteViewModel::class.java)
     }
 
     private var animDrawable: AnimationDrawable? = null
@@ -60,17 +48,6 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        spotifyRemoteViewModel.currentTrack.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                playerViewModel.updateTrackInfo(it)
-                Log.d(PlayerFragment::class.java.name, "Track: ${it.name}")
-            }
-        })
-        spotifyRemoteViewModel.isPlaying.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                playerViewModel.updatePlayState(it)
-            }
-        })
         playerViewModel.albumColors.observe(viewLifecycleOwner, Observer {
             it?.let {
                 generateAnimatedDrawable(it)
@@ -79,7 +56,7 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
     }
 
     override fun onAlbumArtLoaded(drawable: Drawable) {
-        playerViewModel.analyzeDrawable(drawable)
+       // playerViewModel.analyzeDrawable(drawable)
     }
 
     private fun generateAnimatedDrawable(array: Array<Int>) {
@@ -129,27 +106,15 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        spotifyRemoteViewModel.connect()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        spotifyRemoteViewModel.disconnect()
-    }
-
     override fun onNextClick() {
-        spotifyRemoteViewModel.next()
+        playerViewModel.next()
     }
 
     override fun onPlayPauseClick() {
-        playerViewModel.getUri()?.let {
-            spotifyRemoteViewModel.togglePlayPause(it)
-        }
+        playerViewModel.togglePlayPause()
     }
 
     override fun onPrevClick() {
-        spotifyRemoteViewModel.previous()
+        playerViewModel.previous()
     }
 }
