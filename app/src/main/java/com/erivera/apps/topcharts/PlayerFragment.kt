@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.erivera.apps.topcharts.databinding.FragmentPlayerBinding
 import com.erivera.apps.topcharts.utils.CustomGradientDrawable
 import com.erivera.apps.topcharts.viewmodels.PlayerViewModel
-import kotlinx.android.synthetic.main.fragment_player.*
 
 
 class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
@@ -82,14 +81,13 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
             addFrame(gradient1, 5000)
             addFrame(gradient2, 5000)
             addFrame(gradient3, 5000)
-            isOneShot = false
         }
-        gradientView.background = drawable
-        animDrawable = (gradientView.background as? AnimationDrawable)?.apply {
-            setEnterFadeDuration(10)
-            setExitFadeDuration(5000)
-            start()
-        }
+//        gradientView.background = drawable
+//        animDrawable = (gradientView.background as? AnimationDrawable)?.apply {
+//            setEnterFadeDuration(10)
+//            setExitFadeDuration(5000)
+//            start()
+//        }
     }
 
     override fun onResume() {

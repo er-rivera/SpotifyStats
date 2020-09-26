@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.erivera.apps.topcharts.databinding.FragmentHomeBinding
 import com.erivera.apps.topcharts.models.domain.HomeTab
-import com.erivera.apps.topcharts.utils.addStatusBarTopPadding
 import com.erivera.apps.topcharts.viewmodels.HomeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -53,7 +52,6 @@ class HomeFragment : InjectableFragment() {
             homeToolbar.title = ""
             homeTitle.text = homeViewModel.getHomeTitle()
         }
-        view.rootHomeLayout.addStatusBarTopPadding()
         view.homeViewPager.post {
             TabLayoutMediator(homeTabLayout, homeViewPager) { tab, position ->
                 tab.text = homeViewModel.getTabName(position)

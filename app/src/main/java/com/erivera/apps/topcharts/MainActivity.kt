@@ -2,13 +2,16 @@ package com.erivera.apps.topcharts
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.erivera.apps.topcharts.dagger.ParentDependency
 import com.erivera.apps.topcharts.viewmodels.MainViewModel
 import com.erivera.apps.topcharts.viewmodels.ViewModelFactory
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationResponse
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

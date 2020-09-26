@@ -1,11 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="MainTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="MainTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="materialButtonStyle">@style/OnBoardButtonStyle</item>
         <item name="textAppearanceHeadline1">@style/TextAppearance.AppTheme.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.AppTheme.Headline2</item>
         <item name="textAppearanceHeadline3">@style/TextAppearance.AppTheme.Headline3</item>
@@ -18,7 +18,6 @@
         <item name="textAppearanceBody2">@style/TextAppearance.AppTheme.Body2</item>
         <item name="textAppearanceButton">@style/TextAppearance.AppTheme.Button</item>
         <item name="textAppearanceCaption">@style/TextAppearance.AppTheme.Caption</item>
-
     </style>
 
     <style name="TabTextStyle" parent="TextAppearance.AppTheme.Body1">
@@ -80,6 +79,14 @@
 
     <style name="TextAppearance.AppTheme.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="fontFamily">@font/lekton_bold</item>
+    </style>
+
+    <style name="TextAppearance.CyberTheme.Title" parent="TextAppearance.AppTheme.Headline5">
+        <item name="fontFamily">@font/outrun_future</item>
+    </style>
+
+    <style name="TextAppearance.CyberTheme.Artist" parent="TextAppearance.AppTheme.Body1">
+        <item name="fontFamily">@font/highway_gothic</item>
     </style>
 
     <style name="TextAppearance.AppTheme.Headline6" parent="TextAppearance.MaterialComponents.Headline6">

@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.*
 import androidx.palette.graphics.Palette
@@ -46,10 +47,6 @@ class PlayerViewModel @Inject constructor(
             }
         }).build()
 
-    private val _nowPlaying = MutableLiveData<String>()
-
-    val nowPlaying: LiveData<String> = _nowPlaying
-
     private val _albumUrl = MutableLiveData<String>()
 
     val albumUrl: LiveData<String> = _albumUrl
@@ -57,6 +54,12 @@ class PlayerViewModel @Inject constructor(
     private val _trackTitle = MutableLiveData<String>()
 
     val trackTitle: LiveData<String> = _trackTitle
+
+    private val _trackTitleColor = MutableLiveData<Int>().apply {
+        value = ContextCompat.getColor(appContext, R.color.white)
+    }
+
+    val trackTitleColor: LiveData<Int> = _trackTitleColor
 
     private val _trackDescription = MutableLiveData<String>()
 
@@ -111,7 +114,6 @@ class PlayerViewModel @Inject constructor(
     }
 
     private fun updateTrackInfo(track: Track) {
-        _nowPlaying.value = "Now Playing:"
         _trackTitle.value = track.name
         _trackDescription.value =
             "${track.artists.joinToString(",", transform = { it.name })} - ${track.album.name}"
@@ -128,7 +130,6 @@ class PlayerViewModel @Inject constructor(
                 withContext(Dispatchers.Main) {
                     Log.d("asdas", "sadsd")
                     _albumUrl.value = image
-
                 }
             }
         }

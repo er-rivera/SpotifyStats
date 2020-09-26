@@ -1,5 +1,7 @@
 package com.erivera.apps.topcharts.viewmodels
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.util.Log
@@ -10,17 +12,33 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.erivera.apps.topcharts.PlayerInteractionListener
+import jp.wasabeef.glide.transformations.BlurTransformation
 
-@BindingAdapter(value = ["imageUrl", "viewListener"], requireAll = false)
-fun ImageView.setImageUrl(url: String? = null, listener: PlayerInteractionListener? = null) {
+
+@BindingAdapter(value = ["imageUrl", "viewListener", "blur"], requireAll = false)
+fun ImageView.setImageUrl(
+    url: String? = null,
+    listener: PlayerInteractionListener? = null,
+    blur: Boolean? = null
+) {
     url?.let {
+        val factory =
+            DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
         Glide.with(context)
             .load(it)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .listener(object : RequestListener<Drawable> {
+            .transition(withCrossFade(factory))
+            .placeholder(ColorDrawable(Color.BLACK))
+            .diskCacheStrategy(DiskCacheStrategy.ALL).apply {
+                if (blur == true) {
+                    this.apply(bitmapTransform(BlurTransformation(25, 3)))
+                }
+            }.listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
                     model: Any?,
@@ -53,7 +71,7 @@ fun TextView.updateText(text: String?) {
     text?.let {
         this.text = it
         this.ellipsize = TextUtils.TruncateAt.MARQUEE
-        this.setSingleLine(true)
+        this.isSingleLine = true
         this.marqueeRepeatLimit = 5
         this.isSelected = true
     }
