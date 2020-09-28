@@ -294,12 +294,12 @@ class PlayerViewModel @Inject constructor(
         return ItemBinding.of(BR.audioItem, R.layout.view_grid_player_info)
     }
 
-    private fun analyzeDrawable(drawable: Drawable) {
+    fun analyzeDrawable(drawable: Drawable) {
         viewModelScope.launch(Dispatchers.IO) {
             val palette = Palette.from(drawable.toBitmap()).generate()
             withContext(Dispatchers.Main) {
                 if (palette.swatches.isNotEmpty()) {
-                    _albumColors.value = palette.swatches.mapNotNull { it.rgb }.toTypedArray()
+                    _albumColors.value = listOf(palette.lightVibrantSwatch, palette.vibrantSwatch, palette.darkVibrantSwatch).mapNotNull { it?.rgb }.toTypedArray()
                 }
             }
         }
