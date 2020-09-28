@@ -1,5 +1,6 @@
 package com.erivera.apps.topcharts.viewmodels
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -7,6 +8,8 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -18,6 +21,7 @@ import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.erivera.apps.topcharts.PlayerInteractionListener
+import com.erivera.apps.topcharts.R
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 
@@ -75,4 +79,11 @@ fun TextView.updateText(text: String?) {
         this.marqueeRepeatLimit = 5
         this.isSelected = true
     }
+}
+
+@BindingAdapter(value = ["glowColor"], requireAll = false)
+fun ImageView.setGlowColor(colorArray: Array<Int>?) {
+    val color = colorArray?.getOrNull(0) ?: colorArray?.getOrNull(1) ?: colorArray?.getOrNull(2)
+    ?: ContextCompat.getColor(context, R.color.white)
+    ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(color))
 }

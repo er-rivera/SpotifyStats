@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/logged_in_graph"
     app:startDestination="@id/fragment_player">
-<!--    <fragment-->
-<!--        android:id="@+id/fragment_home"-->
-<!--        android:name="com.erivera.apps.topcharts.HomeFragment"-->
-<!--        android:label="Top Charts"-->
-<!--        tools:layout="@layout/fragment_home" />-->
     <fragment
         android:id="@+id/fragment_player"
         android:name="com.erivera.apps.topcharts.PlayerFragment"
         android:label="Player"
-        tools:layout="@layout/fragment_player" />
+        tools:layout="@layout/fragment_player">
+        <action
+            android:id="@+id/action_fragment_player_to_colorsFragment"
+            app:destination="@id/colorsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_stats"
         android:name="com.erivera.apps.topcharts.StatisticsFragment"
@@ -24,4 +23,9 @@
         android:name="com.erivera.apps.topcharts.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/colorsFragment"
+        android:name="com.erivera.apps.topcharts.ColorsFragment"
+        android:label="fragment_colors_list"
+        tools:layout="@layout/fragment_colors_list" />
 </navigation>

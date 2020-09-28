@@ -11,4 +11,6 @@ interface PlayerInteractionListener {
     fun onPlayPauseClick()
 
     fun onAlbumArtLoaded(drawable: Drawable)
+
+    fun onInfoMenuClick()
 }
