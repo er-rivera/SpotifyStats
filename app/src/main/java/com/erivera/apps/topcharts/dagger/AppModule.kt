@@ -1,5 +1,7 @@
 package com.erivera.apps.topcharts.dagger
 
+import com.erivera.apps.topcharts.DeviceManager
+import com.erivera.apps.topcharts.DeviceManagerImpl
 import com.erivera.apps.topcharts.SpotifyRemoteManager
 import com.erivera.apps.topcharts.SpotifyRemoteManagerImpl
 import com.erivera.apps.topcharts.repository.*
@@ -23,4 +25,7 @@ abstract class AppModule {
 
     @Binds
     abstract fun providesSpotifyRemoteManager(remoteDataSource: SpotifyRemoteManagerImpl): SpotifyRemoteManager
+
+    @Binds
+    abstract fun providesDeviceManager(deviceManager: DeviceManagerImpl): DeviceManager
 }

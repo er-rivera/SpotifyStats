@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@id/backgroundGradientBottom"
+            motion:touchAnchorSide="bottom" />
+    </Transition>
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint
+            android:id="@+id/albumCardGlow"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="1"
+            android:scaleX="1.22"
+            android:scaleY="1.22"
+            motion:layout_constraintBottom_toBottomOf="@id/albumCardView"
+            motion:layout_constraintEnd_toEndOf="@id/albumCardView"
+            motion:layout_constraintStart_toStartOf="@id/albumCardView"
+            motion:layout_constraintTop_toTopOf="@id/albumCardView" />
+        <Constraint
+            android:id="@+id/albumCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:alpha="1"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/guidelineTop"
+            motion:layout_constraintVertical_bias="0.0" />
+        <Constraint
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/guidelineBottom"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintVertical_chainStyle="packed" />
+        <Constraint
+            android:id="@+id/descriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/titleTextView" />
+        <Constraint
+            android:id="@+id/centerIconLayout"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_marginTop="30dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toStartOf="@id/nextButton"
+            motion:layout_constraintStart_toEndOf="@id/prevButton"
+            motion:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+            motion:layout_constraintVertical_bias="0" />
+        <Constraint
+            android:id="@+id/nextButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            motion:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@id/centerIconLayout"
+            motion:layout_constraintTop_toTopOf="@id/centerIconLayout" />
+        <Constraint
+            android:id="@+id/prevButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:rotation="180"
+            motion:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toStartOf="@id/centerIconLayout"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/centerIconLayout" />
+        <Constraint
+            android:id="@+id/playButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            motion:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toEndOf="@id/centerIconLayout"
+            motion:layout_constraintStart_toStartOf="@id/centerIconLayout"
+            motion:layout_constraintTop_toTopOf="@id/centerIconLayout" />
+        <Constraint
+            android:id="@+id/pauseButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            motion:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toEndOf="@id/centerIconLayout"
+            motion:layout_constraintStart_toStartOf="@id/centerIconLayout"
+            motion:layout_constraintTop_toTopOf="@id/centerIconLayout" />
+        <Constraint
+            android:id="@+id/backgroundGradientTop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:rotation="180"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHeight_percent="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/backgroundGradientBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHeight_percent="0.7"
+            motion:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/albumCardGlow"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0"
+            android:scaleX="1.22"
+            android:scaleY="1.22"
+            motion:layout_constraintBottom_toBottomOf="@id/albumCardView"
+            motion:layout_constraintEnd_toEndOf="@id/albumCardView"
+            motion:layout_constraintStart_toStartOf="@id/albumCardView"
+            motion:layout_constraintTop_toTopOf="@id/albumCardView" />
+        <Constraint
+            android:id="@+id/albumCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/guidelineTop"
+            motion:layout_constraintVertical_bias="0.0" />
+        <Constraint
+            android:id="@+id/albumCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0"
+            motion:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/guidelineTop"
+            motion:layout_constraintVertical_bias="0.0" />
+        <Constraint
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            motion:layout_constraintBottom_toTopOf="@id/descriptionTextView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/descriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            motion:layout_constraintBottom_toTopOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/centerIconLayout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toStartOf="@id/nextButton"
+            motion:layout_constraintStart_toEndOf="@id/prevButton"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="1" />
+        <Constraint
+            android:id="@+id/nextButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            motion:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@id/centerIconLayout"
+            motion:layout_constraintTop_toTopOf="@id/centerIconLayout" />
+        <Constraint
+            android:id="@+id/prevButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:rotation="180"
+            motion:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toStartOf="@id/centerIconLayout"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/centerIconLayout" />
+        <Constraint
+            android:id="@+id/playButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            motion:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toEndOf="@id/centerIconLayout"
+            motion:layout_constraintStart_toStartOf="@id/centerIconLayout"
+            motion:layout_constraintTop_toTopOf="@id/centerIconLayout" />
+        <Constraint
+            android:id="@+id/pauseButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            motion:layout_constraintBottom_toBottomOf="@id/centerIconLayout"
+            motion:layout_constraintEnd_toEndOf="@id/centerIconLayout"
+            motion:layout_constraintStart_toStartOf="@id/centerIconLayout"
+            motion:layout_constraintTop_toTopOf="@id/centerIconLayout" />
+        <Constraint
+            android:id="@+id/backgroundGradientTop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0"
+            android:rotation="180"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHeight_percent="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/backgroundGradientBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHeight_percent="0.7"
+            motion:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+</MotionScene>

@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.erivera.apps.topcharts.databinding.FragmentPlayerBinding
+import com.erivera.apps.topcharts.utils.CollapsibleToolbar
 import com.erivera.apps.topcharts.viewmodels.PlayerViewModel
+import kotlinx.android.synthetic.main.player_media_v3.view.*
 
 
 class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
@@ -37,9 +39,23 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        playerViewModel.setPlayerMaxHeightMinHeight()
+        view.motionLayout.setListener(object: CollapsibleToolbar.OffsetChangedListener {
+            override fun onOffsetChanged(
+                verticalOffset: Int,
+                progress: Float,
+                totalRange: Float
+            ) {
+                playerViewModel.updateOffset(verticalOffset,progress,totalRange)
+            }
+        })
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().applicationContext as MainApplication).appComponent.inject(this)
+        (requireActivity().applicationContext as MainApplication).appComponent?.inject(this)
     }
 
     override fun onAlbumArtLoaded(drawable: Drawable) {

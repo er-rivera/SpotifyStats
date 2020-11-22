@@ -1,6 +1,6 @@
 package com.erivera.apps.topcharts
 
-import android.content.Context
+import android.app.Application
 import android.util.Log
 import com.erivera.apps.topcharts.utils.Constants
 import com.spotify.android.appremote.api.ConnectionParams
@@ -12,7 +12,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : SpotifyRemoteManager {
+class SpotifyRemoteManagerImpl @Inject constructor(val application: Application) : SpotifyRemoteManager {
     lateinit var mSpotifyAppRemote: SpotifyAppRemote
 
     var playerStateSubscriber: Subscription<PlayerState>? = null
@@ -65,7 +65,7 @@ class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : Spoti
             if (::mSpotifyAppRemote.isInitialized) {
                 SpotifyAppRemote.disconnect(mSpotifyAppRemote)
             }
-            SpotifyAppRemote.connect(context, connectionParams, connectionListener)
+            SpotifyAppRemote.connect(application.applicationContext, connectionParams, connectionListener)
             isConnected = true
         }
     }

@@ -29,9 +29,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var parentDependency: ParentDependency
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MainApplication).appComponent.inject(this)
+        (application as MainApplication).appComponent?.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mainViewModel.updateDefaultWidthHeight(windowManager, 0)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

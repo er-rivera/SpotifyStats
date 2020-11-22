@@ -1,5 +1,6 @@
 package com.erivera.apps.topcharts.repository
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.erivera.apps.topcharts.R
@@ -7,7 +8,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LocalDataSourceImpl @Inject constructor(val context: Context) : LocalDataSource {
+class LocalDataSourceImpl @Inject constructor(val application: Application) : LocalDataSource {
+    private val context : Context
+        get() = application.applicationContext
+
     private val sharedPref: SharedPreferences by lazy {
         context.getSharedPreferences(
             context.getString(

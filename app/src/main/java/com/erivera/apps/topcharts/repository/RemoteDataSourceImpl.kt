@@ -1,5 +1,6 @@
 package com.erivera.apps.topcharts.repository
 
+import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.erivera.apps.topcharts.models.api.*
@@ -10,11 +11,11 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RemoteDataSourceImpl @Inject constructor(val context: Context) : RemoteDataSource {
+class RemoteDataSourceImpl @Inject constructor(val application: Application) : RemoteDataSource {
     private var spotifyService: SpotifyService? = null
 
     override fun startSpotifyService(clientId: String) {
-        spotifyService = RetrofitFactory.makeRetrofitService(clientId, context)
+        spotifyService = RetrofitFactory.makeRetrofitService(clientId, application.applicationContext)
     }
 
     override suspend fun getArtists(limit: String, termLength: String): List<ArtistsRetrofit> {

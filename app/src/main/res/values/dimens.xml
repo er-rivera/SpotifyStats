@@ -4,4 +4,8 @@
     <dimen name="half_margin">8dp</dimen>
     <dimen name="heightwidth">32dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="player_artwork_margin_top">24dp</dimen>
+    <item name="player_artwork_guideline_bottom" type="dimen">0.45</item>
+    <item name="player_max_height_percentage" type="dimen">0.70</item>
+    <item name="player_min_height_percentage" type="dimen">0.18</item>
 </resources>

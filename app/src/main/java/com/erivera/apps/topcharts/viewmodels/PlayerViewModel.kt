@@ -1,16 +1,18 @@
 package com.erivera.apps.topcharts.viewmodels
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.Log
-import android.view.View
+import android.util.TypedValue
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.*
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
+import com.erivera.apps.topcharts.DeviceManager
 import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.SpotifyRemoteManager
 import com.erivera.apps.topcharts.models.api.AudioFeaturesResponse
@@ -27,13 +29,19 @@ import me.tatarka.bindingcollectionadapter2.collections.AsyncDiffObservableList
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import javax.inject.Inject
+import kotlin.math.abs
 import kotlin.math.roundToInt
 
 class PlayerViewModel @Inject constructor(
-    private val appContext: Context,
+    application: Application,
     private val repository: Repository,
-    private val spotifyRemoteManager: SpotifyRemoteManager
-) : ViewModel() {
+    private val spotifyRemoteManager: SpotifyRemoteManager,
+    private val deviceManager: DeviceManager
+) : AndroidViewModel(application) {
+
+    companion object {
+        val TAG = PlayerViewModel::class.java.name
+    }
 
     private val diffConfig =
         AsyncDifferConfig.Builder<AudioItem>(object : DiffUtil.ItemCallback<AudioItem>() {
@@ -56,7 +64,7 @@ class PlayerViewModel @Inject constructor(
     val trackTitle: LiveData<String> = _trackTitle
 
     private val _trackTitleColor = MutableLiveData<Int>().apply {
-        value = ContextCompat.getColor(appContext, R.color.white)
+        value = ContextCompat.getColor(application, R.color.white)
     }
 
     val trackTitleColor: LiveData<Int> = _trackTitleColor
@@ -73,17 +81,22 @@ class PlayerViewModel @Inject constructor(
         value = false
     }
 
-    val playVisibility: LiveData<Int> = Transformations.map(_isPlaying) {
-        if (it) View.VISIBLE else View.INVISIBLE
+    val playVisibility: LiveData<Float> = Transformations.map(_isPlaying) {
+        Log.d(PlayerViewModel::class.java.name, "playVisibility: $it")
+        if (it) 1F else 0F
     }
 
-    val pauseVisibility: LiveData<Int> = Transformations.map(_isPlaying) {
-        if (it) View.INVISIBLE else View.VISIBLE
+    val pauseVisibility: LiveData<Float> = Transformations.map(_isPlaying) {
+        Log.d(PlayerViewModel::class.java.name, "pauseVisibility: ${it.not()}")
+        if (it.not()) 1F else 0F
     }
 
     private val _audioItemList = AsyncDiffObservableList<AudioItem>(diffConfig)
 
     val audioItemList: AsyncDiffObservableList<AudioItem> = _audioItemList
+
+    private val appContext: Context
+        get() = getApplication<Application>().applicationContext
 
     private var track: Track? = null
         set(value) {
@@ -97,6 +110,14 @@ class PlayerViewModel @Inject constructor(
         roundingMode = RoundingMode.CEILING
     }
 
+    private val _playerMaxHeight = MutableLiveData<Int>()
+
+    val playerMaxHeight: LiveData<Int> = _playerMaxHeight
+
+    private val _playerMinHeight = MutableLiveData<Int>()
+
+    val playerMinHeight: LiveData<Int> = _playerMinHeight
+
     val listener = object : SpotifyRemoteManager.ViewModelListener {
         override fun onCurrentTrackChanged(track: Track) {
             this@PlayerViewModel.track = track
@@ -104,8 +125,8 @@ class PlayerViewModel @Inject constructor(
         }
 
         override fun onPauseStateChanged(isPaused: Boolean) {
-            _isPlaying.value = isPaused
             Log.d(PlayerViewModel::class.java.name, "onPauseStateChanged:$isPaused")
+            _isPlaying.value = isPaused
         }
     }
 
@@ -260,6 +281,102 @@ class PlayerViewModel @Inject constructor(
                     dialogDrawable = R.drawable.graph_valence
                 )
             )
+
+
+
+
+
+            add(
+                AudioItem(
+                    displayTitle = "Key",
+                    secondaryDisplayTitle = null,
+                    displayDescription = getPitchString(audioFeaturesResponse.key),
+                    dialogText = appContext.resources.getString(R.string.key_description),
+                    dialogDrawable = null
+                )
+            )
+            add(
+                AudioItem(
+                    displayTitle = "Mode",
+                    secondaryDisplayTitle = null,
+                    displayDescription = if (audioFeaturesResponse.mode == 1) "Major" else "Minor",
+                    dialogText = appContext.resources.getString(R.string.mode_description),
+                    dialogDrawable = null
+                )
+            )
+            add(
+                AudioItem(
+                    displayTitle = "Time",
+                    secondaryDisplayTitle = "Signature",
+                    displayDescription = audioFeaturesResponse.timeSignature.toString(),
+                    dialogText = appContext.resources.getString(R.string.time_sig_description),
+                    dialogDrawable = null
+                )
+            )
+            add(
+                AudioItem(
+                    displayTitle = "BPM",
+                    secondaryDisplayTitle = null,
+                    displayDescription = (audioFeaturesResponse.tempo
+                        ?: 0F).roundToInt().toString(),
+                    dialogText = appContext.resources.getString(R.string.tempo_description),
+                    dialogDrawable = R.drawable.graph_tempo
+                )
+            )
+            add(
+                AudioItem(
+                    displayTitle = "Acousticness",
+                    secondaryDisplayTitle = null,
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.acousticness),
+                    dialogText = appContext.resources.getString(R.string.acousticness_description),
+                    dialogDrawable = R.drawable.graph_acousticness
+                )
+            )
+            add(
+                AudioItem(
+                    displayTitle = "Danceability",
+                    secondaryDisplayTitle = null,
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.danceability),
+                    dialogText = appContext.resources.getString(R.string.dancability_description),
+                    dialogDrawable = R.drawable.graph_danceability
+                )
+            )
+            add(
+                AudioItem(
+                    displayTitle = "Energy",
+                    secondaryDisplayTitle = null,
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.energy),
+                    dialogText = appContext.resources.getString(R.string.energy_description),
+                    dialogDrawable = R.drawable.graph_energy
+                )
+            )
+            add(
+                AudioItem(
+                    displayTitle = "Instrumentalness",
+                    secondaryDisplayTitle = null,
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.instrumentalness),
+                    dialogText = appContext.resources.getString(R.string.instrumentalness_description),
+                    dialogDrawable = R.drawable.graph_instrumentalness
+                )
+            )
+            add(
+                AudioItem(
+                    displayTitle = "Liveness",
+                    secondaryDisplayTitle = null,
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.liveness),
+                    dialogText = appContext.resources.getString(R.string.liveness_description),
+                    dialogDrawable = R.drawable.graph_liveness
+                )
+            )
+            add(
+                AudioItem(
+                    displayTitle = "Loudness",
+                    secondaryDisplayTitle = null,
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.loudness),
+                    dialogText = appContext.resources.getString(R.string.loudness_description),
+                    dialogDrawable = R.drawable.graph_loudness
+                )
+            )
         }
     }
 
@@ -320,5 +437,28 @@ class PlayerViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         spotifyRemoteManager.removeListener(listener)
+    }
+
+    fun updateOffset(verticalOffset: Int, progress: Float, totalRange: Float) {
+        val outValue = TypedValue()
+        getApplication<Application>().applicationContext.resources.getValue(R.dimen.player_artwork_guideline_bottom, outValue, true)
+        val topMargin = getApplication<Application>().applicationContext.resources.getDimensionPixelSize(R.dimen.player_artwork_margin_top) + abs(verticalOffset)
+        val bottomPercentage = outValue.float
+        Log.d(TAG, "updateOffset:verticalOffset $verticalOffset, progress $progress, totalRange $totalRange, topMargin $topMargin, bottomPercentage $bottomPercentage")
+    }
+
+
+    fun setPlayerMaxHeightMinHeight(){
+        var outValue = TypedValue()
+        getApplication<Application>().applicationContext.resources.getValue(R.dimen.player_max_height_percentage, outValue, true)
+        val maxPercentage = outValue.float
+        outValue = TypedValue()
+        getApplication<Application>().applicationContext.resources.getValue(R.dimen.player_min_height_percentage, outValue, true)
+        val minPercentage = outValue.float
+        val maxHeight = (maxPercentage * deviceManager.getDeviceInfo().useableHeight).toInt()
+        val minHeight = (minPercentage * deviceManager.getDeviceInfo().useableHeight).toInt()
+        Log.d(TAG, "setPlayerMaxHeightMinHeight:maxHeight $maxHeight, minHeight $minHeight")
+        _playerMaxHeight.value = maxHeight
+        _playerMinHeight.value = minHeight
     }
 }

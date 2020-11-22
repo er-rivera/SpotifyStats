@@ -26,6 +26,7 @@
         app:itemBinding="@{viewModel.itemBinding}"
         app:items="@{viewModel.audioItemList}"
         app:layoutManager="@{gridLayoutManager}"
+         android:background="@drawable/background_recycler"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/view_grid_player_info"
         tools:showIn="@layout/fragment_player" />

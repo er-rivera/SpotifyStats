@@ -45,7 +45,7 @@ class LoginFragment : InjectableFragment(), LoginInteractionListener {
     }
 
     private fun initObservers(){
-        mainViewModel.screenNavigationLiveData.observe(this, Observer {
+        mainViewModel.screenNavigationLiveData.observe(viewLifecycleOwner, Observer {
             if(it != null && it){
                 view?.let { view ->
                     Navigation.findNavController(view)
@@ -57,7 +57,7 @@ class LoginFragment : InjectableFragment(), LoginInteractionListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().applicationContext as MainApplication).appComponent.inject(this)
+        (requireActivity().applicationContext as MainApplication).appComponent?.inject(this)
     }
 
     override fun loginButtonClick(request: AuthenticationRequest?) {

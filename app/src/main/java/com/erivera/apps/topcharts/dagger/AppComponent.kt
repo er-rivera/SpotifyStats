@@ -1,6 +1,6 @@
 package com.erivera.apps.topcharts.dagger
 
-import android.content.Context
+import android.app.Application
 import com.erivera.apps.topcharts.*
 import dagger.BindsInstance
 import dagger.Component
@@ -9,9 +9,11 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class, ViewModelModule::class])
 interface AppComponent {
-    @Component.Factory
-    interface Factory {
-        fun create(@BindsInstance context: Context): AppComponent
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: Application): Builder?
+        fun build(): AppComponent?
     }
 
     fun inject(mainActivity: MainActivity)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -20,17 +21,55 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/constraintLayout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical"-->
+    <!--        tools:context=".MainActivity">-->
+
+    <!--        <include-->
+    <!--            layout="@layout/player_media_v3"-->
+    <!--            bind:listener="@{listener}"-->
+    <!--            bind:viewModel="@{viewModel}"-->
+    <!--            bind:gridLayoutManager="@{gridLayoutManager}"/>-->
+
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:fitsSystemWindows="false">
+
+        <ImageView
+            android:id="@+id/albumBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:blur="@{true}"
+            app:imageUrl="@{viewModel.albumUrl}" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:background="@color/translucent"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:bar_layout_height="@{viewModel.playerMaxHeight}"
+            tools:layout_height="600dp">
+
+            <include
+                layout="@layout/player_media_v3"
+                bind:listener="@{listener}"
+                bind:viewModel="@{viewModel}" />
+        </com.google.android.material.appbar.AppBarLayout>
 
         <include
-            layout="@layout/player_media"
-            bind:listener="@{listener}"
+            layout="@layout/player_scroll"
+            bind:gridLayoutManager="@{gridLayoutManager}"
             bind:viewModel="@{viewModel}" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

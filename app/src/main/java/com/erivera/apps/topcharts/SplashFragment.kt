@@ -31,7 +31,7 @@ class SplashFragment : InjectableFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().applicationContext as MainApplication).appComponent.inject(this)
+        (requireActivity().applicationContext as MainApplication).appComponent?.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -6,19 +6,11 @@ import com.erivera.apps.topcharts.dagger.DaggerAppComponent
 
 open class MainApplication : Application() {
 
-    val appComponent: AppComponent by lazy {
-        DaggerAppComponent.factory().create(applicationContext)
+    val appComponent: AppComponent? by lazy {
+        DaggerAppComponent.builder().application(this)?.build()
     }
 
     override fun onCreate() {
         super.onCreate()
-        INSTANCE = this
-    }
-
-    companion object {
-        private var INSTANCE: MainApplication? = null
-
-        @JvmStatic
-        fun get(): MainApplication = INSTANCE!!
     }
 }
