@@ -12,7 +12,6 @@
             motion:touchAnchorSide="bottom" />
     </Transition>
     <ConstraintSet android:id="@+id/start">
-
         <Constraint
             android:id="@+id/albumCardGlow"
             android:layout_width="0dp"
@@ -28,10 +27,6 @@
             android:id="@+id/albumCardView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:alpha="1"
             motion:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
             motion:layout_constraintDimensionRatio="1:1"
@@ -130,9 +125,14 @@
             android:id="@+id/albumCardGlow"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:alpha="0"
             android:scaleX="1.22"
             android:scaleY="1.22"
+            android:visibility="invisible"
             motion:layout_constraintBottom_toBottomOf="@id/albumCardView"
             motion:layout_constraintEnd_toEndOf="@id/albumCardView"
             motion:layout_constraintStart_toStartOf="@id/albumCardView"
@@ -141,19 +141,12 @@
             android:id="@+id/albumCardView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:alpha="0"
-            motion:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-            motion:layout_constraintDimensionRatio="1:1"
-            motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintHorizontal_bias="0.5"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="@id/guidelineTop"
-            motion:layout_constraintVertical_bias="0.0" />
-        <Constraint
-            android:id="@+id/albumCardView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0"
+            android:visibility="invisible"
             motion:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
             motion:layout_constraintDimensionRatio="1:1"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -174,6 +167,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginBottom="16dp"
             motion:layout_constraintBottom_toTopOf="@id/centerIconLayout"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
@@ -238,10 +232,10 @@
             android:id="@+id/backgroundGradientBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:alpha="0"
+            android:alpha="1"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintHeight_percent="0.7"
+            motion:layout_constraintHeight_percent="0.1"
             motion:layout_constraintStart_toStartOf="parent" />
     </ConstraintSet>
 </MotionScene>

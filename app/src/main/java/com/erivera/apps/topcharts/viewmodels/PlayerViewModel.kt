@@ -18,6 +18,7 @@ import com.erivera.apps.topcharts.SpotifyRemoteManager
 import com.erivera.apps.topcharts.models.api.AudioFeaturesResponse
 import com.erivera.apps.topcharts.models.domain.AudioItem
 import com.erivera.apps.topcharts.repository.Repository
+import com.erivera.apps.topcharts.utils.getDimenPercentage
 import com.spotify.protocol.types.Album
 import com.spotify.protocol.types.Track
 import kotlinx.coroutines.Dispatchers
@@ -117,6 +118,10 @@ class PlayerViewModel @Inject constructor(
     private val _playerMinHeight = MutableLiveData<Int>()
 
     val playerMinHeight: LiveData<Int> = _playerMinHeight
+
+    private val _albumArtBottomPosition = MutableLiveData<Float>()
+
+    val albumArtBottomPosition: LiveData<Float> = _albumArtBottomPosition
 
     val listener = object : SpotifyRemoteManager.ViewModelListener {
         override fun onCurrentTrackChanged(track: Track) {
@@ -416,7 +421,11 @@ class PlayerViewModel @Inject constructor(
             val palette = Palette.from(drawable.toBitmap()).generate()
             withContext(Dispatchers.Main) {
                 if (palette.swatches.isNotEmpty()) {
-                    _albumColors.value = listOf(palette.lightVibrantSwatch, palette.vibrantSwatch, palette.darkVibrantSwatch).mapNotNull { it?.rgb }.toTypedArray()
+                    _albumColors.value = listOf(
+                        palette.lightVibrantSwatch,
+                        palette.vibrantSwatch,
+                        palette.darkVibrantSwatch
+                    ).mapNotNull { it?.rgb }.toTypedArray()
                 }
             }
         }
@@ -439,26 +448,24 @@ class PlayerViewModel @Inject constructor(
         spotifyRemoteManager.removeListener(listener)
     }
 
-    fun updateOffset(verticalOffset: Int, progress: Float, totalRange: Float) {
-        val outValue = TypedValue()
-        getApplication<Application>().applicationContext.resources.getValue(R.dimen.player_artwork_guideline_bottom, outValue, true)
-        val topMargin = getApplication<Application>().applicationContext.resources.getDimensionPixelSize(R.dimen.player_artwork_margin_top) + abs(verticalOffset)
-        val bottomPercentage = outValue.float
-        Log.d(TAG, "updateOffset:verticalOffset $verticalOffset, progress $progress, totalRange $totalRange, topMargin $topMargin, bottomPercentage $bottomPercentage")
-    }
 
-
-    fun setPlayerMaxHeightMinHeight(){
-        var outValue = TypedValue()
-        getApplication<Application>().applicationContext.resources.getValue(R.dimen.player_max_height_percentage, outValue, true)
-        val maxPercentage = outValue.float
-        outValue = TypedValue()
-        getApplication<Application>().applicationContext.resources.getValue(R.dimen.player_min_height_percentage, outValue, true)
-        val minPercentage = outValue.float
+    fun setPlayerDefaultValues() {
+        val maxPercentage =
+            getApplication<Application>().applicationContext.resources.getDimenPercentage(R.dimen.player_max_height_percentage)
+        val minPercentage =
+            getApplication<Application>().applicationContext.resources.getDimenPercentage(R.dimen.player_min_height_percentage)
+        val guidelineBottomHeightPercentage =
+            getApplication<Application>().applicationContext.resources.getDimenPercentage(R.dimen.player_artwork_guideline_bottom)
         val maxHeight = (maxPercentage * deviceManager.getDeviceInfo().useableHeight).toInt()
         val minHeight = (minPercentage * deviceManager.getDeviceInfo().useableHeight).toInt()
-        Log.d(TAG, "setPlayerMaxHeightMinHeight:maxHeight $maxHeight, minHeight $minHeight")
+        val guidelineBottomHeight =
+            (guidelineBottomHeightPercentage * deviceManager.getDeviceInfo().useableHeight).toInt()
+        Log.d(
+            TAG,
+            "setPlayerMaxHeightMinHeight:maxHeight $maxHeight, minHeight $minHeight, guidelineBottomHeight $guidelineBottomHeight"
+        )
         _playerMaxHeight.value = maxHeight
         _playerMinHeight.value = minHeight
+        _albumArtBottomPosition.value = getApplication<Application>().applicationContext.resources.getDimension(R.dimen.player_artwork_guideline_bottom_margin)
     }
 }

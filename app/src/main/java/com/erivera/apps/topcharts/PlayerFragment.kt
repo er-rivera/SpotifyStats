@@ -2,6 +2,7 @@ package com.erivera.apps.topcharts
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.erivera.apps.topcharts.databinding.FragmentPlayerBinding
 import com.erivera.apps.topcharts.utils.CollapsibleToolbar
 import com.erivera.apps.topcharts.viewmodels.PlayerViewModel
 import kotlinx.android.synthetic.main.player_media_v3.view.*
+import kotlinx.android.synthetic.main.player_scroll.*
 
 
 class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
@@ -41,16 +43,7 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        playerViewModel.setPlayerMaxHeightMinHeight()
-        view.motionLayout.setListener(object: CollapsibleToolbar.OffsetChangedListener {
-            override fun onOffsetChanged(
-                verticalOffset: Int,
-                progress: Float,
-                totalRange: Float
-            ) {
-                playerViewModel.updateOffset(verticalOffset,progress,totalRange)
-            }
-        })
+        playerViewModel.setPlayerDefaultValues()
     }
 
     override fun onAttach(context: Context) {
@@ -78,5 +71,10 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
         val list = playerViewModel.albumColors.value ?: emptyArray()
         val bundle = bundleOf(ColorsFragment.ARG_COLOR_LIST to list.toIntArray())
         findNavController().navigate(R.id.action_fragment_player_to_colorsFragment, bundle)
+    }
+
+    private fun setRecyclerDrawableAlpha(alpha: Float) {
+        val drawable = (songGridView.background as? LayerDrawable)?.findDrawableByLayerId(R.id.darkBackground)
+        drawable?.alpha = (255 * alpha).toInt()
     }
 }

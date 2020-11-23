@@ -228,6 +228,7 @@
         android:id="@+id/motionLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@null"
         android:fitsSystemWindows="false"
         app:layoutDescription="@xml/player_media_v3_xml_playerroot_scene"
         app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
@@ -238,7 +239,7 @@
             android:id="@+id/backgroundGradientTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/gradient_white_transparen_single"
+            android:background="@drawable/gradient_black_transparent_single"
             android:rotation="180"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.5"
@@ -249,7 +250,7 @@
             android:id="@+id/backgroundGradientBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/gradient_white_transparen_single"
+            android:background="@drawable/gradient_black_80_transparent_single"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.7"
@@ -284,24 +285,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guidelineTop"
+            app:layout_constraintTop_toBottomOf="@id/guidelineTop"
             app:layout_constraintVertical_bias="0.0"
             app:shapeAppearanceOverlay="@style/ImageView.Shape"
             app:viewListener="@{listener}" />
 
-        <androidx.constraintlayout.widget.Guideline
+        <View
             android:id="@+id/guidelineTop"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="24dp" />
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.45" />
+            app:layout_constraintGuide_percent="0.60"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/titleTextView"
