@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.Log
-import android.util.TypedValue
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.*
@@ -30,7 +29,6 @@ import me.tatarka.bindingcollectionadapter2.collections.AsyncDiffObservableList
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import javax.inject.Inject
-import kotlin.math.abs
 import kotlin.math.roundToInt
 
 class PlayerViewModel @Inject constructor(
@@ -218,7 +216,7 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Acousticness",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.acousticness),
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.acousticness ?: 0),
                     dialogText = appContext.resources.getString(R.string.acousticness_description),
                     dialogDrawable = R.drawable.graph_acousticness
                 )
@@ -227,7 +225,7 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Danceability",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.danceability),
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.danceability ?: 0),
                     dialogText = appContext.resources.getString(R.string.dancability_description),
                     dialogDrawable = R.drawable.graph_danceability
                 )
@@ -236,7 +234,7 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Energy",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.energy),
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.energy ?: 0),
                     dialogText = appContext.resources.getString(R.string.energy_description),
                     dialogDrawable = R.drawable.graph_energy
                 )
@@ -245,7 +243,7 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Instrumentalness",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.instrumentalness),
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.instrumentalness ?: 0),
                     dialogText = appContext.resources.getString(R.string.instrumentalness_description),
                     dialogDrawable = R.drawable.graph_instrumentalness
                 )
@@ -254,7 +252,7 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Liveness",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.liveness),
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.liveness ?: 0),
                     dialogText = appContext.resources.getString(R.string.liveness_description),
                     dialogDrawable = R.drawable.graph_liveness
                 )
@@ -263,7 +261,7 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Loudness",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.loudness),
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.loudness ?: 0),
                     dialogText = appContext.resources.getString(R.string.loudness_description),
                     dialogDrawable = R.drawable.graph_loudness
                 )
@@ -272,7 +270,7 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Speechiness",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.speechiness),
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.speechiness ?: 0),
                     dialogText = appContext.resources.getString(R.string.speechiness_description),
                     dialogDrawable = R.drawable.graph_speechiness
                 )
@@ -281,124 +279,11 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Valence",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.valence),
+                    displayDescription = decimalFormat.format(audioFeaturesResponse.valence ?: 0),
                     dialogText = appContext.resources.getString(R.string.valence_description),
                     dialogDrawable = R.drawable.graph_valence
                 )
             )
-
-
-
-
-
-            add(
-                AudioItem(
-                    displayTitle = "Key",
-                    secondaryDisplayTitle = null,
-                    displayDescription = getPitchString(audioFeaturesResponse.key),
-                    dialogText = appContext.resources.getString(R.string.key_description),
-                    dialogDrawable = null
-                )
-            )
-            add(
-                AudioItem(
-                    displayTitle = "Mode",
-                    secondaryDisplayTitle = null,
-                    displayDescription = if (audioFeaturesResponse.mode == 1) "Major" else "Minor",
-                    dialogText = appContext.resources.getString(R.string.mode_description),
-                    dialogDrawable = null
-                )
-            )
-            add(
-                AudioItem(
-                    displayTitle = "Time",
-                    secondaryDisplayTitle = "Signature",
-                    displayDescription = audioFeaturesResponse.timeSignature.toString(),
-                    dialogText = appContext.resources.getString(R.string.time_sig_description),
-                    dialogDrawable = null
-                )
-            )
-            add(
-                AudioItem(
-                    displayTitle = "BPM",
-                    secondaryDisplayTitle = null,
-                    displayDescription = (audioFeaturesResponse.tempo
-                        ?: 0F).roundToInt().toString(),
-                    dialogText = appContext.resources.getString(R.string.tempo_description),
-                    dialogDrawable = R.drawable.graph_tempo
-                )
-            )
-            add(
-                AudioItem(
-                    displayTitle = "Acousticness",
-                    secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.acousticness),
-                    dialogText = appContext.resources.getString(R.string.acousticness_description),
-                    dialogDrawable = R.drawable.graph_acousticness
-                )
-            )
-            add(
-                AudioItem(
-                    displayTitle = "Danceability",
-                    secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.danceability),
-                    dialogText = appContext.resources.getString(R.string.dancability_description),
-                    dialogDrawable = R.drawable.graph_danceability
-                )
-            )
-            add(
-                AudioItem(
-                    displayTitle = "Energy",
-                    secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.energy),
-                    dialogText = appContext.resources.getString(R.string.energy_description),
-                    dialogDrawable = R.drawable.graph_energy
-                )
-            )
-            add(
-                AudioItem(
-                    displayTitle = "Instrumentalness",
-                    secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.instrumentalness),
-                    dialogText = appContext.resources.getString(R.string.instrumentalness_description),
-                    dialogDrawable = R.drawable.graph_instrumentalness
-                )
-            )
-            add(
-                AudioItem(
-                    displayTitle = "Liveness",
-                    secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.liveness),
-                    dialogText = appContext.resources.getString(R.string.liveness_description),
-                    dialogDrawable = R.drawable.graph_liveness
-                )
-            )
-            add(
-                AudioItem(
-                    displayTitle = "Loudness",
-                    secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.loudness),
-                    dialogText = appContext.resources.getString(R.string.loudness_description),
-                    dialogDrawable = R.drawable.graph_loudness
-                )
-            )
-        }
-    }
-
-    private fun updateAudioItemList(audioFeaturesResponse: AudioFeaturesResponse): List<AudioItem> {
-        return _audioItemList.toMutableList().apply {
-            get(0).displayDescription = getPitchString(audioFeaturesResponse.key)
-            get(1).displayDescription = if (audioFeaturesResponse.mode == 1) "Major" else "Minor"
-            get(2).displayDescription = audioFeaturesResponse.timeSignature.toString()
-            get(3).displayDescription = (audioFeaturesResponse.tempo ?: 0F).roundToInt().toString()
-            get(4).displayDescription = decimalFormat.format(audioFeaturesResponse.acousticness)
-            get(5).displayDescription = decimalFormat.format(audioFeaturesResponse.danceability)
-            get(6).displayDescription = decimalFormat.format(audioFeaturesResponse.energy)
-            get(7).displayDescription = decimalFormat.format(audioFeaturesResponse.instrumentalness)
-            get(8).displayDescription = decimalFormat.format(audioFeaturesResponse.liveness)
-            get(9).displayDescription = decimalFormat.format(audioFeaturesResponse.loudness)
-            get(10).displayDescription = decimalFormat.format(audioFeaturesResponse.speechiness)
-            get(11).displayDescription = decimalFormat.format(audioFeaturesResponse.valence)
         }
     }
 
@@ -413,7 +298,7 @@ class PlayerViewModel @Inject constructor(
     }
 
     fun getItemBinding(): ItemBinding<AudioItem> {
-        return ItemBinding.of(BR.audioItem, R.layout.view_grid_player_info)
+        return ItemBinding.of<AudioItem>(BR.audioItem, R.layout.view_grid_player_info)
     }
 
     fun analyzeDrawable(drawable: Drawable) {
@@ -466,6 +351,7 @@ class PlayerViewModel @Inject constructor(
         )
         _playerMaxHeight.value = maxHeight
         _playerMinHeight.value = minHeight
-        _albumArtBottomPosition.value = getApplication<Application>().applicationContext.resources.getDimension(R.dimen.player_artwork_guideline_bottom_margin)
+        _albumArtBottomPosition.value =
+            getApplication<Application>().applicationContext.resources.getDimension(R.dimen.player_artwork_guideline_bottom_margin)
     }
 }

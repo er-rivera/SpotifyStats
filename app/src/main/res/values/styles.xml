@@ -89,6 +89,10 @@
         <item name="fontFamily">@font/highway_gothic</item>
     </style>
 
+    <style name="TextAppearance.CyberTheme.AudioFeature" parent="TextAppearance.AppTheme.Body1">
+        <item name="fontFamily">@font/highway_gothic</item>
+    </style>
+
     <style name="TextAppearance.AppTheme.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="fontFamily">@font/lekton_bold</item>
     </style>
@@ -115,6 +119,14 @@
     </style>
 
     <style name="ImageView.Shape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+    </style>
+
+    <style name="ImageView.Shape.RecyclerItem" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">10dp</item>
         <item name="cornerSizeTopLeft">10dp</item>

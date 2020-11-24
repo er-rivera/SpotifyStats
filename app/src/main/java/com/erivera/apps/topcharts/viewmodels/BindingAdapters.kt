@@ -128,3 +128,12 @@ fun View.setMinHeight(value: Int?) {
         }
     }
 }
+
+@BindingAdapter(value = ["drawableRes"], requireAll = false)
+fun ImageView.setDrawableRes(value: Int?) {
+    value?.let {
+        this.setImageDrawable(ContextCompat.getDrawable(context, value))
+    } ?: let {
+        visibility = View.GONE
+    }
+}

@@ -1,6 +1,7 @@
 package com.erivera.apps.topcharts
 
 import android.graphics.drawable.Drawable
+import com.erivera.apps.topcharts.models.domain.AudioItem
 
 interface PlayerInteractionListener {
 
@@ -13,4 +14,6 @@ interface PlayerInteractionListener {
     fun onAlbumArtLoaded(drawable: Drawable)
 
     fun onInfoMenuClick()
+
+    fun onGridItemClick(audioItem: AudioItem)
 }

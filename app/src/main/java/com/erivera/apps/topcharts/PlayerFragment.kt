@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.erivera.apps.topcharts.databinding.FragmentPlayerBinding
-import com.erivera.apps.topcharts.utils.CollapsibleToolbar
+import com.erivera.apps.topcharts.models.domain.AudioItem
 import com.erivera.apps.topcharts.viewmodels.PlayerViewModel
-import kotlinx.android.synthetic.main.player_media_v3.view.*
 import kotlinx.android.synthetic.main.player_scroll.*
-
 
 class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
 
@@ -34,6 +33,8 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
         val binding = FragmentPlayerBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@PlayerFragment.viewLifecycleOwner
             viewModel = playerViewModel
+            itemBinding =
+                playerViewModel.getItemBinding().bindExtra(BR.listener, this@PlayerFragment)
             gridLayoutManager = GridLayoutManager(context, 2)
             listener = this@PlayerFragment
             executePendingBindings()
@@ -73,8 +74,23 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
         findNavController().navigate(R.id.action_fragment_player_to_colorsFragment, bundle)
     }
 
+    override fun onGridItemClick(audioItem: AudioItem) {
+        showDialog(audioItem)
+    }
+
+    private fun showDialog(audioItem: AudioItem) {
+        // Create the fragment and show it as a dialog.
+        val dialogFragment = AudioFeatureDialogFragment.newInstance(
+            audioItem.displayTitle ?: "",
+            audioItem.dialogDrawable,
+            audioItem.dialogText ?: ""
+        )
+        dialogFragment.show(parentFragmentManager, AudioFeatureDialogFragment.TAG)
+    }
+
     private fun setRecyclerDrawableAlpha(alpha: Float) {
-        val drawable = (songGridView.background as? LayerDrawable)?.findDrawableByLayerId(R.id.darkBackground)
+        val drawable =
+            (songGridView.background as? LayerDrawable)?.findDrawableByLayerId(R.id.darkBackground)
         drawable?.alpha = (255 * alpha).toInt()
     }
 }

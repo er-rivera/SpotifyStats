@@ -18,23 +18,12 @@
             name="gridLayoutManager"
             type="androidx.recyclerview.widget.GridLayoutManager" />
 
+        <variable
+            name="itemBinding"
+            type="me.tatarka.bindingcollectionadapter2.ItemBinding&lt;com.erivera.apps.topcharts.models.domain.AudioItem&gt;" />
+
         <import type="android.view.View" />
     </data>
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:id="@+id/constraintLayout"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:orientation="vertical"-->
-    <!--        tools:context=".MainActivity">-->
-
-    <!--        <include-->
-    <!--            layout="@layout/player_media_v3"-->
-    <!--            bind:listener="@{listener}"-->
-    <!--            bind:viewModel="@{viewModel}"-->
-    <!--            bind:gridLayoutManager="@{gridLayoutManager}"/>-->
-
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/content"
@@ -69,7 +58,8 @@
         <include
             layout="@layout/player_scroll"
             bind:gridLayoutManager="@{gridLayoutManager}"
-            bind:viewModel="@{viewModel}" />
+            bind:viewModel="@{viewModel}"
+            bind:itemBinding="@{itemBinding}"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

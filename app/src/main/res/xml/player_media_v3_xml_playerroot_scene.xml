@@ -235,7 +235,7 @@
             android:alpha="1"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintHeight_percent="0.1"
+            motion:layout_constraintHeight_percent="0.2"
             motion:layout_constraintStart_toStartOf="parent" />
     </ConstraintSet>
 </MotionScene>

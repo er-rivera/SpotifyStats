@@ -11,6 +11,10 @@
             name="gridLayoutManager"
             type="androidx.recyclerview.widget.GridLayoutManager" />
 
+        <variable
+            name="itemBinding"
+            type="me.tatarka.bindingcollectionadapter2.ItemBinding&lt;com.erivera.apps.topcharts.models.domain.AudioItem&gt;" />
+
         <import type="android.view.View" />
     </data>
 
@@ -20,13 +24,14 @@
         android:id="@+id/songGridView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background_recycler"
         android:clipToPadding="false"
+        android:overScrollMode="never"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        app:itemBinding="@{viewModel.itemBinding}"
+        app:itemBinding="@{itemBinding}"
         app:items="@{viewModel.audioItemList}"
         app:layoutManager="@{gridLayoutManager}"
-         android:background="@drawable/background_recycler"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/view_grid_player_info"
         tools:showIn="@layout/fragment_player" />

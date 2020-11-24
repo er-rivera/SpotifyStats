@@ -4,6 +4,10 @@
     <data>
 
         <variable
+            name="listener"
+            type="com.erivera.apps.topcharts.PlayerInteractionListener" />
+
+        <variable
             name="audioItem"
             type="com.erivera.apps.topcharts.models.domain.AudioItem" />
     </data>
@@ -12,94 +16,31 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{(view) -> listener.onGridItemClick(audioItem)}"
+        android:padding="8dp">
 
-        <!---Example of two line title-->
-        <!--    <TextView-->
-        <!--        android:id="@+id/keyTextView"-->
-        <!--        android:layout_width="100dp"-->
-        <!--        android:layout_height="50dp"-->
-        <!--        android:autoSizeTextType="uniform"-->
-        <!--        android:fontFamily="@font/lekton_bold"-->
-        <!--        android:gravity="bottom|center_horizontal"-->
-        <!--        android:maxLines="1"-->
-        <!--        android:text="Time"-->
-        <!--        android:textColor="@color/black"-->
-        <!--        app:layout_constraintBottom_toTopOf="@id/keySecondLineTextView"-->
-        <!--        app:layout_constraintEnd_toEndOf="@id/keySecondLineTextView"-->
-        <!--        app:layout_constraintStart_toStartOf="@id/keySecondLineTextView"-->
-        <!--        app:layout_constraintTop_toTopOf="parent"-->
-        <!--        app:layout_constraintVertical_chainStyle="packed" />-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:background="@color/white_20"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:shapeAppearanceOverlay="@style/ImageView.Shape.RecyclerItem" />
 
-        <!--    <TextView-->
-        <!--        android:id="@+id/keySecondLineTextView"-->
-        <!--        android:layout_width="100dp"-->
-        <!--        android:layout_height="50dp"-->
-        <!--        android:autoSizeTextType="uniform"-->
-        <!--        android:fontFamily="@font/lekton_bold"-->
-        <!--        android:gravity="top"-->
-        <!--        android:maxLines="1"-->
-        <!--        android:text="Signature"-->
-        <!--        android:textColor="@color/black"-->
-        <!--        android:translationY="-6dp"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/keyTextView" />-->
-
-        <!--    <TextView-->
-        <!--        android:id="@+id/valueTextView"-->
-        <!--        android:layout_width="100dp"-->
-        <!--        android:layout_height="50dp"-->
-        <!--        android:autoSizeTextType="uniform"-->
-        <!--        android:fontFamily="@font/lekton_regular"-->
-        <!--        android:gravity="top|center_horizontal"-->
-        <!--        android:translationY="-16dp"-->
-        <!--        android:text="A"-->
-        <!--        app:layout_constraintEnd_toEndOf="@id/keySecondLineTextView"-->
-        <!--        app:layout_constraintStart_toStartOf="@id/keySecondLineTextView"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/keySecondLineTextView" />-->
-
-        <!--    &lt;!&ndash;-Example of small key title&ndash;&gt;-->
-        <!--    <TextView-->
-        <!--        android:id="@+id/keyTextView"-->
-        <!--        android:layout_width="100dp"-->
-        <!--        android:layout_height="50dp"-->
-        <!--        android:autoSizeTextType="uniform"-->
-        <!--        android:fontFamily="@font/lekton_bold"-->
-        <!--        android:gravity="bottom|center_horizontal"-->
-        <!--        android:maxLines="1"-->
-        <!--        android:text="Time"-->
-        <!--        android:textColor="@color/black"-->
-        <!--        app:layout_constraintBottom_toTopOf="@id/valueTextView"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toTopOf="parent"-->
-        <!--        app:layout_constraintVertical_chainStyle="packed" />-->
-
-        <!--    <TextView-->
-        <!--        android:id="@+id/valueTextView"-->
-        <!--        android:layout_width="100dp"-->
-        <!--        android:layout_height="50dp"-->
-        <!--        android:autoSizeTextType="uniform"-->
-        <!--        android:fontFamily="@font/lekton_regular"-->
-        <!--        android:gravity="top|center_horizontal"-->
-        <!--        android:text="A"-->
-        <!--        app:layout_constraintEnd_toEndOf="@id/keyTextView"-->
-        <!--        app:layout_constraintStart_toStartOf="@id/keyTextView"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/keyTextView"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keyTextView"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:autoSizeTextType="uniform"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/lekton_bold"
             android:gravity="bottom|center_horizontal"
             android:maxLines="1"
             android:text="@{audioItem.displayTitle}"
-            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@id/valueTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,12 +50,15 @@
 
         <TextView
             android:id="@+id/valueTextView"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="160dp"
+            android:layout_height="100dp"
             android:autoSizeTextType="uniform"
-            android:text="@{audioItem.displayDescription}"
             android:fontFamily="@font/lekton_regular"
-            android:gravity="top|center_horizontal"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@{audioItem.displayDescription}"
+            android:translationY="-20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/keyTextView"
             app:layout_constraintStart_toStartOf="@id/keyTextView"
