@@ -1,83 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <data>
-
-        <variable
-            name="title"
-            type="String" />
-
-        <variable
-            name="chartDrawable"
-            type="Integer" />
-
-        <variable
-            name="description"
-            type="String" />
-
-        <variable
-            name="listener"
-            type="com.erivera.apps.topcharts.AudioFeatureListener" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/lekton_bold"
-            android:translationX="54dp"
-            android:translationY="4dp"
-            android:scaleX="1.2"
-            android:scaleY="1.2"
-            android:text="@{title}"
-            android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text=" Danceability " />
-
-        <TextView
-            android:id="@+id/descriptionTextView"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:fontFamily="@font/lekton_regular"
-            android:text="@{description}"
-            app:layout_constraintTop_toBottomOf="@id/titleTextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/dancability_description" />
-
-        <ImageView
-            android:id="@+id/chartImageView"
-            android:layout_width="350dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@null"
-            android:scaleType="centerCrop"
-            app:drawableRes="@{chartDrawable}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionTextView" />
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:onClick="@{(view) -> listener.onNegativeClick()}"
-            android:text="@string/cancel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chartImageView" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <ImageView
+        android:id="@+id/chartImageView"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

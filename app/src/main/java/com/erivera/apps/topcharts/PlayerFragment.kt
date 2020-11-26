@@ -1,13 +1,16 @@
 package com.erivera.apps.topcharts
 
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,7 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.erivera.apps.topcharts.databinding.FragmentPlayerBinding
 import com.erivera.apps.topcharts.models.domain.AudioItem
 import com.erivera.apps.topcharts.viewmodels.PlayerViewModel
-import kotlinx.android.synthetic.main.player_scroll.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.android.synthetic.main.dialog_audio_feature.view.*
 
 class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
 
@@ -80,17 +84,34 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
 
     private fun showDialog(audioItem: AudioItem) {
         // Create the fragment and show it as a dialog.
-        val dialogFragment = AudioFeatureDialogFragment.newInstance(
-            audioItem.displayTitle ?: "",
-            audioItem.dialogDrawable,
-            audioItem.dialogText ?: ""
-        )
-        dialogFragment.show(parentFragmentManager, AudioFeatureDialogFragment.TAG)
-    }
+        val dialog =
+            MaterialAlertDialogBuilder(
+                requireContext(),
+                R.style.ThemeOverlay_App_MaterialAlertDialog
+            )
+                .setTitle(audioItem.displayTitle ?: "")
+                .setMessage(audioItem.dialogText ?: "")
+                .setPositiveButton("Cancel") { _: DialogInterface, _: Int ->
+                }.apply {
+                    if (audioItem.dialogDrawable != null) {
+                        val view = LayoutInflater.from(this.context)
+                            .inflate(R.layout.dialog_audio_feature, null)
+                        view.chartImageView.setImageResource(audioItem.dialogDrawable)
+                        setView(view)
+                    }
+                }
+                .create()
+        dialog.setOnShowListener {
+            val colorArray = playerViewModel.albumColors.value
+            val color =
+                colorArray?.getOrNull(0) ?: colorArray?.getOrNull(1) ?: colorArray?.getOrNull(2)
+                ?: ContextCompat.getColor(requireContext(), R.color.white)
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(color)
 
-    private fun setRecyclerDrawableAlpha(alpha: Float) {
-        val drawable =
-            (songGridView.background as? LayerDrawable)?.findDrawableByLayerId(R.id.darkBackground)
-        drawable?.alpha = (255 * alpha).toInt()
+            val textView = dialog.findViewById<TextView>(R.id.alertTitle)
+            val face = ResourcesCompat.getFont(requireContext(), R.font.lekton_bold)
+            textView?.typeface = face
+        }
+        dialog.show()
     }
 }
