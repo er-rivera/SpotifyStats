@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.fragment
 
 import android.content.Context
 import android.content.DialogInterface
@@ -15,13 +15,18 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.erivera.apps.topcharts.BR
+import com.erivera.apps.topcharts.MainApplication
+import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.databinding.FragmentPlayerBinding
 import com.erivera.apps.topcharts.models.domain.AudioItem
-import com.erivera.apps.topcharts.viewmodels.PlayerViewModel
+import com.erivera.apps.topcharts.ui.listener.PlayerInteractionListener
+import com.erivera.apps.topcharts.ui.viewmodel.PlayerViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.dialog_audio_feature.view.*
 
-class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
+class PlayerFragment : InjectableFragment(),
+    PlayerInteractionListener {
 
     private val playerViewModel by lazy {
         ViewModelProvider(
@@ -105,11 +110,15 @@ class PlayerFragment : InjectableFragment(), PlayerInteractionListener {
             val colorArray = playerViewModel.albumColors.value
             val color =
                 colorArray?.getOrNull(0) ?: colorArray?.getOrNull(1) ?: colorArray?.getOrNull(2)
-                ?: ContextCompat.getColor(requireContext(), R.color.white)
+                ?: ContextCompat.getColor(requireContext(),
+                    R.color.white
+                )
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(color)
 
             val textView = dialog.findViewById<TextView>(R.id.alertTitle)
-            val face = ResourcesCompat.getFont(requireContext(), R.font.lekton_bold)
+            val face = ResourcesCompat.getFont(requireContext(),
+                R.font.lekton_bold
+            )
             textView?.typeface = face
         }
         dialog.show()

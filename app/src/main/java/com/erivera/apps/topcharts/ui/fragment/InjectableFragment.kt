@@ -1,7 +1,7 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.fragment
 
 import androidx.fragment.app.Fragment
-import com.erivera.apps.topcharts.viewmodels.ViewModelFactory
+import com.erivera.apps.topcharts.ui.viewmodel.ViewModelFactory
 import javax.inject.Inject
 
 open class InjectableFragment : Fragment() {

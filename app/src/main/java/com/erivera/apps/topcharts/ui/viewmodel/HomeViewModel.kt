@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.viewmodels
+package com.erivera.apps.topcharts.ui.viewmodel
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
@@ -54,7 +54,7 @@ class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel(
 
         viewModelScope.launch {
             delay(1000)
-            val currentList = mutableListOf<HomeTab>()?.apply {
+            val currentList = mutableListOf<HomeTab>().apply {
                 _tabList.map { value -> this.add(value.copy()) }
             }
             val artistList = mutableListOf<TopListItem>()
@@ -97,7 +97,7 @@ class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel(
         currentList: MutableList<HomeTab>
     ) {
         val item = currentList.find { it.title == title }
-        item?.list = MutableLiveData<List<TopListItem>>()?.apply {
+        item?.list = MutableLiveData<List<TopListItem>>().apply {
             value = newList
         }
     }

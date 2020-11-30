@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.listener
 
 import android.graphics.drawable.Drawable
 import com.erivera.apps.topcharts.models.domain.AudioItem

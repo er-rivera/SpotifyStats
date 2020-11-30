@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.viewmodels
+package com.erivera.apps.topcharts.ui.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Application

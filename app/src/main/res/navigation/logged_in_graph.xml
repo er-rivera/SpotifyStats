@@ -6,7 +6,7 @@
     app:startDestination="@id/fragment_player">
     <fragment
         android:id="@+id/fragment_player"
-        android:name="com.erivera.apps.topcharts.PlayerFragment"
+        android:name="com.erivera.apps.topcharts.ui.fragment.PlayerFragment"
         android:label="Player"
         tools:layout="@layout/fragment_player">
         <action
@@ -15,17 +15,17 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_stats"
-        android:name="com.erivera.apps.topcharts.StatisticsFragment"
+        android:name="com.erivera.apps.topcharts.ui.fragment.StatisticsFragment"
         android:label="Statistics"
         tools:layout="@layout/fragment_statistics" />
     <fragment
         android:id="@+id/fragment_settings"
-        android:name="com.erivera.apps.topcharts.SettingsFragment"
+        android:name="com.erivera.apps.topcharts.ui.fragment.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/colorsFragment"
-        android:name="com.erivera.apps.topcharts.ColorsFragment"
+        android:name="com.erivera.apps.topcharts.ui.fragment.ColorsFragment"
         android:label="fragment_colors_list"
         tools:layout="@layout/fragment_colors_list" />
 </navigation>

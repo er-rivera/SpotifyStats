@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.viewmodels
+package com.erivera.apps.topcharts.ui.viewmodel
 
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -11,7 +11,6 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -26,7 +25,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-import com.erivera.apps.topcharts.PlayerInteractionListener
+import com.erivera.apps.topcharts.ui.listener.PlayerInteractionListener
 import com.erivera.apps.topcharts.R
 import com.google.android.material.appbar.AppBarLayout
 import jp.wasabeef.glide.transformations.BlurTransformation

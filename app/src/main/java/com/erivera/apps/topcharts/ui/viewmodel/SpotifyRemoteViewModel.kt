@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.viewmodels
+package com.erivera.apps.topcharts.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.erivera.apps.topcharts.SpotifyRemoteManager

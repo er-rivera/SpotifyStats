@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.erivera.apps.topcharts.R
+import com.erivera.apps.topcharts.ui.adapter.ColorRecyclerViewAdapter
 
 /**
  * A fragment representing a list of Items.
@@ -37,7 +39,10 @@ class ColorsFragment : Fragment() {
                     else -> GridLayoutManager(context, columnCount)
                 }
                 val list =  arguments?.getIntArray(ARG_COLOR_LIST) ?: intArrayOf()
-                adapter = ColorRecyclerViewAdapter(list)
+                adapter =
+                    ColorRecyclerViewAdapter(
+                        list
+                    )
             }
         }
         return view

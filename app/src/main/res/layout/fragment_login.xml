@@ -5,11 +5,11 @@
 
         <variable
             name="listener"
-            type="com.erivera.apps.topcharts.LoginInteractionListener" />
+            type="com.erivera.apps.topcharts.ui.listener.LoginInteractionListener" />
 
         <variable
             name="mainViewModel"
-            type="com.erivera.apps.topcharts.viewmodels.MainViewModel" />
+            type="com.erivera.apps.topcharts.ui.viewmodel.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

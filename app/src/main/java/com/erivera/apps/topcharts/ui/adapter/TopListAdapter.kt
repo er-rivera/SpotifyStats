@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.models.domain.Artist
 import com.erivera.apps.topcharts.models.domain.Song
 import com.erivera.apps.topcharts.models.domain.TopListHeader

@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,7 +19,8 @@ class PagerRecyclerViewAdapter<T> : BindingRecyclerViewAdapter<T>() {
     ): ViewDataBinding {
         val binding = super.onCreateBinding(inflater, layoutId, viewGroup)
         val context = binding.root.context
-        binding.root.tabRecyclerView.adapter = TopListAdapter(context)
+        binding.root.tabRecyclerView.adapter =
+            TopListAdapter(context)
         binding.root.tabRecyclerView.layoutManager =
             StickyHeadersLinearLayoutManager<TopListAdapter>(context)
         Log.d(PagerRecyclerViewAdapter::class.java.name, "created binding: $binding")

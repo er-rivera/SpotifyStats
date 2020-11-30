@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -9,9 +9,12 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.erivera.apps.topcharts.MainApplication
+import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.databinding.FragmentHomeBinding
 import com.erivera.apps.topcharts.models.domain.HomeTab
-import com.erivera.apps.topcharts.viewmodels.HomeViewModel
+import com.erivera.apps.topcharts.ui.adapter.PagerRecyclerViewAdapter
+import com.erivera.apps.topcharts.ui.viewmodel.HomeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -36,7 +39,8 @@ class HomeFragment : InjectableFragment() {
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.viewModel = homeViewModel
-        binding.adapter = PagerRecyclerViewAdapter<HomeTab>()
+        binding.adapter =
+            PagerRecyclerViewAdapter<HomeTab>()
         return binding.root
     }
 

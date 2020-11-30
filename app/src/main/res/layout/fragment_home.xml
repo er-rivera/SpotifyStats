@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        tools:context=".HomeFragment">
+        tools:context=".ui.fragment.HomeFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/homeToolbar"
@@ -83,6 +83,6 @@
 
         <variable
             name="viewModel"
-            type="com.erivera.apps.topcharts.viewmodels.HomeViewModel" />
+            type="com.erivera.apps.topcharts.ui.viewmodel.HomeViewModel" />
     </data>
 </layout>

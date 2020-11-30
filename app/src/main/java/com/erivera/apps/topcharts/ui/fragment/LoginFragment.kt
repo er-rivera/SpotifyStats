@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -9,13 +9,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.erivera.apps.topcharts.MainApplication
+import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.databinding.FragmentLoginBinding
+import com.erivera.apps.topcharts.ui.activity.MainActivity
+import com.erivera.apps.topcharts.ui.listener.LoginInteractionListener
 import com.erivera.apps.topcharts.utils.addStatusBarTopPadding
-import com.erivera.apps.topcharts.viewmodels.MainViewModel
+import com.erivera.apps.topcharts.ui.viewmodel.MainViewModel
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 
-class LoginFragment : InjectableFragment(), LoginInteractionListener {
+class LoginFragment : InjectableFragment(),
+    LoginInteractionListener {
 
     private val mainViewModel by lazy {
         ViewModelProvider(

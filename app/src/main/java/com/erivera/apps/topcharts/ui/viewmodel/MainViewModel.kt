@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.viewmodels
+package com.erivera.apps.topcharts.ui.viewmodel
 
 import android.view.WindowManager
 import androidx.lifecycle.LiveData

@@ -8,11 +8,11 @@
 
         <variable
             name="viewModel"
-            type="com.erivera.apps.topcharts.viewmodels.PlayerViewModel" />
+            type="com.erivera.apps.topcharts.ui.viewmodel.PlayerViewModel" />
 
         <variable
             name="listener"
-            type="com.erivera.apps.topcharts.PlayerInteractionListener" />
+            type="com.erivera.apps.topcharts.ui.listener.PlayerInteractionListener" />
 
         <import type="android.view.View" />
     </data>

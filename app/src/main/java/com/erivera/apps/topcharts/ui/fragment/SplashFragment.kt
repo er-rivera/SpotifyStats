@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.erivera.apps.topcharts.MainApplication
+import com.erivera.apps.topcharts.R
+import com.erivera.apps.topcharts.StartupRouteState
 import com.erivera.apps.topcharts.utils.addStatusBarTopPadding
-import com.erivera.apps.topcharts.viewmodels.SplashViewModel
+import com.erivera.apps.topcharts.ui.viewmodel.SplashViewModel
 
 class SplashFragment : InjectableFragment() {
 

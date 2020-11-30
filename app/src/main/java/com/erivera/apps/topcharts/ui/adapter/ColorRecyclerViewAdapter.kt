@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.erivera.apps.topcharts.R
+
 /**
  * [RecyclerView.Adapter] that can display a [ColorInt]].
  * TODO: Replace the implementation with code for your data type.

@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.listener
 
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 

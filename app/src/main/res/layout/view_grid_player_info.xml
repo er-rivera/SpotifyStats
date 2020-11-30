@@ -5,7 +5,7 @@
 
         <variable
             name="listener"
-            type="com.erivera.apps.topcharts.PlayerInteractionListener" />
+            type="com.erivera.apps.topcharts.ui.listener.PlayerInteractionListener" />
 
         <variable
             name="audioItem"

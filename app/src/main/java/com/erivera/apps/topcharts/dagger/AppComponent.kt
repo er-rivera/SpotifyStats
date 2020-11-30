@@ -1,7 +1,8 @@
 package com.erivera.apps.topcharts.dagger
 
 import android.app.Application
-import com.erivera.apps.topcharts.*
+import com.erivera.apps.topcharts.ui.activity.MainActivity
+import com.erivera.apps.topcharts.ui.fragment.*
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

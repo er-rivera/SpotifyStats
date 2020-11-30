@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.ui.listener
 
 interface AudioFeatureListener {
     fun onNegativeClick()
