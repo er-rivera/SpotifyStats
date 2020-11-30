@@ -6,11 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.erivera.apps.topcharts.R
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : Fragment() {
 
@@ -26,8 +23,20 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         childFragmentManager.findFragmentById(R.id.innerNavHostFragment)?.view?.let { navView ->
             val navController = Navigation.findNavController(navView)
-            AppBarConfiguration(navController.graph, drawerLayout)
-            view.drawerNav.setupWithNavController(navController)
+            bottomNavigation.setOnNavigationItemSelectedListener {
+                when(it.itemId) {
+                    R.id.fragment_home -> {
+                        navController.navigate(R.id.fragment_home)
+
+                        true
+                    }
+                    R.id.fragment_top_list -> {
+                        navController.navigate(R.id.fragment_top_list)
+                        true
+                    }
+                    else -> false
+                }
+            }
         }
     }
 }

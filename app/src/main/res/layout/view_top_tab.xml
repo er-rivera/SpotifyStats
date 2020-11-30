@@ -14,7 +14,7 @@
     <data>
 
         <variable
-            name="homeTab"
-            type="com.erivera.apps.topcharts.models.domain.HomeTab" />
+            name="topListTab"
+            type="com.erivera.apps.topcharts.models.domain.TopListTab" />
     </data>
 </layout>

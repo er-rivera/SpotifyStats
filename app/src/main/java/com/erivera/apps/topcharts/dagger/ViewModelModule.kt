@@ -15,8 +15,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(HomeViewModel::class)
-    internal abstract fun postHomeViewModel(viewModel: HomeViewModel): ViewModel
+    @ViewModelKey(TopListViewModel::class)
+    internal abstract fun postTopListViewModel(viewModel: TopListViewModel): ViewModel
 
     @Binds
     @IntoMap

@@ -13,6 +13,7 @@
     <string name="spotify_client_id">SpotifyClientId</string>
     <string name="menu_home">Home</string>
     <string name="menu_stats">Stats</string>
+    <string name="menu_top">Top Lists</string>
     <string name="menu_settings">Settings</string>
 
     <string name="pitch_0">CB\u0023</string>

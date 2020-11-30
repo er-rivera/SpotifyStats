@@ -18,7 +18,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.collections.AsyncDiffObservableList
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel() {
+class TopListViewModel @Inject constructor(val repository: Repository) : ViewModel() {
     companion object {
         const val SONGS = "Songs"
         const val ARTISTS = "Artists"
@@ -26,27 +26,27 @@ class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel(
     }
 
     private val diffConfig =
-        AsyncDifferConfig.Builder<HomeTab>(object : DiffUtil.ItemCallback<HomeTab>() {
+        AsyncDifferConfig.Builder<TopListTab>(object : DiffUtil.ItemCallback<TopListTab>() {
             @SuppressLint("DiffUtilEquals")
-            override fun areContentsTheSame(oldItem: HomeTab, newItem: HomeTab): Boolean {
+            override fun areContentsTheSame(oldItem: TopListTab, newItem: TopListTab): Boolean {
                 return oldItem.id == newItem.id && newItem.list == oldItem.list
             }
 
-            override fun areItemsTheSame(oldItem: HomeTab, newItem: HomeTab): Boolean {
+            override fun areItemsTheSame(oldItem: TopListTab, newItem: TopListTab): Boolean {
                 return oldItem.id == newItem.id
             }
         }).build()
 
-    private val _tabList = AsyncDiffObservableList<HomeTab>(diffConfig)
+    private val _tabList = AsyncDiffObservableList<TopListTab>(diffConfig)
 
-    val tabList: AsyncDiffObservableList<HomeTab>
+    val tabList: AsyncDiffObservableList<TopListTab>
         get() = _tabList
 
     init {
-        val list = mutableListOf<HomeTab>()
-        list.add(HomeTab(SONGS))
-        list.add(HomeTab(ARTISTS))
-        list.add(HomeTab(GENRES))
+        val list = mutableListOf<TopListTab>()
+        list.add(TopListTab(SONGS))
+        list.add(TopListTab(ARTISTS))
+        list.add(TopListTab(GENRES))
         _tabList.update(list)
     }
 
@@ -54,7 +54,7 @@ class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel(
 
         viewModelScope.launch {
             delay(1000)
-            val currentList = mutableListOf<HomeTab>().apply {
+            val currentList = mutableListOf<TopListTab>().apply {
                 _tabList.map { value -> this.add(value.copy()) }
             }
             val artistList = mutableListOf<TopListItem>()
@@ -94,7 +94,7 @@ class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel(
     private fun swapOutList(
         title: String,
         newList: MutableList<TopListItem>,
-        currentList: MutableList<HomeTab>
+        currentList: MutableList<TopListTab>
     ) {
         val item = currentList.find { it.title == title }
         item?.list = MutableLiveData<List<TopListItem>>().apply {
@@ -155,7 +155,7 @@ class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel(
         )
     }
 
-    fun getTabBinding(): ItemBinding<HomeTab> {
-        return ItemBinding.of(BR.homeTab, R.layout.view_top_tab)
+    fun getTabBinding(): ItemBinding<TopListTab> {
+        return ItemBinding.of(BR.topListTab, R.layout.view_top_tab)
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/logged_in_graph"
-    app:startDestination="@id/fragment_player">
+    app:startDestination="@id/fragment_home">
     <fragment
         android:id="@+id/fragment_player"
         android:name="com.erivera.apps.topcharts.ui.fragment.PlayerFragment"
@@ -13,6 +13,16 @@
             android:id="@+id/action_fragment_player_to_colorsFragment"
             app:destination="@id/colorsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_top_list"
+        android:name="com.erivera.apps.topcharts.ui.fragment.TopListFragment"
+        android:label="Top List"
+        tools:layout="@layout/fragment_top_list" />
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.erivera.apps.topcharts.ui.fragment.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/fragment_stats"
         android:name="com.erivera.apps.topcharts.ui.fragment.StatisticsFragment"

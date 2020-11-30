@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
-import com.erivera.apps.topcharts.models.domain.HomeTab
+import com.erivera.apps.topcharts.models.domain.TopListTab
 import com.jay.widget.StickyHeadersLinearLayoutManager
 import kotlinx.android.synthetic.main.view_top_tab.view.*
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
@@ -34,7 +34,7 @@ class PagerRecyclerViewAdapter<T> : BindingRecyclerViewAdapter<T>() {
         item: T
     ) {
         super.onBindBinding(binding, bindingVariable, layoutId, position, item)
-        if (item is HomeTab) {
+        if (item is TopListTab) {
             item.list.value?.let {
                 (binding.root.tabRecyclerView.adapter as? TopListAdapter)?.setList(it)
             }
