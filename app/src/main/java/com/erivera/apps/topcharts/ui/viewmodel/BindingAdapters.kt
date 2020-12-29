@@ -76,13 +76,15 @@ fun ImageView.setImageUrl(
     }
 }
 
-@BindingAdapter(value = ["updateText"], requireAll = false)
-fun TextView.updateText(text: String?) {
+@BindingAdapter(value = ["updateText", "disableMarquee"], requireAll = false)
+fun TextView.updateText(text: String?, disableMarquee: Boolean = false) {
     text?.let {
         this.text = it
-        this.ellipsize = TextUtils.TruncateAt.MARQUEE
+        this.ellipsize = if(disableMarquee) TextUtils.TruncateAt.END else TextUtils.TruncateAt.MARQUEE
         this.isSingleLine = true
-        this.marqueeRepeatLimit = 5
+        if(disableMarquee){
+            this.marqueeRepeatLimit = 5
+        }
         this.isSelected = true
     }
 }

@@ -84,7 +84,6 @@ class PlayerFragment : InjectableFragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         playerViewModel.setPlayerDefaultValues()
-        videoMotionLayout.transitionToEnd()
         playerMediaMotionLayout.setListener(listener)
 
     }
@@ -113,6 +112,10 @@ class PlayerFragment : InjectableFragment(),
 
     override fun onPrevClick() {
         playerViewModel.previous()
+    }
+
+    override fun onArrowDownClick() {
+        videoMotionLayout.transitionToStart()
     }
 
     override fun onInfoMenuClick() {

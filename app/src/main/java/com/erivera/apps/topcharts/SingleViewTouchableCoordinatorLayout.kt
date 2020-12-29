@@ -26,10 +26,15 @@ class SingleViewTouchableCoordinatorLayout(context: Context, attributeSet: Attri
         findViewById<View>(R.id.nextButton)
     }
 
+    private val arrowDown by lazy {
+        findViewById<View>(R.id.arrowDown)
+    }
+
     private val viewRect1 = Rect()
     private val viewRect2 = Rect()
     private val viewRect3 = Rect()
     private val viewRect4 = Rect()
+    private val viewRect5 = Rect()
 
     var motionProgress = 0.0F
 
@@ -38,8 +43,10 @@ class SingleViewTouchableCoordinatorLayout(context: Context, attributeSet: Attri
         centerIconLayout.getHitRect(viewRect2)
         prevButton.getHitRect(viewRect3)
         nextButton.getHitRect(viewRect4)
+        arrowDown.getHitRect(viewRect5)
         val isValidSurface = viewRect1.contains(event.x.toInt(), event.y.toInt()) || viewRect2.contains(event.x.toInt(), event.y.toInt()) ||
-                viewRect3.contains(event.x.toInt(), event.y.toInt()) || viewRect4.contains(event.x.toInt(), event.y.toInt())
+                viewRect3.contains(event.x.toInt(), event.y.toInt()) || viewRect4.contains(event.x.toInt(), event.y.toInt()) ||
+                viewRect5.contains(event.x.toInt(), event.y.toInt())
 
         val result = if(isValidSurface.not() && motionProgress == 0F) false else super.dispatchTouchEvent(event)
         Log.d("TestScroll", "CoordinatorLayout: result $result, motionProgress $motionProgress")

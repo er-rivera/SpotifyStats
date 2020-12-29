@@ -15,5 +15,7 @@ interface PlayerInteractionListener {
 
     fun onInfoMenuClick()
 
+    fun onArrowDownClick()
+
     fun onGridItemClick(audioItem: AudioItem)
 }

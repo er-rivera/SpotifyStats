@@ -28,18 +28,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Constraint
+            android:id="@id/miniPlayerHolder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mini_player_dialog_height"
+            android:elevation="8dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/playerViewContainer" />
+
+        <Constraint
+            android:id="@id/content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="6dp"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@id/playerViewContainer"
+            app:layout_constraintEnd_toEndOf="@id/playerViewContainer"
+            app:layout_constraintStart_toStartOf="@id/playerViewContainer"
+            app:layout_constraintTop_toTopOf="@id/playerViewContainer" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/collapsed">
 
         <Constraint
             android:id="@id/playerViewContainer"
-            android:layout_height="55dp"
+            android:layout_height="@dimen/mini_player_dialog_height"
             android:layout_marginBottom="56dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <Constraint
+            android:id="@id/miniPlayerHolder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mini_player_dialog_height"
+            android:elevation="8dp"
+            android:alpha="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/playerViewContainer" />
+
+        <Constraint
+            android:id="@id/content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="6dp"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@id/playerViewContainer"
+            app:layout_constraintEnd_toEndOf="@id/playerViewContainer"
+            app:layout_constraintStart_toStartOf="@id/playerViewContainer"
+            app:layout_constraintTop_toTopOf="@id/playerViewContainer" />
     </ConstraintSet>
 
 </MotionScene>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.erivera.apps.topcharts.ui.viewmodel.PlayerViewModel" />
+
+        <variable
+            name="listener"
+            type="com.erivera.apps.topcharts.ui.listener.PlayerInteractionListener" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/miniPlayerConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:fitsSystemWindows="false"
+        app:layoutDescription="@xml/player_media_v3_xml_playerroot_scene"
+        app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+        app:minHeight="@{viewModel.playerMinHeight}"
+        tools:background="@color/black">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/black_20"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/collapsedPhotoView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:adjustViewBounds="true"
+            android:background="@color/translucent"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{viewModel.albumUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/collapsedPrevButton"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:shapeAppearanceOverlay="@style/ImageView.Shape.Mini"/>
+
+        <TextView
+            android:id="@+id/collapsedSongTitle"
+            style="@style/TextAppearance.CyberTheme.Title.Mini"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="7dp"
+            android:translationY="-4dp"
+            app:disableMarquee="@{true}"
+            android:layout_marginStart="12dp"
+            app:layout_constraintEnd_toStartOf="@id/collapsedPrevButton"
+            app:layout_constraintStart_toEndOf="@id/collapsedPhotoView"
+            app:updateText="@{viewModel.trackTitle}"
+            tools:text="Title Goes Here"
+            tools:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/collapsedSongDescription"
+            style="@style/TextAppearance.AppTheme.Body1.Mini"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="7dp"
+            android:translationY="-4dp"
+            app:disableMarquee="@{true}"
+            android:layout_marginStart="12dp"
+            app:layout_constraintEnd_toStartOf="@id/collapsedPrevButton"
+            app:layout_constraintStart_toEndOf="@id/collapsedPhotoView"
+            app:layout_constraintTop_toBottomOf="@id/collapsedSongTitle"
+            app:updateText="@{viewModel.trackDescription}"
+            tools:text="Description Goes Here"
+            tools:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/collapsedCenterIconLayout"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/collapsedNextButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/collapsedPlayButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="4dp"
+            android:alpha="@{viewModel.playVisibility}"
+            android:contentDescription="@null"
+            android:onClick="@{(view) -> listener.onPlayPauseClick()}"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/play_neon_v2"
+            app:glowColor="@{viewModel.albumColors}"
+            app:layout_constraintBottom_toBottomOf="@id/collapsedCenterIconLayout"
+            app:layout_constraintEnd_toEndOf="@id/collapsedCenterIconLayout"
+            app:layout_constraintStart_toStartOf="@id/collapsedCenterIconLayout"
+            app:layout_constraintTop_toTopOf="@id/collapsedCenterIconLayout"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/collapsedPauseButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="@{viewModel.pauseVisibility}"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{(view) -> listener.onPlayPauseClick()}"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/pause_neon_v2"
+            app:glowColor="@{viewModel.albumColors}"
+            app:layout_constraintBottom_toBottomOf="@id/collapsedCenterIconLayout"
+            app:layout_constraintEnd_toEndOf="@id/collapsedCenterIconLayout"
+            app:layout_constraintStart_toStartOf="@id/collapsedCenterIconLayout"
+            app:layout_constraintTop_toTopOf="@id/collapsedCenterIconLayout"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/collapsedPrevButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{(view) -> listener.onPrevClick()}"
+            android:rotation="180"
+            android:src="@drawable/ff_selector"
+            app:ffGlowColor="@{viewModel.albumColors}"
+            app:layout_constraintBottom_toBottomOf="@id/collapsedCenterIconLayout"
+            app:layout_constraintEnd_toStartOf="@id/collapsedCenterIconLayout"
+            app:layout_constraintTop_toTopOf="@id/collapsedCenterIconLayout" />
+
+        <ImageView
+            android:id="@+id/collapsedNextButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{(view) -> listener.onNextClick()}"
+            android:src="@drawable/ff_selector"
+            app:ffGlowColor="@{viewModel.albumColors}"
+            app:layout_constraintBottom_toBottomOf="@id/collapsedCenterIconLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/collapsedCenterIconLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -49,6 +49,17 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
+            android:id="@+id/arrowDown"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:elevation="7dp"
+            android:src="@drawable/ic_arrow_down"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{(view) -> listener.onArrowDownClick()}"/>
+
+        <ImageView
             android:id="@+id/albumCardGlow"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -86,7 +97,7 @@
             android:id="@+id/guidelineTop"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
