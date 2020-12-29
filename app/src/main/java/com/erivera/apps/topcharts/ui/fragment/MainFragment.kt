@@ -38,5 +38,12 @@ class MainFragment : Fragment() {
                 }
             }
         }
+        placePlayerFragment()
+    }
+
+    private fun placePlayerFragment() {
+        childFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, PlayerFragment())
+            .commit()
     }
 }

@@ -17,7 +17,7 @@
     </data>
 
     <com.erivera.apps.topcharts.utils.CollapsibleToolbar
-        android:id="@+id/motionLayout"
+        android:id="@+id/playerMediaMotionLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@null"
