@@ -114,6 +114,10 @@ class PlayerFragment : InjectableFragment(),
         playerViewModel.previous()
     }
 
+    override fun onExpandClick() {
+        videoMotionLayout.transitionToEnd()
+    }
+
     override fun onArrowDownClick() {
         videoMotionLayout.transitionToStart()
     }
