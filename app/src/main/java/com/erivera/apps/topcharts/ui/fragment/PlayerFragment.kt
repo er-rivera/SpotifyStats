@@ -1,17 +1,16 @@
 package com.erivera.apps.topcharts.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
-import androidx.core.view.GestureDetectorCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -44,31 +43,10 @@ class PlayerFragment : InjectableFragment(),
         }
     }
 
-    private val gestureDetector by lazy {
-        GestureDetectorCompat(requireContext(),MyGestureListener())
-    }
-
-    private class MyGestureListener : GestureDetector.SimpleOnGestureListener() {
-
-        override fun onDown(event: MotionEvent): Boolean {
-            Log.d("MainActivity", "MyGestureListener:onDown: $event")
-            return true
-        }
-
-        override fun onFling(
-            event1: MotionEvent,
-            event2: MotionEvent,
-            velocityX: Float,
-            velocityY: Float
-        ): Boolean {
-            Log.d("MainActivity", "MyGestureListener:onFling: $event1 $event2")
-            return true
-        }
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentPlayerV2Binding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@PlayerFragment.viewLifecycleOwner
             viewModel = playerViewModel
@@ -132,6 +110,7 @@ class PlayerFragment : InjectableFragment(),
         showDialog(audioItem)
     }
 
+    @SuppressLint("InflateParams")
     private fun showDialog(audioItem: AudioItem) {
         // Create the fragment and show it as a dialog.
         val dialog =
