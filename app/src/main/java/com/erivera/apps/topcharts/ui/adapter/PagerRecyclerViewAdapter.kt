@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import com.erivera.apps.topcharts.models.domain.TopListTab
-import com.jay.widget.StickyHeadersLinearLayoutManager
-import kotlinx.android.synthetic.main.view_top_tab.view.*
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 
 
@@ -18,12 +16,12 @@ class PagerRecyclerViewAdapter<T> : BindingRecyclerViewAdapter<T>() {
         viewGroup: ViewGroup
     ): ViewDataBinding {
         val binding = super.onCreateBinding(inflater, layoutId, viewGroup)
-        val context = binding.root.context
-        binding.root.tabRecyclerView.adapter =
-            TopListAdapter(context)
-        binding.root.tabRecyclerView.layoutManager =
-            StickyHeadersLinearLayoutManager<TopListAdapter>(context)
-        Log.d(PagerRecyclerViewAdapter::class.java.name, "created binding: $binding")
+//        val context = binding.root.context
+//        binding.root.tabRecyclerView.adapter =
+//            TopListAdapter(context)
+//        binding.root.tabRecyclerView.layoutManager =
+//            StickyHeadersLinearLayoutManager<TopListAdapter>(context)
+//        Log.d(PagerRecyclerViewAdapter::class.java.name, "created binding: $binding")
         return binding
     }
 
@@ -34,11 +32,11 @@ class PagerRecyclerViewAdapter<T> : BindingRecyclerViewAdapter<T>() {
         item: T
     ) {
         super.onBindBinding(binding, bindingVariable, layoutId, position, item)
-        if (item is TopListTab) {
-            item.list.value?.let {
-                (binding.root.tabRecyclerView.adapter as? TopListAdapter)?.setList(it)
-            }
-        }
+//        if (item is TopListTab) {
+//            item.list.value?.let {
+//                (binding.root.tabRecyclerView.adapter as? TopListAdapter)?.setList(it)
+//            }
+//        }
         Log.d(
             PagerRecyclerViewAdapter::class.java.name,
             "bound binding: $binding at position: $position"

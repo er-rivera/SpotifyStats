@@ -4,23 +4,24 @@ import com.erivera.apps.topcharts.models.api.AlbumResponse
 import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.models.api.AudioFeaturesResponse
 import com.erivera.apps.topcharts.models.api.TrackRetrofit
+import kotlinx.coroutines.flow.Flow
 
 interface Repository {
     fun saveSpotifyClientId(id: String)
 
     suspend fun hasValidSpotifyClientId(): Boolean
 
-    suspend fun getLongTermArtists(): List<ArtistsRetrofit>
+    suspend fun getLongTermArtists(): Flow<List<ArtistsRetrofit>>
 
-    suspend fun getMediumTermArtists(): List<ArtistsRetrofit>
+    suspend fun getMediumTermArtists(): Flow<List<ArtistsRetrofit>>
 
-    suspend fun getShortTermArtists(): List<ArtistsRetrofit>
+    suspend fun getShortTermArtists(): Flow<List<ArtistsRetrofit>>
 
-    suspend fun getLongTermTracks(): List<TrackRetrofit>
+    suspend fun getLongTermTracks(): Flow<List<TrackRetrofit>>
 
-    suspend fun getMediumTermTracks(): List<TrackRetrofit>
+    suspend fun getMediumTermTracks(): Flow<List<TrackRetrofit>>
 
-    suspend fun getShortTermTracks(): List<TrackRetrofit>
+    suspend fun getShortTermTracks(): Flow<List<TrackRetrofit>>
 
     suspend fun getAudioFeatures(trackId: String): AudioFeaturesResponse
 

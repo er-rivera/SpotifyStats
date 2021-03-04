@@ -23,9 +23,6 @@ import com.erivera.apps.topcharts.ui.listener.PlayerInteractionListener
 import com.erivera.apps.topcharts.ui.viewmodel.PlayerViewModel
 import com.erivera.apps.topcharts.utils.CollapsibleToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kotlinx.android.synthetic.main.dialog_audio_feature.view.*
-import kotlinx.android.synthetic.main.fragment_player_v2.*
-import kotlinx.android.synthetic.main.player_media_v3.*
 
 class PlayerFragment : InjectableFragment(),
     PlayerInteractionListener {
@@ -39,15 +36,17 @@ class PlayerFragment : InjectableFragment(),
 
     val listener = object : CollapsibleToolbar.OffsetChangedListener {
         override fun onOffsetChanged(verticalOffset: Int, progress: Float, totalRange: Float) {
-            content?.motionProgress = progress
+            binding?.content?.motionProgress = progress
         }
     }
+
+    var binding: FragmentPlayerV2Binding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentPlayerV2Binding.inflate(inflater, container, false).apply {
+        binding = FragmentPlayerV2Binding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@PlayerFragment.viewLifecycleOwner
             viewModel = playerViewModel
             itemBinding =
@@ -56,13 +55,13 @@ class PlayerFragment : InjectableFragment(),
             listener = this@PlayerFragment
             executePendingBindings()
         }
-        return binding.root
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         playerViewModel.setPlayerDefaultValues()
-        playerMediaMotionLayout.setListener(listener)
+        binding?.mediaPlayerV3?.playerMediaMotionLayout?.setListener(listener)
 
     }
 
@@ -72,7 +71,7 @@ class PlayerFragment : InjectableFragment(),
     }
 
     override fun onDestroyView() {
-        playerMediaMotionLayout.removeListener()
+        binding?.mediaPlayerV3?.playerMediaMotionLayout?.removeListener()
         super.onDestroyView()
     }
 
@@ -93,11 +92,11 @@ class PlayerFragment : InjectableFragment(),
     }
 
     override fun onExpandClick() {
-        videoMotionLayout.transitionToEnd()
+        binding?.videoMotionLayout?.transitionToEnd()
     }
 
     override fun onArrowDownClick() {
-        videoMotionLayout.transitionToStart()
+        binding?.videoMotionLayout?.transitionToStart()
     }
 
     override fun onInfoMenuClick() {
@@ -125,7 +124,7 @@ class PlayerFragment : InjectableFragment(),
                     if (audioItem.dialogDrawable != null) {
                         val view = LayoutInflater.from(this.context)
                             .inflate(R.layout.dialog_audio_feature, null)
-                        view.chartImageView.setImageResource(audioItem.dialogDrawable)
+                        //view.chartImageView.setImageResource(audioItem.dialogDrawable)
                         setView(view)
                     }
                 }

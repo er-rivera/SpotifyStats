@@ -5,6 +5,7 @@ import com.erivera.apps.topcharts.models.api.AlbumResponse
 import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.models.api.AudioFeaturesResponse
 import com.erivera.apps.topcharts.models.api.TrackRetrofit
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -28,27 +29,27 @@ class RepositoryImpl @Inject constructor(
         return storedClientId != "" && remoteDataSource.hasValidToken()
     }
 
-    override suspend fun getLongTermArtists(): List<ArtistsRetrofit> {
+    override suspend fun getLongTermArtists(): Flow<List<ArtistsRetrofit>> {
         return remoteDataSource.getArtists("10", TermLength.LongTerm.key)
     }
 
-    override suspend fun getMediumTermArtists(): List<ArtistsRetrofit> {
+    override suspend fun getMediumTermArtists(): Flow<List<ArtistsRetrofit>> {
         return remoteDataSource.getArtists("10", TermLength.MediumTerm.key)
     }
 
-    override suspend fun getShortTermArtists(): List<ArtistsRetrofit> {
+    override suspend fun getShortTermArtists(): Flow<List<ArtistsRetrofit>> {
         return remoteDataSource.getArtists("10", TermLength.ShortTerm.key)
     }
 
-    override suspend fun getLongTermTracks(): List<TrackRetrofit> {
+    override suspend fun getLongTermTracks(): Flow<List<TrackRetrofit>> {
         return remoteDataSource.getTracks("10", TermLength.LongTerm.key)
     }
 
-    override suspend fun getMediumTermTracks(): List<TrackRetrofit> {
+    override suspend fun getMediumTermTracks(): Flow<List<TrackRetrofit>> {
         return remoteDataSource.getTracks("10", TermLength.MediumTerm.key)
     }
 
-    override suspend fun getShortTermTracks(): List<TrackRetrofit> {
+    override suspend fun getShortTermTracks(): Flow<List<TrackRetrofit>> {
         return remoteDataSource.getTracks("10", TermLength.ShortTerm.key)
     }
 

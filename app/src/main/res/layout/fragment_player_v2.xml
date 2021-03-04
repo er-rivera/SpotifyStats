@@ -65,6 +65,7 @@
             android:elevation="8dp"
             app:layout_constraintTop_toTopOf="@id/playerViewContainer">
             <include
+                android:id="@+id/miniPlayerMedia"
                 layout="@layout/mini_player_media"
                 bind:listener="@{listener}"
                 bind:viewModel="@{viewModel}" />
@@ -90,12 +91,14 @@
                 tools:layout_height="600dp">
 
                 <include
+                    android:id="@+id/mediaPlayerV3"
                     layout="@layout/player_media_v3"
                     bind:listener="@{listener}"
                     bind:viewModel="@{viewModel}" />
             </com.google.android.material.appbar.AppBarLayout>
 
             <include
+                android:id="@+id/playerScroll"
                 layout="@layout/player_scroll"
                 bind:gridLayoutManager="@{gridLayoutManager}"
                 bind:itemBinding="@{itemBinding}"

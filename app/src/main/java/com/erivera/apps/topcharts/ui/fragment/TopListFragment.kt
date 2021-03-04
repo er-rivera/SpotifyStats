@@ -15,8 +15,6 @@ import com.erivera.apps.topcharts.models.domain.TopListTab
 import com.erivera.apps.topcharts.ui.adapter.PagerRecyclerViewAdapter
 import com.erivera.apps.topcharts.ui.viewmodel.TopListViewModel
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.fragment_top_list.*
-import kotlinx.android.synthetic.main.fragment_top_list.view.*
 
 class TopListFragment : InjectableFragment() {
 
@@ -27,6 +25,8 @@ class TopListFragment : InjectableFragment() {
         ).get(TopListViewModel::class.java)
     }
 
+    var binding: FragmentTopListBinding? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         topListViewModel.loadItems()
@@ -35,12 +35,12 @@ class TopListFragment : InjectableFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentTopListBinding.inflate(inflater, container, false)
-        binding.viewModel = topListViewModel
-        binding.adapter =
+    ): View {
+        binding = FragmentTopListBinding.inflate(inflater, container, false)
+        binding?.viewModel = topListViewModel
+        binding?.adapter =
             PagerRecyclerViewAdapter<TopListTab>()
-        return binding.root
+        return binding!!.root
     }
 
     override fun onAttach(context: Context) {
@@ -50,10 +50,12 @@ class TopListFragment : InjectableFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.topListViewPager.post {
-            TabLayoutMediator(topListTabLayout, topListViewPager) { tab, position ->
-                tab.text = topListViewModel.getTabName(position)
-            }.attach()
+        binding?.topListViewPager?.post {
+            binding?.apply {
+                TabLayoutMediator(topListTabLayout, topListViewPager) { tab, position ->
+                    tab.text = topListViewModel.getTabName(position)
+                }.attach()
+            }
         }
     }
 }

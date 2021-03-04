@@ -7,23 +7,26 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.erivera.apps.topcharts.R
-import kotlinx.android.synthetic.main.fragment_main.*
+import com.erivera.apps.topcharts.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
+
+    var binding: FragmentMainBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         childFragmentManager.findFragmentById(R.id.innerNavHostFragment)?.view?.let { navView ->
             val navController = Navigation.findNavController(navView)
-            bottomNavigation.setOnNavigationItemSelectedListener {
+            binding?.bottomNavigation?.setOnNavigationItemSelectedListener {
                 when(it.itemId) {
                     R.id.fragment_home -> {
                         navController.navigate(R.id.fragment_home)
