@@ -10,26 +10,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 
 class SingleViewTouchableCoordinatorLayout(context: Context, attributeSet: AttributeSet? = null) : CoordinatorLayout(context, attributeSet) {
 
-    private val gridTouchArea by lazy {
-        findViewById<View>(R.id.songGridView)
-    }
-
-    private val centerIconLayout by lazy {
-        findViewById<View>(R.id.centerIconLayout)
-    }
-
-    private val prevButton by lazy {
-        findViewById<View>(R.id.prevButton)
-    }
-
-    private val nextButton by lazy {
-        findViewById<View>(R.id.nextButton)
-    }
-
-    private val arrowDown by lazy {
-        findViewById<View>(R.id.arrowDown)
-    }
-
     private val viewRect1 = Rect()
     private val viewRect2 = Rect()
     private val viewRect3 = Rect()
@@ -39,11 +19,11 @@ class SingleViewTouchableCoordinatorLayout(context: Context, attributeSet: Attri
     var motionProgress = 0.0F
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-        gridTouchArea.getHitRect(viewRect1)
-        centerIconLayout.getHitRect(viewRect2)
-        prevButton.getHitRect(viewRect3)
-        nextButton.getHitRect(viewRect4)
-        arrowDown.getHitRect(viewRect5)
+        findViewById<View>(R.id.songGridView)?.getHitRect(viewRect1)
+        findViewById<View>(R.id.centerIconLayout)?.getHitRect(viewRect2)
+        findViewById<View>(R.id.prevButton)?.getHitRect(viewRect3)
+        findViewById<View>(R.id.nextButton)?.getHitRect(viewRect4)
+        findViewById<View>(R.id.arrowDown)?.getHitRect(viewRect5)
         val isValidSurface = viewRect1.contains(event.x.toInt(), event.y.toInt()) || viewRect2.contains(event.x.toInt(), event.y.toInt()) ||
                 viewRect3.contains(event.x.toInt(), event.y.toInt()) || viewRect4.contains(event.x.toInt(), event.y.toInt()) ||
                 viewRect5.contains(event.x.toInt(), event.y.toInt())
