@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.ui.setupWithNavController
 import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.databinding.FragmentMainBinding
 
@@ -26,20 +27,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         childFragmentManager.findFragmentById(R.id.innerNavHostFragment)?.view?.let { navView ->
             val navController = Navigation.findNavController(navView)
-            binding?.bottomNavigation?.setOnNavigationItemSelectedListener {
-                when(it.itemId) {
-                    R.id.fragment_home -> {
-                        navController.navigate(R.id.fragment_home)
-
-                        true
-                    }
-                    R.id.fragment_top_list -> {
-                        navController.navigate(R.id.fragment_top_list)
-                        true
-                    }
-                    else -> false
-                }
-            }
+            binding?.bottomNavigation?.setupWithNavController(navController)
         }
         placePlayerFragment()
     }

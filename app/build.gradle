@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -99,6 +101,7 @@ dependencies {
 
     implementation project(':spotify-app-remote')
     implementation project(':navigation')
+    implementation project(':toplist')
 
     implementation ("jp.wasabeef:glide-transformations:4.0.0"){
         exclude group: "com.android.support"

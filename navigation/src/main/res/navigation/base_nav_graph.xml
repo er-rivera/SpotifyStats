@@ -12,5 +12,8 @@
         app:destination="@id/home_flow"
         app:popUpTo="@id/base_nav_graph"/>
 
-
+    <action
+        android:id="@+id/action_global_top_list_flow"
+        app:destination="@id/top_list_flow"
+        app:popUpTo="@id/base_nav_graph"/>
 </navigation>
