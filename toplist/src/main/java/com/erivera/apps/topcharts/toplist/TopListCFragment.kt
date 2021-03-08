@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material.MaterialTheme
+import com.erivera.apps.topcharts.toplist.databinding.FragmentTopCListBinding
+import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
 /**
  * A simple [Fragment] subclass.
@@ -12,16 +15,18 @@ import android.view.ViewGroup
  * create an instance of this fragment.
  */
 class TopListCFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_c_list, container, false)
+    ): View {
+        return FragmentTopCListBinding.inflate(inflater, container, false).apply {
+            composeView.setContent {
+                MaterialTheme {
+                    ProvideWindowInsets {
+                        TopList()
+                    }
+                }
+            }
+        }.root
     }
 }
