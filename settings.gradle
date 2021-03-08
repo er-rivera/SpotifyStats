@@ -1,1 +1,4 @@
-include ':app', ':spotify-app-remote'
+include ':app',
+        ':spotify-app-remote'
+include ':navigation'
+include ':toplist'

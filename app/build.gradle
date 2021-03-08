@@ -98,11 +98,11 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
 
     implementation project(':spotify-app-remote')
+    implementation project(':navigation')
 
     implementation ("jp.wasabeef:glide-transformations:4.0.0"){
         exclude group: "com.android.support"
     }
-
 
 //    implementation 'androidx.compose.ui:ui:1.0.0-beta01'
 //    // Tooling support (Previews, etc.)
