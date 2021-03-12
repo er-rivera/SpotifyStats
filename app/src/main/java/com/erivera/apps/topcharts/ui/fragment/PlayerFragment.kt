@@ -11,11 +11,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.erivera.apps.topcharts.BR
-import com.erivera.apps.topcharts.MainApplication
 import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.databinding.FragmentPlayerV2Binding
 import com.erivera.apps.topcharts.models.domain.AudioItem
@@ -23,16 +23,13 @@ import com.erivera.apps.topcharts.ui.listener.PlayerInteractionListener
 import com.erivera.apps.topcharts.ui.viewmodel.PlayerViewModel
 import com.erivera.apps.topcharts.utils.CollapsibleToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
-class PlayerFragment : InjectableFragment(),
+@AndroidEntryPoint
+class PlayerFragment : Fragment(),
     PlayerInteractionListener {
 
-    private val playerViewModel by lazy {
-        ViewModelProvider(
-            this,
-            viewModelFactory
-        ).get(PlayerViewModel::class.java)
-    }
+    private val playerViewModel: PlayerViewModel by viewModels()
 
     val listener = object : CollapsibleToolbar.OffsetChangedListener {
         override fun onOffsetChanged(verticalOffset: Int, progress: Float, totalRange: Float) {
@@ -63,11 +60,6 @@ class PlayerFragment : InjectableFragment(),
         playerViewModel.setPlayerDefaultValues()
         binding?.mediaPlayerV3?.playerMediaMotionLayout?.setListener(listener)
 
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().applicationContext as MainApplication).appComponent?.inject(this)
     }
 
     override fun onDestroyView() {

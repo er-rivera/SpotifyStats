@@ -14,11 +14,6 @@
             app:destination="@id/colorsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_top_list"
-        android:name="com.erivera.apps.topcharts.ui.fragment.TopListComposeFragment"
-        android:label="Top List"
-        tools:layout="@layout/fragment_top_list" />
-    <fragment
         android:id="@+id/fragment_home"
         android:name="com.erivera.apps.topcharts.ui.fragment.HomeFragment"
         android:label="Home"

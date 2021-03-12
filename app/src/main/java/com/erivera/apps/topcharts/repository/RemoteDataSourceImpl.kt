@@ -1,23 +1,21 @@
 package com.erivera.apps.topcharts.repository
 
-import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.erivera.apps.topcharts.models.api.*
 import com.erivera.apps.topcharts.repository.network.RetrofitFactory
 import com.erivera.apps.topcharts.repository.network.SpotifyService
+import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class RemoteDataSourceImpl @Inject constructor(val application: Application) : RemoteDataSource {
+class RemoteDataSourceImpl @Inject constructor(val context: Context) : RemoteDataSource {
     private var spotifyService: SpotifyService? = null
 
     override fun startSpotifyService(clientId: String) {
-        spotifyService = RetrofitFactory.makeRetrofitService(clientId, application.applicationContext)
+        spotifyService = RetrofitFactory.makeRetrofitService(clientId, context)
     }
 
     override suspend fun getArtists(limit: String, termLength: String): Flow<List<ArtistsRetrofit>> {

@@ -1,7 +1,6 @@
 package com.erivera.apps.topcharts.ui.viewmodel
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.Log
@@ -20,6 +19,8 @@ import com.erivera.apps.topcharts.repository.Repository
 import com.erivera.apps.topcharts.utils.getDimenPercentage
 import com.spotify.protocol.types.Album
 import com.spotify.protocol.types.Track
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -31,12 +32,13 @@ import java.text.DecimalFormat
 import javax.inject.Inject
 import kotlin.math.roundToInt
 
+@HiltViewModel
 class PlayerViewModel @Inject constructor(
-    application: Application,
+    @ApplicationContext val context: Context,
     private val repository: Repository,
     private val spotifyRemoteManager: SpotifyRemoteManager,
     private val deviceManager: DeviceManager
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
     companion object {
         val TAG = PlayerViewModel::class.java.name
@@ -63,7 +65,7 @@ class PlayerViewModel @Inject constructor(
     val trackTitle: LiveData<String> = _trackTitle
 
     private val _trackTitleColor = MutableLiveData<Int>().apply {
-        value = ContextCompat.getColor(application, R.color.white)
+        value = ContextCompat.getColor(context, R.color.white)
     }
 
     val trackTitleColor: LiveData<Int> = _trackTitleColor
@@ -93,9 +95,6 @@ class PlayerViewModel @Inject constructor(
     private val _audioItemList = AsyncDiffObservableList<AudioItem>(diffConfig)
 
     val audioItemList: AsyncDiffObservableList<AudioItem> = _audioItemList
-
-    private val appContext: Context
-        get() = getApplication<Application>().applicationContext
 
     private var track: Track? = null
         set(value) {
@@ -180,7 +179,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Key",
                     secondaryDisplayTitle = null,
                     displayDescription = getPitchString(audioFeaturesResponse.key),
-                    dialogText = appContext.resources.getString(R.string.key_description),
+                    dialogText = context.resources.getString(R.string.key_description),
                     dialogDrawable = null
                 )
             )
@@ -189,7 +188,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Mode",
                     secondaryDisplayTitle = null,
                     displayDescription = if (audioFeaturesResponse.mode == 1) "Major" else "Minor",
-                    dialogText = appContext.resources.getString(R.string.mode_description),
+                    dialogText = context.resources.getString(R.string.mode_description),
                     dialogDrawable = null
                 )
             )
@@ -198,7 +197,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Time",
                     secondaryDisplayTitle = "Signature",
                     displayDescription = audioFeaturesResponse.timeSignature.toString(),
-                    dialogText = appContext.resources.getString(R.string.time_sig_description),
+                    dialogText = context.resources.getString(R.string.time_sig_description),
                     dialogDrawable = null
                 )
             )
@@ -208,7 +207,7 @@ class PlayerViewModel @Inject constructor(
                     secondaryDisplayTitle = null,
                     displayDescription = (audioFeaturesResponse.tempo
                         ?: 0F).roundToInt().toString(),
-                    dialogText = appContext.resources.getString(R.string.tempo_description),
+                    dialogText = context.resources.getString(R.string.tempo_description),
                     dialogDrawable = R.drawable.graph_tempo
                 )
             )
@@ -217,7 +216,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Acousticness",
                     secondaryDisplayTitle = null,
                     displayDescription = decimalFormat.format(audioFeaturesResponse.acousticness ?: 0),
-                    dialogText = appContext.resources.getString(R.string.acousticness_description),
+                    dialogText = context.resources.getString(R.string.acousticness_description),
                     dialogDrawable = R.drawable.graph_acousticness
                 )
             )
@@ -226,7 +225,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Danceability",
                     secondaryDisplayTitle = null,
                     displayDescription = decimalFormat.format(audioFeaturesResponse.danceability ?: 0),
-                    dialogText = appContext.resources.getString(R.string.dancability_description),
+                    dialogText = context.resources.getString(R.string.dancability_description),
                     dialogDrawable = R.drawable.graph_danceability
                 )
             )
@@ -235,7 +234,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Energy",
                     secondaryDisplayTitle = null,
                     displayDescription = decimalFormat.format(audioFeaturesResponse.energy ?: 0),
-                    dialogText = appContext.resources.getString(R.string.energy_description),
+                    dialogText = context.resources.getString(R.string.energy_description),
                     dialogDrawable = R.drawable.graph_energy
                 )
             )
@@ -244,7 +243,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Instrumentalness",
                     secondaryDisplayTitle = null,
                     displayDescription = decimalFormat.format(audioFeaturesResponse.instrumentalness ?: 0),
-                    dialogText = appContext.resources.getString(R.string.instrumentalness_description),
+                    dialogText = context.resources.getString(R.string.instrumentalness_description),
                     dialogDrawable = R.drawable.graph_instrumentalness
                 )
             )
@@ -253,7 +252,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Liveness",
                     secondaryDisplayTitle = null,
                     displayDescription = decimalFormat.format(audioFeaturesResponse.liveness ?: 0),
-                    dialogText = appContext.resources.getString(R.string.liveness_description),
+                    dialogText = context.resources.getString(R.string.liveness_description),
                     dialogDrawable = R.drawable.graph_liveness
                 )
             )
@@ -262,7 +261,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Loudness",
                     secondaryDisplayTitle = null,
                     displayDescription = decimalFormat.format(audioFeaturesResponse.loudness ?: 0),
-                    dialogText = appContext.resources.getString(R.string.loudness_description),
+                    dialogText = context.resources.getString(R.string.loudness_description),
                     dialogDrawable = R.drawable.graph_loudness
                 )
             )
@@ -271,7 +270,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Speechiness",
                     secondaryDisplayTitle = null,
                     displayDescription = decimalFormat.format(audioFeaturesResponse.speechiness ?: 0),
-                    dialogText = appContext.resources.getString(R.string.speechiness_description),
+                    dialogText = context.resources.getString(R.string.speechiness_description),
                     dialogDrawable = R.drawable.graph_speechiness
                 )
             )
@@ -280,7 +279,7 @@ class PlayerViewModel @Inject constructor(
                     displayTitle = "Valence",
                     secondaryDisplayTitle = null,
                     displayDescription = decimalFormat.format(audioFeaturesResponse.valence ?: 0),
-                    dialogText = appContext.resources.getString(R.string.valence_description),
+                    dialogText = context.resources.getString(R.string.valence_description),
                     dialogDrawable = R.drawable.graph_valence
                 )
             )
@@ -291,8 +290,8 @@ class PlayerViewModel @Inject constructor(
         var retVal = "N/A"
         if (index != null && index != -1) {
             val resId =
-                appContext.resources.getIdentifier("pitch_$index", "string", appContext.packageName)
-            retVal = appContext.resources.getString(resId)
+                context.resources.getIdentifier("pitch_$index", "string", context.packageName)
+            retVal = context.resources.getString(resId)
         }
         return retVal
     }
@@ -336,11 +335,11 @@ class PlayerViewModel @Inject constructor(
 
     fun setPlayerDefaultValues() {
         val maxPercentage =
-            getApplication<Application>().applicationContext.resources.getDimenPercentage(R.dimen.player_max_height_percentage)
+            context.resources.getDimenPercentage(R.dimen.player_max_height_percentage)
         val minPercentage =
-            getApplication<Application>().applicationContext.resources.getDimenPercentage(R.dimen.player_min_height_percentage)
+            context.resources.getDimenPercentage(R.dimen.player_min_height_percentage)
         val guidelineBottomHeightPercentage =
-            getApplication<Application>().applicationContext.resources.getDimenPercentage(R.dimen.player_artwork_guideline_bottom)
+            context.resources.getDimenPercentage(R.dimen.player_artwork_guideline_bottom)
         val maxHeight = (maxPercentage * deviceManager.getDeviceInfo().useableHeight).toInt()
         val minHeight = (minPercentage * deviceManager.getDeviceInfo().useableHeight).toInt()
         val guidelineBottomHeight =
@@ -352,6 +351,6 @@ class PlayerViewModel @Inject constructor(
         _playerMaxHeight.value = maxHeight
         _playerMinHeight.value = minHeight
         _albumArtBottomPosition.value =
-            getApplication<Application>().applicationContext.resources.getDimension(R.dimen.player_artwork_guideline_bottom_margin)
+            context.resources.getDimension(R.dimen.player_artwork_guideline_bottom_margin)
     }
 }

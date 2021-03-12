@@ -1,15 +1,14 @@
 package com.erivera.apps.topcharts.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.erivera.apps.topcharts.MainApplication
 import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.databinding.FragmentLoginBinding
 import com.erivera.apps.topcharts.ui.activity.MainActivity
@@ -18,16 +17,12 @@ import com.erivera.apps.topcharts.utils.addStatusBarTopPadding
 import com.erivera.apps.topcharts.ui.viewmodel.MainViewModel
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
+import dagger.hilt.android.AndroidEntryPoint
 
-class LoginFragment : InjectableFragment(),
-    LoginInteractionListener {
+@AndroidEntryPoint
+class LoginFragment : Fragment(), LoginInteractionListener {
 
-    private val mainViewModel by lazy {
-        ViewModelProvider(
-            requireActivity(),
-            viewModelFactory
-        ).get(MainViewModel::class.java)
-    }
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,11 +53,6 @@ class LoginFragment : InjectableFragment(),
                 }
             }
         })
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().applicationContext as MainApplication).appComponent?.inject(this)
     }
 
     override fun loginButtonClick(request: AuthenticationRequest?) {

@@ -9,8 +9,10 @@ import com.erivera.apps.topcharts.utils.Constants
 import com.erivera.apps.topcharts.repository.Repository
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(val repository: Repository, val deviceManager: DeviceManager) : ViewModel() {
 
     private val _screenNavigationLiveData = MutableLiveData<Boolean>()

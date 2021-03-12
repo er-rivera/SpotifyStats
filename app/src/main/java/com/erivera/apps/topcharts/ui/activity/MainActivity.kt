@@ -2,33 +2,25 @@ package com.erivera.apps.topcharts.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.erivera.apps.topcharts.MainApplication
 import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.dagger.ParentDependency
 import com.erivera.apps.topcharts.ui.viewmodel.MainViewModel
-import com.erivera.apps.topcharts.ui.viewmodel.ViewModelFactory
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationResponse
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val mainViewModel by lazy {
-        ViewModelProvider(
-            this,
-            viewModelFactory
-        ).get(MainViewModel::class.java)
-    }
-
     @Inject
     lateinit var parentDependency: ParentDependency
 
+    private val mainViewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MainApplication).appComponent?.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainViewModel.updateDefaultWidthHeight(windowManager, 0)

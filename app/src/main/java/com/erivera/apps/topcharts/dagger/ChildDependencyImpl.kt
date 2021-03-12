@@ -4,4 +4,4 @@ import android.app.Application
 import android.content.Context
 import javax.inject.Inject
 
-class ChildDependencyImpl @Inject constructor(val application: Application): ChildDependency
+class ChildDependencyImpl @Inject constructor(): ChildDependency

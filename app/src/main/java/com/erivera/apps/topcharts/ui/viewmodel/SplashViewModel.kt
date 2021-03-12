@@ -3,9 +3,11 @@ package com.erivera.apps.topcharts.ui.viewmodel
 import androidx.lifecycle.*
 import com.erivera.apps.topcharts.StartupRouteState
 import com.erivera.apps.topcharts.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SplashViewModel @Inject constructor(val repository : Repository) : ViewModel() {
     private val _navigationLiveData: MutableLiveData<StartupRouteState> = MutableLiveData()
 

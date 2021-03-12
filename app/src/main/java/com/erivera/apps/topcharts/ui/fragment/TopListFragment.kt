@@ -1,29 +1,22 @@
 package com.erivera.apps.topcharts.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
-import com.erivera.apps.topcharts.MainApplication
-import com.erivera.apps.topcharts.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.erivera.apps.topcharts.databinding.FragmentTopListBinding
 import com.erivera.apps.topcharts.models.domain.TopListTab
 import com.erivera.apps.topcharts.ui.adapter.PagerRecyclerViewAdapter
 import com.erivera.apps.topcharts.ui.viewmodel.TopListViewModel
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-class TopListFragment : InjectableFragment() {
+@AndroidEntryPoint
+class TopListFragment : Fragment() {
 
-    private val topListViewModel by lazy {
-        ViewModelProvider(
-            this,
-            viewModelFactory
-        ).get(TopListViewModel::class.java)
-    }
+    private val topListViewModel: TopListViewModel by viewModels()
 
     var binding: FragmentTopListBinding? = null
 
@@ -41,11 +34,6 @@ class TopListFragment : InjectableFragment() {
         binding?.adapter =
             PagerRecyclerViewAdapter<TopListTab>()
         return binding!!.root
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().applicationContext as MainApplication).appComponent?.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

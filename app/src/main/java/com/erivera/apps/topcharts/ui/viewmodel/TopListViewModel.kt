@@ -12,12 +12,14 @@ import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.models.domain.*
 import com.erivera.apps.topcharts.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.collections.AsyncDiffObservableList
 import javax.inject.Inject
 
+@HiltViewModel
 class TopListViewModel @Inject constructor(val repository: Repository) : ViewModel() {
     companion object {
         const val SONGS = "Songs"

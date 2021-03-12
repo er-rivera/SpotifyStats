@@ -1,15 +1,14 @@
 package com.erivera.apps.topcharts
 
-import android.app.Application
+import android.content.Context
 import android.graphics.Point
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
+import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class DeviceManagerImpl @Inject constructor(val application: Application) : DeviceManager {
+class DeviceManagerImpl @Inject constructor(val context: Context) : DeviceManager {
 
     private val deviceInfo = DeviceManager.DeviceInfo(0, 0, 0, 0, 0)
 

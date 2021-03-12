@@ -1,26 +1,23 @@
 package com.erivera.apps.topcharts.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.erivera.apps.topcharts.MainApplication
 import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.StartupRouteState
 import com.erivera.apps.topcharts.utils.addStatusBarTopPadding
 import com.erivera.apps.topcharts.ui.viewmodel.SplashViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class SplashFragment : InjectableFragment() {
+@AndroidEntryPoint
+class SplashFragment : Fragment() {
 
-    private val splashViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(
-            SplashViewModel::class.java
-        )
-    }
+    private val splashViewModel: SplashViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,11 +27,6 @@ class SplashFragment : InjectableFragment() {
             initObservers(this)
             splashViewModel.checkLoginStatus()
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().applicationContext as MainApplication).appComponent?.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
