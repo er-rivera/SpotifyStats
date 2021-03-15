@@ -17,18 +17,6 @@ import dagger.hilt.components.SingletonComponent
 class AppModule {
 
     @Provides
-    fun providesRepository(
-        localDataSource: LocalDataSource,
-        remoteDataSource: RemoteDataSource
-    ): Repository = RepositoryImpl(localDataSource, remoteDataSource)
-
-    @Provides
-    fun providesLocalDataSource(@ApplicationContext context: Context): LocalDataSource = LocalDataSourceImpl(context)
-
-    @Provides
-    fun providesRemoteDataSource(@ApplicationContext context: Context): RemoteDataSource = RemoteDataSourceImpl(context)
-
-    @Provides
     fun providesSpotifyRemoteManager(@ApplicationContext context: Context): SpotifyRemoteManager = SpotifyRemoteManagerImpl(context)
 
     @Provides

@@ -5,10 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class TopListComposeViewModel @Inject constructor(val repository: Repository) : ViewModel() {
     companion object {
         const val SONGS = "Songs"
@@ -54,7 +56,7 @@ class TopListComposeViewModel @Inject constructor(val repository: Repository) : 
                 TopListViewState.Success(
                     TopList(
                         categorySectionList = categorySections,
-                        categorySections.first()
+                        categorySections.firstOrNull()
                     )
                 )
             }.collect {
@@ -173,14 +175,14 @@ class TopListComposeViewModel @Inject constructor(val repository: Repository) : 
             args[1] as T2,
             args[2] as T3,
             args[3] as T4,
-            args[3] as T5,
-            args[3] as T6,
-            args[3] as T7
+            args[4] as T5,
+            args[5] as T6,
+            args[6] as T7
         )
     }
 
     sealed class TopListViewState {
-        class Success(topList: TopList) : TopListViewState()
+        class Success(val topList: TopList) : TopListViewState()
         object Error : TopListViewState()
         object Loading : TopListViewState()
     }
