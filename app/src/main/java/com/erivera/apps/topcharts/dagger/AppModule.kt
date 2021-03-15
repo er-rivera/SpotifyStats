@@ -15,8 +15,6 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 @Module
 class AppModule {
-    @Provides
-    fun providesChildDependency(): ChildDependency = ChildDependencyImpl()
 
     @Provides
     fun providesRepository(

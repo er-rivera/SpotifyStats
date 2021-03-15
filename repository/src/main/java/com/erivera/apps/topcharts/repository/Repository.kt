@@ -1,9 +1,9 @@
 package com.erivera.apps.topcharts.repository
 
-import com.erivera.apps.topcharts.models.api.AlbumResponse
-import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
-import com.erivera.apps.topcharts.models.api.AudioFeaturesResponse
-import com.erivera.apps.topcharts.models.api.TrackRetrofit
+import com.erivera.apps.topcharts.repository.models.api.AlbumResponse
+import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
+import com.erivera.apps.topcharts.repository.models.api.AudioFeaturesResponse
+import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {

@@ -93,6 +93,7 @@ dependencies {
     implementation project(':spotify-app-remote')
     implementation project(':navigation')
     implementation project(':toplist')
+    implementation project(':repository')
 
     implementation ("jp.wasabeef:glide-transformations:4.0.0"){
         exclude group: "com.android.support"

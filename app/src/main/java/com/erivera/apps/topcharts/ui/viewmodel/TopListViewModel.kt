@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.erivera.apps.topcharts.BR
 import com.erivera.apps.topcharts.R
-import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
-import com.erivera.apps.topcharts.models.api.TrackRetrofit
+import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
+import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.models.domain.*
 import com.erivera.apps.topcharts.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel

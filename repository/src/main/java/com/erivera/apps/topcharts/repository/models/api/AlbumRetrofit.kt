@@ -1,15 +1,13 @@
-package com.erivera.apps.topcharts.models.api
+package com.erivera.apps.topcharts.repository.models.api
 
-import com.erivera.apps.topcharts.models.domain.Artist
 import com.google.gson.annotations.SerializedName
-
 
 class AlbumRetrofit {
     @SerializedName("album_type")
     var albumType: String? = null
 
-    @SerializedName("artists")
-    var artists: List<Artist>? = null
+//    @SerializedName("artists")
+//    var artists: List<Artist>? = null
 
     @SerializedName("available_markets")
     var availableMarkets: List<String>? = null

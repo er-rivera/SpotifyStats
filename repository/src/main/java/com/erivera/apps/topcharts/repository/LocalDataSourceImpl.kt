@@ -2,8 +2,6 @@ package com.erivera.apps.topcharts.repository
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.erivera.apps.topcharts.R
-import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(val context: Context) : LocalDataSource {

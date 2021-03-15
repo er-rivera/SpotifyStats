@@ -2,10 +2,12 @@ package com.erivera.apps.topcharts.repository
 
 import android.content.Context
 import android.util.Log
-import com.erivera.apps.topcharts.models.api.*
+import com.erivera.apps.topcharts.repository.models.api.AlbumResponse
+import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
+import com.erivera.apps.topcharts.repository.models.api.AudioFeaturesResponse
+import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.repository.network.RetrofitFactory
 import com.erivera.apps.topcharts.repository.network.SpotifyService
-import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

@@ -2,8 +2,8 @@ package com.erivera.apps.topcharts.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.erivera.apps.topcharts.models.api.ArtistsRetrofit
-import com.erivera.apps.topcharts.models.api.TrackRetrofit
+import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
+import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.repository.Repository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

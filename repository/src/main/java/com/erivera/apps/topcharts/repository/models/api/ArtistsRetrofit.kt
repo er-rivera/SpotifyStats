@@ -1,16 +1,17 @@
-package com.erivera.apps.topcharts.models.api
+package com.erivera.apps.topcharts.repository.models.api
 
 import com.google.gson.annotations.SerializedName
 
-class UserResponse {
-    @SerializedName("display_name")
-    var displayName: String? = null
+class ArtistsRetrofit {
 
     @SerializedName("external_urls")
     var externalUrls: ExternalUrls? = null
 
     @SerializedName("followers")
     var followers: Followers? = null
+
+    @SerializedName("genres")
+    var genres: List<String>? = null
 
     @SerializedName("href")
     var href: String? = null
@@ -19,7 +20,13 @@ class UserResponse {
     var id: String? = null
 
     @SerializedName("images")
-    var images = ArrayList<Image>()
+    var images: List<Image>? = null
+
+    @SerializedName("name")
+    var name: String? = null
+
+    @SerializedName("popularity")
+    var popularity: Int = 0
 
     @SerializedName("type")
     var type: String? = null
