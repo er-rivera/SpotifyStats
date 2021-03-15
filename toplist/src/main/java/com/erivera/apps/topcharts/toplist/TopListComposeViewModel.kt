@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.ui.viewmodel
+package com.erivera.apps.topcharts.toplist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

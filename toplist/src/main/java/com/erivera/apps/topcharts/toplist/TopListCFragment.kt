@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.material.MaterialTheme
 import com.erivera.apps.topcharts.toplist.databinding.FragmentTopCListBinding
+import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
 /**
@@ -14,19 +15,27 @@ import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
  * Use the [TopListCFragment] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class TopListCFragment : Fragment() {
+
+    lateinit var binding: FragmentTopCListBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return FragmentTopCListBinding.inflate(inflater, container, false).apply {
-            composeView.setContent {
-                MaterialTheme {
-                    ProvideWindowInsets {
-                        TopList()
-                    }
+        binding = FragmentTopCListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.composeView.setContent {
+            MaterialTheme {
+                ProvideWindowInsets {
+                    TopList()
                 }
             }
-        }.root
+        }
     }
 }

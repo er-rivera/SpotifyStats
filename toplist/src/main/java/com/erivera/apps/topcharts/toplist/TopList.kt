@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun TopList() {
 
-    //val topListViewModel: TopListComposeViewModel = viewModel()
+    //val topListViewModel: TopListComposeViewModel by viewModels()
 
     Surface(Modifier.fillMaxSize()) {
         TopListContent()
