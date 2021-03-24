@@ -11,6 +11,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -19,6 +20,7 @@ class AppModule {
     @Provides
     fun providesSpotifyRemoteManager(@ApplicationContext context: Context): SpotifyRemoteManager = SpotifyRemoteManagerImpl(context)
 
+    @Singleton
     @Provides
     fun providesDeviceManager(@ApplicationContext context: Context): DeviceManager = DeviceManagerImpl(context)
 }

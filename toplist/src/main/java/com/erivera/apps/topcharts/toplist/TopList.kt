@@ -28,13 +28,11 @@ fun TopListContent(modifier: Modifier) {
     val topListTabs = viewState?.tabs
     if (topListTabs !== null && topListTabs.categoryTabList.isNotEmpty() && topListTabs.selectedCategoryTab != null) {
         Column(modifier) {
-            Spacer(modifier = Modifier.height(8.dp))
             CategoryTabs(
                 categoryTabs = topListTabs.categoryTabList,
                 selectedTab = topListTabs.selectedCategoryTab,
                 onCategoryTabSelected = viewModel::onTabSelected
             )
-            Spacer(modifier = Modifier.height(8.dp))
             Crossfade(
                 targetState = topListTabs.selectedCategoryTab,
                 modifier = Modifier
