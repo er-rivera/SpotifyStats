@@ -4,8 +4,6 @@ plugins {
     id 'kotlin-kapt'
 }
 
-apply plugin: 'dagger.hilt.android.plugin'
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -34,7 +32,6 @@ android {
         useIR = true
     }
     buildFeatures {
-        viewBinding true
         compose true
     }
     composeOptions {
@@ -47,14 +44,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'
-
-    implementation project(':navigation')
-    implementation project(':repository')
-    implementation project(':common-ui')
 
     implementation "androidx.compose.ui:ui:$rootProject.compose_version"
     implementation "androidx.compose.material:material:$rootProject.compose_version"
@@ -64,9 +53,4 @@ dependencies {
     implementation "androidx.compose.runtime:runtime-rxjava2:$rootProject.compose_version"
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$rootProject.compose_viewmodel_version"
-
-    implementation "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
-
-    implementation "com.google.dagger:hilt-android:$rootProject.hilt_android_version"
-    kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_android_version"
 }
