@@ -8,7 +8,6 @@ apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion 23
@@ -38,8 +37,8 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.0.0-beta01'
-        kotlinCompilerVersion '1.4.30'
+        kotlinCompilerExtensionVersion '1.0.0-beta03'
+        kotlinCompilerVersion '1.4.31'
     }
 }
 
@@ -69,4 +68,6 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:$rootProject.hilt_android_version"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_android_version"
+
+    implementation "dev.chrisbanes.accompanist:accompanist-coil:0.6.0"
 }

@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
@@ -81,8 +82,8 @@ fun CategoryTabs(
 fun TabContent(selected: Boolean, text: String, modifier: Modifier) {
     Surface(
         color = when {
-            selected -> MaterialTheme.colors.primary.copy(alpha = 0.08f)
-            else -> MaterialTheme.colors.onSurface.copy(alpha = 0.12f)
+            selected -> Color(0xFF000000)
+            else -> Color(0xFF262626).copy(alpha = 0.12f)
         },
         shape = MaterialTheme.shapes.small,
         modifier = modifier

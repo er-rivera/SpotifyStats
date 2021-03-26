@@ -75,7 +75,7 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
             shortTermTracks.mapIndexed { index, item ->
                 SubCategoryItem(
                     title = item.name ?: "",
-                    artist = item.artists?.joinToString(", "),
+                    artist = item.artists?.map { it.name }?.joinToString(", "),
                     position = (index + 1).toString(),
                     imageUrl = item.album?.images?.first()?.url ?: ""
                 )
@@ -88,7 +88,7 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
             mediumTermTracks.mapIndexed { index, item ->
                 SubCategoryItem(
                     title = item.name ?: "",
-                    artist = item.artists?.joinToString(", "),
+                    artist = item.artists?.map { it.name }?.joinToString(", "),
                     position = (index + 1).toString(),
                     imageUrl = item.album?.images?.first()?.url ?: ""
                 )
@@ -101,7 +101,7 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
             longTermTracks.mapIndexed { index, item ->
                 SubCategoryItem(
                     title = item.name ?: "",
-                    artist = item.artists?.joinToString(", "),
+                    artist = item.artists?.map { it.name }?.joinToString(", "),
                     position = (index + 1).toString(),
                     imageUrl = item.album?.images?.first()?.url ?: ""
                 )

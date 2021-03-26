@@ -6,7 +6,6 @@ plugins {
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion 23
@@ -35,8 +34,8 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.0.0-beta01'
-        kotlinCompilerVersion '1.4.30'
+        kotlinCompilerExtensionVersion '1.0.0-beta03'
+        kotlinCompilerVersion '1.4.31'
     }
 }
 
