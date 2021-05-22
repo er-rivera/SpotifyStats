@@ -31,11 +31,7 @@ class TopListCFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.composeView.setContent {
-            MaterialTheme {
-                ProvideWindowInsets {
-                    TopList()
-                }
-            }
+            TopList()
         }
     }
 }
