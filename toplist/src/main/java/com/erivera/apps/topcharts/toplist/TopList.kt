@@ -1,6 +1,7 @@
 package com.erivera.apps.topcharts.toplist
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
@@ -9,14 +10,21 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun TopList() {
-    Surface(Modifier.fillMaxSize()) {
-        Column(Modifier.fillMaxWidth()) {
-            TopListContent(modifier = Modifier.fillMaxWidth().weight(1F))
+    TopListTheme {
+        Surface(Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxWidth()) {
+                TopListContent(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1F)
+                )
+            }
         }
     }
 }
@@ -40,12 +48,31 @@ fun TopListContent(modifier: Modifier) {
                     .fillMaxWidth()
                     .weight(1f)
             ) { categorySection ->
-                CategorySection(
-                    title = categorySection.title,
-                    modifier = Modifier.fillMaxSize()
-                )
+//                CategorySection(
+//                    title = categorySection.title,
+//                    modifier = Modifier.fillMaxSize()
+//                )
             }
         }
+    }
+}
+
+
+@Composable
+@Preview
+fun categoryPreview() {
+    val songs = TopListCategoryTabViewModel.CategoryTab(TopListCategorySectionViewModel.SONGS)
+    val artists = TopListCategoryTabViewModel.CategoryTab(TopListCategorySectionViewModel.ARTISTS)
+    val list = mutableListOf<TopListCategoryTabViewModel.CategoryTab>().apply {
+        add(songs)
+        add(artists)
+    }
+    TopListTheme {
+        CategoryTabs(
+            categoryTabs = list,
+            selectedTab = songs,
+            onCategoryTabSelected = { }
+        )
     }
 }
 
@@ -67,11 +94,12 @@ fun CategoryTabs(
         categoryTabs.forEachIndexed { index, categorySection ->
             Tab(
                 selected = index == selectedIndex,
-                onClick = { onCategoryTabSelected(categorySection) }) {
+                onClick = { onCategoryTabSelected(categorySection) }
+            ) {
                 TabContent(
                     index == selectedIndex,
                     text = categorySection.title,
-                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 16.dp)
+                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 48.dp)
                 )
             }
         }
