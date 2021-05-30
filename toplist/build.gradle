@@ -68,5 +68,5 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$rootProject.hilt_android_version"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_android_version"
 
-    implementation "dev.chrisbanes.accompanist:accompanist-coil:0.6.0"
+    implementation "com.google.accompanist:accompanist-coil:0.10.0"
 }

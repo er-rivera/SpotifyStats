@@ -1,11 +1,14 @@
 package com.erivera.apps.topcharts.toplist
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -13,15 +16,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ChainStyle
-import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.erivera.apps.topcharts.common_ui.getInconsolataTypography
-import dev.chrisbanes.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
+import com.google.accompanist.imageloading.ImageLoadState
 
 @Composable
 fun CategorySection(title: String, modifier: Modifier) {
@@ -43,7 +48,9 @@ fun CategorySection(title: String, modifier: Modifier) {
                         SubCategoryHeaderContent(item.title)
                     }
                     is TopListCategorySectionViewModel.SubCategoryItem -> {
-                        SubCategoryItemContent(item)
+                        SubCategoryItemContent(item) {
+
+                        }
                     }
                 }
             }
@@ -61,73 +68,86 @@ fun PreviewSection() {
             position = "1",
             imageUrl = "",
         )
-    )
+    ) {
+
+    }
 
 }
 
 @Composable
-fun SubCategoryItemContent(item: TopListCategorySectionViewModel.SubCategoryItem) {
+fun SubCategoryItemContent(
+    item: TopListCategorySectionViewModel.SubCategoryItem,
+    onClick: () -> Unit
+) {
     val typography = getInconsolataTypography()
-    ConstraintLayout( modifier = Modifier
-        .fillMaxWidth()
-        .height(85.dp)
-        .padding(PaddingValues(start = 8.dp, end = 8.dp, top = 8.dp, bottom = 8.dp))
+    val painter = rememberCoilPainter(item.imageUrl, fadeIn = true)
+    Row(
+        modifier = Modifier
+            .padding(8.dp)
+            .background(color = Color.White.copy(alpha = 0.15f), shape = RoundedCornerShape(16.dp))
+            .clickable(onClick = onClick)
+            .fillMaxWidth()
+            .padding(top = 8.dp, bottom = 8.dp, start = 8.dp, end = 8.dp)
+            .height(84.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        val (position, image, title, description) = createRefs()
-        Text(
-            text = item.position,
-            style = typography.h6,
-            fontSize = 30.sp,
-            modifier = Modifier
-                .constrainAs(position) {
-                    start.linkTo(parent.start)
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                }
-        )
-        if (item.imageUrl.isNotEmpty()){
-            CoilImage(
-                data = item.imageUrl,
-                contentDescription = null,
-                fadeIn = true,
-                contentScale = ContentScale.Crop,
-                loading = { },
+        Box {
+            Image(
+                painter = painter, contentDescription = "",
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .aspectRatio(1f)
-                    .clip(MaterialTheme.shapes.medium)
-                    .constrainAs(image) {
-                        start.linkTo(position.end, margin = 16.dp)
-                    }
+                    .padding(end = 8.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .height(84.dp)
+                    .width(84.dp),
+                contentScale = ContentScale.Crop
+            )
+            when (painter.loadState) {
+                is ImageLoadState.Loading -> {
+                    // Display a circular progress indicator whilst loading
+                    CircularProgressIndicator(Modifier.align(Alignment.Center))
+                }
+                is ImageLoadState.Error -> {
+                    // If you wish to display some content if the request fails
+                }
+                else -> {
+
+                }
+            }
+        }
+        Row {
+            Column(modifier = Modifier.weight(7f)) {
+                Text(
+                    text = item.title,
+                    style = typography.h6,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = item.artist.orEmpty(),
+                    style = typography.caption,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            Text(
+                text = item.position,
+                style = typography.h3,
+                fontSize = 30.sp,
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .weight(1f),
+                textAlign = TextAlign.Center
             )
         }
-        Text(
-            text = item.title,
-            style = typography.h6,
-            modifier = Modifier.constrainAs(title) {
-                top.linkTo(parent.top)
-                bottom.linkTo(description.top, margin = 2.dp)
-                start.linkTo(if (item.imageUrl.isEmpty()) position.end else image.end, margin = 16.dp)
-            }
-        )
-        Text(text = item.artist.orEmpty(),
-            style = typography.caption,
-            modifier = Modifier.constrainAs(description) {
-                top.linkTo(title.bottom)
-                start.linkTo(if (item.imageUrl.isEmpty()) position.end else image.end, margin = 16.dp)
-                bottom.linkTo(parent.bottom)
-            }
-        )
-        createVerticalChain(
-            title,
-            description,
-            chainStyle = ChainStyle.Packed
-        )
     }
 }
 
 @Composable
 fun SubCategoryHeaderContent(title: String) {
     val typography = getInconsolataTypography()
-    Text(text = title, style = typography.body1, modifier = Modifier.padding(8.dp))
+    Text(
+        text = title,
+        style = typography.h4,
+        modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 8.dp, bottom = 8.dp)
+    )
 }

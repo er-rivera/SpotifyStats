@@ -22,7 +22,7 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
     var title = ""
 
     fun setCategorySection(title: String) {
-        if(this.title != title){
+        if (this.title != title) {
             this.title = title
             init(title)
         }
@@ -37,11 +37,10 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         viewModelScope.launch {
             val flow = when (title) {
                 SONGS -> {
-                    //getSongCategorySectionViewState()
-                    getArtistCategorySectionViewState()
+                    getSongCategorySectionViewState(isMock = false)
                 }
                 ARTISTS -> {
-                    getArtistCategorySectionViewState()
+                    getArtistCategorySectionViewState(isMock = false)
                 }
                 else -> {
                     null
@@ -53,13 +52,17 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         }
     }
 
-    private suspend fun getSongCategorySectionViewState(): Flow<CategorySectionViewState> {
-        return combine(
-            repository.getShortTermTracks(),
-            repository.getMediumTermTracks(),
-            repository.getLongTermTracks()
-        ) { shortTerm, medTerm, longTerm ->
-            CategorySectionViewState(buildTracksCategorySection(shortTerm, medTerm, longTerm))
+    private suspend fun getSongCategorySectionViewState(isMock: Boolean = false): Flow<CategorySectionViewState> {
+        return if (isMock) {
+            mockResults()
+        } else {
+            combine(
+                repository.getShortTermTracks(),
+                repository.getMediumTermTracks(),
+                repository.getLongTermTracks()
+            ) { shortTerm, medTerm, longTerm ->
+                CategorySectionViewState(buildTracksCategorySection(shortTerm, medTerm, longTerm))
+            }
         }
     }
 
@@ -111,24 +114,33 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         return categoryItems
     }
 
-    private suspend fun getArtistCategorySectionViewState(): Flow<CategorySectionViewState> {
-//        return combine(
-//            repository.getShortTermArtists(),
-//            repository.getMediumTermArtists(),
-//            repository.getLongTermArtists()
-//        ) { shortTerm, medTerm, longTerm ->
-//            CategorySectionViewState(buildArtistCategorySection(shortTerm, medTerm, longTerm))
-//        }
+    private suspend fun getArtistCategorySectionViewState(isMock: Boolean = false): Flow<CategorySectionViewState> {
+        return if (isMock) {
+            mockResults()
+        } else {
+            combine(
+                repository.getShortTermArtists(),
+                repository.getMediumTermArtists(),
+                repository.getLongTermArtists()
+            ) { shortTerm, medTerm, longTerm ->
+                CategorySectionViewState(buildArtistCategorySection(shortTerm, medTerm, longTerm))
+            }
+        }
+    }
+
+    private fun mockResults(): Flow<CategorySectionViewState> {
         val categoryItems = listOf(
             SubCategoryHeader("Short Term"),
             SubCategoryItem(
                 title = "Random 1",
                 position = "1",
+                artist = "Here is the artist",
                 imageUrl = ""
             ),
             SubCategoryItem(
                 title = "Random 2",
                 position = "2",
+                artist = "Here is the artist",
                 imageUrl = ""
             ),
             SubCategoryItem(
@@ -154,7 +166,7 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
                 SubCategoryItem(
                     title = item.name ?: "",
                     position = (index + 1).toString(),
-                    imageUrl = ""
+                    imageUrl = item.images?.firstOrNull()?.url.orEmpty()
                 )
             }
         )
@@ -166,7 +178,7 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
                 SubCategoryItem(
                     title = item.name ?: "",
                     position = (index + 1).toString(),
-                    imageUrl = ""
+                    imageUrl = item.images?.firstOrNull()?.url.orEmpty()
                 )
             }
         )
@@ -178,7 +190,7 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
                 SubCategoryItem(
                     title = item.name ?: "",
                     position = (index + 1).toString(),
-                    imageUrl = ""
+                    imageUrl = item.images?.firstOrNull()?.url.orEmpty()
                 )
             }
         )
