@@ -10,6 +10,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TopListCategoryTabViewModel @Inject constructor(val repository: Repository) : ViewModel() {
+    companion object {
+        const val SONGS = "Songs"
+        const val ARTISTS = "Artists"
+        const val GENRES = "Genres"
+    }
     private val _selectedTab = MutableStateFlow<CategoryTab?>(null)
 
     private val _state = MutableStateFlow<TopListTabViewState?>(null)
@@ -41,8 +46,8 @@ class TopListCategoryTabViewModel @Inject constructor(val repository: Repository
 
     private fun getCategorySectionsTabs(): Flow<List<CategoryTab>> {
         val list = mutableListOf<CategoryTab>().apply {
-            add(CategoryTab(TopListCategorySectionViewModel.SONGS))
-            add(CategoryTab(TopListCategorySectionViewModel.ARTISTS))
+            add(CategoryTab.Songs)
+            add(CategoryTab.Artists)
         }
         return flow { emit(list) }
     }
@@ -58,5 +63,8 @@ class TopListCategoryTabViewModel @Inject constructor(val repository: Repository
         val selectedCategoryTab: CategoryTab? = null
     )
 
-    data class CategoryTab(val title: String)
+    sealed class CategoryTab(val title: String, val ordinal: Int){
+        object Songs: CategoryTab(SONGS, 0)
+        object Artists: CategoryTab(ARTISTS, 1)
+    }
 }

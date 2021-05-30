@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="72dp"
             android:layout_marginBottom="3dp"
-            android:fontFamily="@font/lekton_bold"
+            android:fontFamily="@font/inconsolata_regular"
             android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="@id/topListToolbar"
             app:layout_constraintEnd_toEndOf="parent"

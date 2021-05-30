@@ -37,7 +37,8 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         viewModelScope.launch {
             val flow = when (title) {
                 SONGS -> {
-                    getSongCategorySectionViewState()
+                    //getSongCategorySectionViewState()
+                    getArtistCategorySectionViewState()
                 }
                 ARTISTS -> {
                     getArtistCategorySectionViewState()
@@ -111,13 +112,32 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
     }
 
     private suspend fun getArtistCategorySectionViewState(): Flow<CategorySectionViewState> {
-        return combine(
-            repository.getShortTermArtists(),
-            repository.getMediumTermArtists(),
-            repository.getLongTermArtists()
-        ) { shortTerm, medTerm, longTerm ->
-            CategorySectionViewState(buildArtistCategorySection(shortTerm, medTerm, longTerm))
-        }
+//        return combine(
+//            repository.getShortTermArtists(),
+//            repository.getMediumTermArtists(),
+//            repository.getLongTermArtists()
+//        ) { shortTerm, medTerm, longTerm ->
+//            CategorySectionViewState(buildArtistCategorySection(shortTerm, medTerm, longTerm))
+//        }
+        val categoryItems = listOf(
+            SubCategoryHeader("Short Term"),
+            SubCategoryItem(
+                title = "Random 1",
+                position = "1",
+                imageUrl = ""
+            ),
+            SubCategoryItem(
+                title = "Random 2",
+                position = "2",
+                imageUrl = ""
+            ),
+            SubCategoryItem(
+                title = "Random 3",
+                position = "3",
+                imageUrl = ""
+            ),
+        )
+        return flow { emit(CategorySectionViewState(categoryItems)) }
     }
 
     private fun buildArtistCategorySection(

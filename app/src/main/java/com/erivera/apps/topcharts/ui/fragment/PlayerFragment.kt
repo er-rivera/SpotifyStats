@@ -134,7 +134,7 @@ class PlayerFragment : Fragment(),
             val textView = dialog.findViewById<TextView>(R.id.alertTitle)
             val face = ResourcesCompat.getFont(
                 requireContext(),
-                R.font.lekton_bold
+                R.font.inconsolata_regular
             )
             textView?.typeface = face
         }
