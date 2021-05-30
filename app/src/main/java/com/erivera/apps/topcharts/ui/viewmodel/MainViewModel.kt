@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import com.erivera.apps.topcharts.DeviceManager
 import com.erivera.apps.topcharts.utils.Constants
 import com.erivera.apps.topcharts.repository.Repository
-import com.spotify.sdk.android.authentication.AuthenticationRequest
-import com.spotify.sdk.android.authentication.AuthenticationResponse
+import com.spotify.sdk.android.auth.AuthorizationRequest
+import com.spotify.sdk.android.auth.AuthorizationResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -29,10 +29,10 @@ class MainViewModel @Inject constructor(val repository: Repository, val deviceMa
         _screenNavigationLiveData.value = true
     }
 
-    fun getAuthenticationRequest(): AuthenticationRequest? {
-        val builder = AuthenticationRequest.Builder(
+    fun getAuthenticationRequest(): AuthorizationRequest? {
+        val builder = AuthorizationRequest.Builder(
             Constants.CLIENT_ID,
-            AuthenticationResponse.Type.TOKEN,
+            AuthorizationResponse.Type.TOKEN,
             Constants.REDIRECT_URI
         )
         builder.setScopes(arrayOf("streaming", "user-read-recently-played", "user-top-read, app-remote-control"))

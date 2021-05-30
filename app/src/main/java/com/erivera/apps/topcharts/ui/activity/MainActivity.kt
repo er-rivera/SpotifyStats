@@ -6,8 +6,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.erivera.apps.topcharts.R
 import com.erivera.apps.topcharts.ui.viewmodel.MainViewModel
-import com.spotify.sdk.android.authentication.AuthenticationClient
-import com.spotify.sdk.android.authentication.AuthenticationResponse
+import com.spotify.sdk.android.auth.AuthorizationClient
+import com.spotify.sdk.android.auth.AuthorizationResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,17 +25,17 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 //        // Check if result comes from the correct activity
         if (requestCode == REQUEST_CODE) {
-            val response = AuthenticationClient.getResponse(resultCode, data)
+            val response = AuthorizationClient.getResponse(resultCode, data)
 
             when (response.type) {
                 // Response was successful and contains auth token
-                AuthenticationResponse.Type.TOKEN -> {
+                AuthorizationResponse.Type.TOKEN -> {
                     mainViewModel.navigateToNextScreen()
                     mainViewModel.saveSpotifyCredential(response.accessToken)
                 }
 
                 // Auth flow returned an error
-                AuthenticationResponse.Type.ERROR -> {
+                AuthorizationResponse.Type.ERROR -> {
                 }
                 else -> {
                 }

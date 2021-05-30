@@ -16,8 +16,8 @@ import com.erivera.apps.topcharts.ui.activity.MainActivity
 import com.erivera.apps.topcharts.ui.listener.LoginInteractionListener
 import com.erivera.apps.topcharts.utils.addStatusBarTopPadding
 import com.erivera.apps.topcharts.ui.viewmodel.MainViewModel
-import com.spotify.sdk.android.authentication.AuthenticationClient
-import com.spotify.sdk.android.authentication.AuthenticationRequest
+import com.spotify.sdk.android.auth.AuthorizationClient
+import com.spotify.sdk.android.auth.AuthorizationRequest
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,9 +56,9 @@ class LoginFragment : Fragment(), LoginInteractionListener {
         })
     }
 
-    override fun loginButtonClick(request: AuthenticationRequest?) {
+    override fun loginButtonClick(request: AuthorizationRequest?) {
         request?.let {
-            AuthenticationClient.openLoginActivity(requireActivity(), MainActivity.REQUEST_CODE, it)
+            AuthorizationClient.openLoginActivity(requireActivity(), MainActivity.REQUEST_CODE, it)
         }
     }
 }
