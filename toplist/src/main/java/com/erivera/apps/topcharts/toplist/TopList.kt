@@ -94,22 +94,21 @@ fun CategoryTabs(
     onCategoryTabSelected: (TopListCategoryTabViewModel.CategoryTab) -> Unit,
 ) {
     val selectedIndex = categoryTabs.indexOfFirst { it == selectedTab }
-    ScrollableTabRow(
+    TabRow(
         selectedTabIndex = selectedIndex,
         divider = {},
-        edgePadding = 24.dp,
         indicator = {},
         modifier = Modifier.fillMaxWidth()
     ) {
         categoryTabs.forEachIndexed { index, categorySection ->
             Tab(
                 selected = index == selectedIndex,
-                onClick = { onCategoryTabSelected(categorySection) }
+                onClick = { onCategoryTabSelected(categorySection) },
             ) {
                 TabContent(
                     index == selectedIndex,
                     text = categorySection.title,
-                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 48.dp)
+                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 40.dp)
                 )
             }
         }
@@ -124,13 +123,13 @@ fun TabContent(selected: Boolean, text: String, modifier: Modifier) {
             selected -> Color(0xFF000000)
             else -> MaterialTheme.colors.background
         },
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(16.dp),
         modifier = modifier
     ) {
         Text(
             text = text,
-            style = typography.body2,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            style = typography.body1,
+            modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp)
         )
     }
 }
