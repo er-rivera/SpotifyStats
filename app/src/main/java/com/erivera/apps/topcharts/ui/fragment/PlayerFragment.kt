@@ -51,6 +51,9 @@ class PlayerFragment : Fragment(),
                     binding?.videoMotionLayout?.let {
                         if (it.progress != 0.0F) {
                             it.transitionToStart()
+                        } else {
+                            isEnabled = false
+                            activity?.onBackPressed()
                         }
                     }
                 }
