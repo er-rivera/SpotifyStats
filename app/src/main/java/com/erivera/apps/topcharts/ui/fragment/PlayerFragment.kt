@@ -24,6 +24,9 @@ import com.erivera.apps.topcharts.ui.viewmodel.PlayerViewModel
 import com.erivera.apps.topcharts.utils.CollapsibleToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.activity.OnBackPressedCallback
+import com.erivera.apps.topcharts.databinding.DialogAudioFeatureBinding
+
 
 @AndroidEntryPoint
 class PlayerFragment : Fragment(),
@@ -38,6 +41,22 @@ class PlayerFragment : Fragment(),
     }
 
     var binding: FragmentPlayerV2Binding? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    binding?.videoMotionLayout?.let {
+                        if (it.progress != 0.0F) {
+                            it.transitionToStart()
+                        }
+                    }
+                }
+            }
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -114,10 +133,10 @@ class PlayerFragment : Fragment(),
                 .setPositiveButton("Cancel") { _: DialogInterface, _: Int ->
                 }.apply {
                     if (audioItem.dialogDrawable != null) {
-                        val view = LayoutInflater.from(this.context)
-                            .inflate(R.layout.dialog_audio_feature, null)
-                        //view.chartImageView.setImageResource(audioItem.dialogDrawable)
-                        setView(view)
+                        val inflater = LayoutInflater.from(this.context)
+                        val binding = DialogAudioFeatureBinding.inflate(inflater, null, false)
+                        binding.chartImageView.setImageResource(audioItem.dialogDrawable)
+                        setView(binding.root)
                     }
                 }
                 .create()

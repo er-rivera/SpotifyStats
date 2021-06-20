@@ -75,7 +75,7 @@ class SingleViewTouchableMotionLayout(context: Context, attributeSet: AttributeS
             viewToDetectTouch.getHitRect(viewRect)
             touchStarted = viewRect.contains(event.x.toInt(), event.y.toInt())
         }
-        Log.d("TestScroll", "MotionLayout: touch = touchStarted, event = $event")
+        Log.d("TestScroll", "MotionLayout: touch = $touchStarted, event = $event")
         return touchStarted && super.onTouchEvent(event)
     }
 }

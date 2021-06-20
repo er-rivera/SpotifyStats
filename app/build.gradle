@@ -48,7 +48,7 @@ dependencies {
     implementation "androidx.palette:palette-ktx:$rootProject.palette_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigation_version"
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:3.2.0'

@@ -98,7 +98,6 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <include
-                android:id="@+id/playerScroll"
                 layout="@layout/player_scroll"
                 bind:gridLayoutManager="@{gridLayoutManager}"
                 bind:itemBinding="@{itemBinding}"
