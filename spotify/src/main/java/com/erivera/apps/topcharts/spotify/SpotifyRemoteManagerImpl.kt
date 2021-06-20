@@ -1,14 +1,12 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.spotify
 
 import android.content.Context
 import android.util.Log
-import com.erivera.apps.topcharts.utils.Constants
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.protocol.client.Subscription
 import com.spotify.protocol.types.PlayerState
-import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
 class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : SpotifyRemoteManager {
@@ -99,6 +97,12 @@ class SpotifyRemoteManagerImpl @Inject constructor(val context: Context) : Spoti
 
     override fun previous() {
         mSpotifyAppRemote.playerApi.skipPrevious()
+    }
+
+    override fun play(uri: String) {
+        mSpotifyAppRemote.playerApi.play(uri).setResultCallback {
+            Log.d("SpotifyManager", it.toString())
+        }
     }
 
     private fun resume() {

@@ -52,6 +52,7 @@ dependencies {
     implementation project(':navigation')
     implementation project(':repository')
     implementation project(':common-ui')
+    implementation project(':spotify')
 
     implementation "androidx.compose.ui:ui:$rootProject.compose_version"
     implementation "androidx.compose.material:material:$rootProject.compose_version"

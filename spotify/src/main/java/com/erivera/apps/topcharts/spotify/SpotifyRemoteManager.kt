@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts
+package com.erivera.apps.topcharts.spotify
 
 import com.spotify.protocol.types.Track
 
@@ -16,6 +16,8 @@ interface SpotifyRemoteManager {
     fun previous()
 
     fun togglePlayPause()
+
+    fun play(uri: String)
 
     interface ViewModelListener {
         fun onCurrentTrackChanged(track: Track)

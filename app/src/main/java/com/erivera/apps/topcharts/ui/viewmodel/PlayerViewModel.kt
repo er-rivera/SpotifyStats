@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.erivera.apps.topcharts.DeviceManager
 import com.erivera.apps.topcharts.R
-import com.erivera.apps.topcharts.SpotifyRemoteManager
+import com.erivera.apps.topcharts.spotify.SpotifyRemoteManager
 import com.erivera.apps.topcharts.repository.models.api.AudioFeaturesResponse
 import com.erivera.apps.topcharts.models.domain.AudioItem
 import com.erivera.apps.topcharts.repository.Repository

@@ -5,13 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.repository.Repository
+import com.erivera.apps.topcharts.spotify.SpotifyRemoteManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TopListCategorySectionViewModel @Inject constructor(val repository: Repository) :
+class TopListCategorySectionViewModel @Inject constructor(val repository: Repository, val spotifyRemoteManager: SpotifyRemoteManager) :
     ViewModel() {
     companion object {
         const val SONGS = "Songs"
@@ -77,11 +78,12 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         )
         categoryItems.addAll(
             shortTermTracks.mapIndexed { index, item ->
-                SubCategoryItem(
+                SubCategoryItem.SongCategoryItem(
                     title = item.name ?: "",
                     artist = item.artists?.map { it.name }?.joinToString(", "),
                     position = (index + 1).toString(),
-                    imageUrl = item.album?.images?.first()?.url ?: ""
+                    imageUrl = item.album?.images?.first()?.url ?: "",
+                    uri = item.uri.orEmpty()
                 )
             }
         )
@@ -90,11 +92,12 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         )
         categoryItems.addAll(
             mediumTermTracks.mapIndexed { index, item ->
-                SubCategoryItem(
+                SubCategoryItem.SongCategoryItem(
                     title = item.name ?: "",
                     artist = item.artists?.map { it.name }?.joinToString(", "),
                     position = (index + 1).toString(),
-                    imageUrl = item.album?.images?.first()?.url ?: ""
+                    imageUrl = item.album?.images?.first()?.url ?: "",
+                    uri = item.uri.orEmpty()
                 )
             }
         )
@@ -103,11 +106,12 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         )
         categoryItems.addAll(
             longTermTracks.mapIndexed { index, item ->
-                SubCategoryItem(
+                SubCategoryItem.SongCategoryItem(
                     title = item.name ?: "",
                     artist = item.artists?.map { it.name }?.joinToString(", "),
                     position = (index + 1).toString(),
-                    imageUrl = item.album?.images?.first()?.url ?: ""
+                    imageUrl = item.album?.images?.first()?.url ?: "",
+                    uri = item.uri.orEmpty()
                 )
             }
         )
@@ -131,22 +135,25 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
     private fun mockResults(): Flow<CategorySectionViewState> {
         val categoryItems = listOf(
             SubCategoryHeader("Short Term"),
-            SubCategoryItem(
+            SubCategoryItem.SongCategoryItem(
                 title = "Random 1",
                 position = "1",
                 artist = "Here is the artist",
-                imageUrl = ""
+                imageUrl = "",
+                uri = ""
             ),
-            SubCategoryItem(
+            SubCategoryItem.SongCategoryItem(
                 title = "Random 2",
                 position = "2",
                 artist = "Here is the artist",
-                imageUrl = ""
+                imageUrl = "",
+                uri = ""
             ),
-            SubCategoryItem(
+            SubCategoryItem.SongCategoryItem(
                 title = "Random 3",
                 position = "3",
-                imageUrl = ""
+                imageUrl = "",
+                uri = ""
             ),
         )
         return flow { emit(CategorySectionViewState(categoryItems)) }
@@ -163,10 +170,11 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         )
         categoryItems.addAll(
             shortTermArtists.mapIndexed { index, item ->
-                SubCategoryItem(
+                SubCategoryItem.ArtistCategoryItem(
                     title = item.name ?: "",
                     position = (index + 1).toString(),
-                    imageUrl = item.images?.firstOrNull()?.url.orEmpty()
+                    imageUrl = item.images?.firstOrNull()?.url.orEmpty(),
+                    uri = item.uri.orEmpty()
                 )
             }
         )
@@ -175,10 +183,11 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         )
         categoryItems.addAll(
             mediumTermArtists.mapIndexed { index, item ->
-                SubCategoryItem(
+                SubCategoryItem.ArtistCategoryItem(
                     title = item.name ?: "",
                     position = (index + 1).toString(),
-                    imageUrl = item.images?.firstOrNull()?.url.orEmpty()
+                    imageUrl = item.images?.firstOrNull()?.url.orEmpty(),
+                    uri = item.uri.orEmpty()
                 )
             }
         )
@@ -187,14 +196,21 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         )
         categoryItems.addAll(
             longTermArtists.mapIndexed { index, item ->
-                SubCategoryItem(
+                SubCategoryItem.ArtistCategoryItem(
                     title = item.name ?: "",
                     position = (index + 1).toString(),
-                    imageUrl = item.images?.firstOrNull()?.url.orEmpty()
+                    imageUrl = item.images?.firstOrNull()?.url.orEmpty(),
+                    uri = item.uri.orEmpty()
                 )
             }
         )
         return categoryItems
+    }
+
+    fun play(uri: String) {
+        if(uri.isNotEmpty()){
+            spotifyRemoteManager.play(uri)
+        }
     }
 
     class CategorySectionViewState(val categoryList: List<CategoryItem>)
@@ -205,10 +221,27 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
         val title: String
     ) : CategoryItem
 
-    data class SubCategoryItem(
+    sealed class SubCategoryItem(
         val title: String,
         val artist: String? = null,
         val position: String,
-        val imageUrl: String
-    ) : CategoryItem
+        val imageUrl: String,
+        val uri: String
+    ) : CategoryItem {
+        class SongCategoryItem(
+            title: String,
+            artist: String? = null,
+            position: String,
+            imageUrl: String,
+            uri: String
+        ) : SubCategoryItem(title, artist, position, imageUrl, uri)
+
+        class ArtistCategoryItem(
+            title: String,
+            artist: String? = null,
+            position: String,
+            imageUrl: String,
+            uri: String
+        ) : SubCategoryItem(title, artist, position, imageUrl, uri)
+    }
 }

@@ -3,9 +3,8 @@ package com.erivera.apps.topcharts.dagger
 import android.content.Context
 import com.erivera.apps.topcharts.DeviceManager
 import com.erivera.apps.topcharts.DeviceManagerImpl
-import com.erivera.apps.topcharts.SpotifyRemoteManager
-import com.erivera.apps.topcharts.SpotifyRemoteManagerImpl
-import com.erivera.apps.topcharts.repository.*
+import com.erivera.apps.topcharts.spotify.SpotifyRemoteManager
+import com.erivera.apps.topcharts.spotify.SpotifyRemoteManagerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +16,7 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
+    @Singleton
     @Provides
     fun providesSpotifyRemoteManager(@ApplicationContext context: Context): SpotifyRemoteManager = SpotifyRemoteManagerImpl(context)
 

@@ -3,4 +3,5 @@ include ':app',
         ':navigation',
         ':toplist',
         ':repository',
-        ':common-ui'
+        ':common-ui',
+        ':spotify'

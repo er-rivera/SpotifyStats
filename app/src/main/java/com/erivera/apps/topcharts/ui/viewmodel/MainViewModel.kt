@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.erivera.apps.topcharts.DeviceManager
-import com.erivera.apps.topcharts.utils.Constants
+import com.erivera.apps.topcharts.spotify.Constants
 import com.erivera.apps.topcharts.repository.Repository
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse

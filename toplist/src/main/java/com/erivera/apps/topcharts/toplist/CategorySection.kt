@@ -1,5 +1,9 @@
 package com.erivera.apps.topcharts.toplist
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,7 +40,7 @@ fun CategorySection(title: String, modifier: Modifier) {
 
     val state by viewModel.state.collectAsState()
     Log.d("CategorySectionOne", "called ${state?.categoryList?.size}")
-
+    val context = LocalContext.current
     state?.categoryList?.apply {
         LazyColumn(
             modifier = modifier,
@@ -49,7 +54,14 @@ fun CategorySection(title: String, modifier: Modifier) {
                     }
                     is TopListCategorySectionViewModel.SubCategoryItem -> {
                         SubCategoryItemContent(item) {
-
+                            when (item) {
+                                is TopListCategorySectionViewModel.SubCategoryItem.SongCategoryItem -> {
+                                    viewModel.play(item.uri)
+                                }
+                                is TopListCategorySectionViewModel.SubCategoryItem.ArtistCategoryItem -> {
+                                    goToArtistPage(context, item.uri)
+                                }
+                            }
                         }
                     }
                 }
@@ -58,15 +70,27 @@ fun CategorySection(title: String, modifier: Modifier) {
     }
 }
 
+fun goToArtistPage(context: Context, artistPageUri: String){
+    val uri = Uri.parse(artistPageUri)
+    val intent = Intent(Intent.ACTION_VIEW, uri)
+
+    try {
+        context.startActivity(intent)
+    } catch (e: ActivityNotFoundException) {
+        Log.d("goToArtistPage", e.stackTraceToString())
+    }
+}
+
 @Preview
 @Composable
 fun PreviewSection() {
     SubCategoryItemContent(
-        TopListCategorySectionViewModel.SubCategoryItem(
+        TopListCategorySectionViewModel.SubCategoryItem.SongCategoryItem(
             title = "Beats and Percussion",
             artist = "EightOhEight",
             position = "1",
             imageUrl = "",
+            uri = ""
         )
     ) {
 
