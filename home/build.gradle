@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdk 23
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+    buildFeatures {
+        viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion "$rootProject.compose_version"
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    implementation 'com.google.android.material:material:1.3.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "androidx.compose.ui:ui:$rootProject.compose_version"
+    implementation "androidx.compose.material:material:$rootProject.compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$rootProject.compose_version"
+    implementation "androidx.compose.foundation:foundation:$rootProject.compose_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$rootProject.compose_version"
+    implementation "androidx.compose.runtime:runtime-rxjava2:$rootProject.compose_version"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$rootProject.compose_viewmodel_version"
+    implementation "com.google.dagger:hilt-android:$rootProject.hilt_android_version"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_android_version"
+}
