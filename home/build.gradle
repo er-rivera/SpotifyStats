@@ -55,4 +55,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$rootProject.compose_viewmodel_version"
     implementation "com.google.dagger:hilt-android:$rootProject.hilt_android_version"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_android_version"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigation_version"
 }

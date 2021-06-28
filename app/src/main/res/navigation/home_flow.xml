@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/home_flow"
-    app:startDestination="@id/fragment_home">
+    app:startDestination="@id/home_graph">
     <fragment
         android:id="@+id/fragment_player"
         android:name="com.erivera.apps.topcharts.ui.fragment.PlayerFragment"
@@ -13,11 +13,7 @@
             android:id="@+id/action_fragment_player_to_colorsFragment"
             app:destination="@id/colorsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/fragment_home"
-        android:name="com.erivera.apps.topcharts.ui.fragment.StatisticsFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_statistics" />
+    <include app:graph="@navigation/home_graph"/>
     <fragment
         android:id="@+id/fragment_stats"
         android:name="com.erivera.apps.topcharts.ui.fragment.StatisticsFragment"

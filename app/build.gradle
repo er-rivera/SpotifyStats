@@ -75,6 +75,7 @@ dependencies {
     implementation project(':spotify-app-remote')
     implementation project(':spotify')
     implementation project(':navigation')
+    implementation project(':home')
     implementation project(':toplist')
     implementation project(':repository')
 
