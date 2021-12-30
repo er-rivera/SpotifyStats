@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
             when (response.type) {
                 // Response was successful and contains auth token
                 AuthorizationResponse.Type.TOKEN -> {
-                    mainViewModel.navigateToNextScreen()
-                    mainViewModel.saveSpotifyCredential(response.accessToken)
+                    mainViewModel.handleSuccessToken(response.accessToken)
                 }
 
                 // Auth flow returned an error

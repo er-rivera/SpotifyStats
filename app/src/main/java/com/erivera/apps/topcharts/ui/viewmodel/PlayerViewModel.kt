@@ -148,8 +148,8 @@ class PlayerViewModel @Inject constructor(
         viewModelScope.launch {
             val trimmedAlbumId = album.uri.removePrefix("spotify:album:")
             repository.getAlbum(trimmedAlbumId).let { album ->
-                val image = repository.getAlbum(trimmedAlbumId).images?.getOrNull(1)?.url
-                    ?: album.images?.getOrNull(0)?.url
+                val image = album.images?.getOrNull(1)?.url
+                    ?: album.images?.getOrNull(0)?.url.orEmpty()
                 withContext(Dispatchers.Main) {
                     Log.d("asdas", "sadsd")
                     _albumUrl.value = image
@@ -215,7 +215,9 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Acousticness",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.acousticness ?: 0),
+                    displayDescription = decimalFormat.format(
+                        audioFeaturesResponse.acousticness ?: 0
+                    ),
                     dialogText = context.resources.getString(R.string.acousticness_description),
                     dialogDrawable = R.drawable.graph_acousticness
                 )
@@ -224,7 +226,9 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Danceability",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.danceability ?: 0),
+                    displayDescription = decimalFormat.format(
+                        audioFeaturesResponse.danceability ?: 0
+                    ),
                     dialogText = context.resources.getString(R.string.dancability_description),
                     dialogDrawable = R.drawable.graph_danceability
                 )
@@ -242,7 +246,9 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Instrumentalness",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.instrumentalness ?: 0),
+                    displayDescription = decimalFormat.format(
+                        audioFeaturesResponse.instrumentalness ?: 0
+                    ),
                     dialogText = context.resources.getString(R.string.instrumentalness_description),
                     dialogDrawable = R.drawable.graph_instrumentalness
                 )
@@ -269,7 +275,9 @@ class PlayerViewModel @Inject constructor(
                 AudioItem(
                     displayTitle = "Speechiness",
                     secondaryDisplayTitle = null,
-                    displayDescription = decimalFormat.format(audioFeaturesResponse.speechiness ?: 0),
+                    displayDescription = decimalFormat.format(
+                        audioFeaturesResponse.speechiness ?: 0
+                    ),
                     dialogText = context.resources.getString(R.string.speechiness_description),
                     dialogDrawable = R.drawable.graph_speechiness
                 )

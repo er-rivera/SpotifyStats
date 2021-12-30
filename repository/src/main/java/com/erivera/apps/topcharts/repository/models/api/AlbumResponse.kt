@@ -31,7 +31,7 @@ class AlbumResponse {
     val id: String? = null
 
     @SerializedName("images")
-    val images: List<Image>? = null
+    val images: List<ImageResponse>? = null
 
     @SerializedName("name")
     val name: String? = null

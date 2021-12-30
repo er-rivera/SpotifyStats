@@ -3,7 +3,7 @@ package com.erivera.apps.topcharts.repository.models.api
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Image {
+class ImageResponse {
 
     @SerializedName("height")
     @Expose

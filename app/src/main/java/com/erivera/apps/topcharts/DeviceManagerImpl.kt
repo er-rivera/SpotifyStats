@@ -5,7 +5,6 @@ import android.graphics.Point
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
-import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
 class DeviceManagerImpl @Inject constructor(val context: Context) : DeviceManager {

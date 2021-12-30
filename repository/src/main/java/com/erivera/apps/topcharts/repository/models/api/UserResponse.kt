@@ -19,7 +19,7 @@ class UserResponse {
     var id: String? = null
 
     @SerializedName("images")
-    var images = ArrayList<Image>()
+    var images = ArrayList<ImageResponse>()
 
     @SerializedName("type")
     var type: String? = null

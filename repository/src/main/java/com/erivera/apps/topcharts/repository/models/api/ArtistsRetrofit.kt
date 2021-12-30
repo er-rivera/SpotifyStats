@@ -20,7 +20,7 @@ class ArtistsRetrofit {
     var id: String? = null
 
     @SerializedName("images")
-    var images: List<Image>? = null
+    var images: List<ImageResponse>? = null
 
     @SerializedName("name")
     var name: String? = null

@@ -1,10 +1,11 @@
-package com.erivera.apps.topcharts.repository
+package com.erivera.apps.topcharts.repository.keyvalue
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.erivera.apps.topcharts.repository.R
 import javax.inject.Inject
 
-class LocalDataSourceImpl @Inject constructor(val context: Context) : LocalDataSource {
+class DataStoreImpl @Inject constructor(val context: Context) : DataStore {
     private val sharedPref: SharedPreferences by lazy {
         context.getSharedPreferences(
             context.getString(
@@ -16,21 +17,32 @@ class LocalDataSourceImpl @Inject constructor(val context: Context) : LocalDataS
     private val clientId: String by lazy { context.getString(R.string.spotify_client_id) }
 
     override fun saveSpotifyClientId(id: String) {
-        saveString(clientId, id)
+        setString(clientId, id)
     }
 
     override fun getSpotifyClientId(): String {
         return getString(clientId)
     }
 
-    private fun saveString(key: String, value: String) {
+    override fun setString(key: String, value: String) {
         with(sharedPref.edit()) {
             putString(key, value)
             apply()
         }
     }
 
-    private fun getString(key: String): String {
+    override fun setLong(key: String, value: Long) {
+        with(sharedPref.edit()) {
+            putLong(key, value)
+            apply()
+        }
+    }
+
+    override fun getLong(key: String): Long {
+        return sharedPref.getLong(key, 0L)
+    }
+
+    override fun getString(key: String): String {
         return sharedPref.getString(key, "") ?: ""
     }
 }

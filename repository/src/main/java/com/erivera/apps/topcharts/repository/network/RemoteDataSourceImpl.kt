@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.repository
+package com.erivera.apps.topcharts.repository.network
 
 import android.content.Context
 import android.util.Log
@@ -6,8 +6,6 @@ import com.erivera.apps.topcharts.repository.models.api.AlbumResponse
 import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.repository.models.api.AudioFeaturesResponse
 import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
-import com.erivera.apps.topcharts.repository.network.RetrofitFactory
-import com.erivera.apps.topcharts.repository.network.SpotifyService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

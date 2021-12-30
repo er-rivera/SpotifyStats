@@ -1,9 +1,9 @@
 package com.erivera.apps.topcharts.repository
 
 import com.erivera.apps.topcharts.repository.models.api.AlbumResponse
-import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.repository.models.api.AudioFeaturesResponse
-import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
+import com.erivera.apps.topcharts.repository.persistance.artist.Artist
+import com.erivera.apps.topcharts.repository.persistance.tracks.Track
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
@@ -11,21 +11,23 @@ interface Repository {
 
     suspend fun hasValidSpotifyClientId(): Boolean
 
-    suspend fun getLongTermArtists(): Flow<List<ArtistsRetrofit>>
+    suspend fun getLongTermArtists(): Flow<List<Artist>>
 
-    suspend fun getMediumTermArtists(): Flow<List<ArtistsRetrofit>>
+    suspend fun getMediumTermArtists(): Flow<List<Artist>>
 
-    suspend fun getShortTermArtists(): Flow<List<ArtistsRetrofit>>
+    suspend fun getShortTermArtists(): Flow<List<Artist>>
 
-    suspend fun getLongTermTracks(): Flow<List<TrackRetrofit>>
+    suspend fun getLongTermTracks(): Flow<List<Track>>
 
-    suspend fun getMediumTermTracks(): Flow<List<TrackRetrofit>>
+    suspend fun getMediumTermTracks(): Flow<List<Track>>
 
-    suspend fun getShortTermTracks(): Flow<List<TrackRetrofit>>
+    suspend fun getShortTermTracks(): Flow<List<Track>>
 
     suspend fun getAudioFeatures(trackId: String): AudioFeaturesResponse
 
     fun startService()
 
     suspend fun getAlbum(albumId: String): AlbumResponse
+
+    suspend fun refreshDb(): Boolean
 }

@@ -1,0 +1,1923 @@
+{
+    "items": [
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4LLpKhyESsyAXpc4laK94U"
+            },
+            "followers": {
+                "href": null,
+                "total": 6755112
+            },
+            "genres": [
+                "hip hop",
+                "pittsburgh rap",
+                "rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/4LLpKhyESsyAXpc4laK94U",
+            "id": "4LLpKhyESsyAXpc4laK94U",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebed3b89aa602145fde71a163a",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174ed3b89aa602145fde71a163a",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178ed3b89aa602145fde71a163a",
+                    "width": 160
+                }
+            ],
+            "name": "Mac Miller",
+            "popularity": 87,
+            "type": "artist",
+            "uri": "spotify:artist:4LLpKhyESsyAXpc4laK94U"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5K4W6rqBFWDnAN6FQUkS6x"
+            },
+            "followers": {
+                "href": null,
+                "total": 15946747
+            },
+            "genres": [
+                "chicago rap",
+                "rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/5K4W6rqBFWDnAN6FQUkS6x",
+            "id": "5K4W6rqBFWDnAN6FQUkS6x",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb867008a971fae0f4d913f63a",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174867008a971fae0f4d913f63a",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178867008a971fae0f4d913f63a",
+                    "width": 160
+                }
+            ],
+            "name": "Kanye West",
+            "popularity": 95,
+            "type": "artist",
+            "uri": "spotify:artist:5K4W6rqBFWDnAN6FQUkS6x"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5INjqkS1o8h1imAzPqGZBb"
+            },
+            "followers": {
+                "href": null,
+                "total": 5298386
+            },
+            "genres": [
+                "australian psych",
+                "neo-psychedelic"
+            ],
+            "href": "https://api.spotify.com/v1/artists/5INjqkS1o8h1imAzPqGZBb",
+            "id": "5INjqkS1o8h1imAzPqGZBb",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb5a2dadeff50fa5c9ad9365c9",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051745a2dadeff50fa5c9ad9365c9",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1785a2dadeff50fa5c9ad9365c9",
+                    "width": 160
+                }
+            ],
+            "name": "Tame Impala",
+            "popularity": 81,
+            "type": "artist",
+            "uri": "spotify:artist:5INjqkS1o8h1imAzPqGZBb"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3nFkdlSjzX9mRTtwJOzDYB"
+            },
+            "followers": {
+                "href": null,
+                "total": 6834699
+            },
+            "genres": [
+                "east coast hip hop",
+                "hip hop",
+                "rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/3nFkdlSjzX9mRTtwJOzDYB",
+            "id": "3nFkdlSjzX9mRTtwJOzDYB",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebc75afcd5a9027f60eaebb5e4",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174c75afcd5a9027f60eaebb5e4",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178c75afcd5a9027f60eaebb5e4",
+                    "width": 160
+                }
+            ],
+            "name": "JAY-Z",
+            "popularity": 86,
+            "type": "artist",
+            "uri": "spotify:artist:3nFkdlSjzX9mRTtwJOzDYB"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF"
+            },
+            "followers": {
+                "href": null,
+                "total": 7597463
+            },
+            "genres": [
+                "hip hop",
+                "rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/4V8LLVI7PbaPR0K2TGSxFF",
+            "id": "4V8LLVI7PbaPR0K2TGSxFF",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb8278b782cbb5a3963db88ada",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051748278b782cbb5a3963db88ada",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1788278b782cbb5a3963db88ada",
+                    "width": 160
+                }
+            ],
+            "name": "Tyler, The Creator",
+            "popularity": 88,
+            "type": "artist",
+            "uri": "spotify:artist:4V8LLVI7PbaPR0K2TGSxFF"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6aaMZ3fcfLv4tEbmY7bjRM"
+            },
+            "followers": {
+                "href": null,
+                "total": 1049460
+            },
+            "genres": [
+                "hip hop",
+                "rap",
+                "tennessee hip hop",
+                "underground hip hop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6aaMZ3fcfLv4tEbmY7bjRM",
+            "id": "6aaMZ3fcfLv4tEbmY7bjRM",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb1ff1685224034e6c12538722",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051741ff1685224034e6c12538722",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1781ff1685224034e6c12538722",
+                    "width": 160
+                }
+            ],
+            "name": "Isaiah Rashad",
+            "popularity": 74,
+            "type": "artist",
+            "uri": "spotify:artist:6aaMZ3fcfLv4tEbmY7bjRM"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0fA0VVWsXO9YnASrzqfmYu"
+            },
+            "followers": {
+                "href": null,
+                "total": 5380700
+            },
+            "genres": [
+                "hip hop",
+                "ohio hip hop",
+                "pop rap",
+                "rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/0fA0VVWsXO9YnASrzqfmYu",
+            "id": "0fA0VVWsXO9YnASrzqfmYu",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb876faa285687786c3d314ae0",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174876faa285687786c3d314ae0",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178876faa285687786c3d314ae0",
+                    "width": 160
+                }
+            ],
+            "name": "Kid Cudi",
+            "popularity": 86,
+            "type": "artist",
+            "uri": "spotify:artist:0fA0VVWsXO9YnASrzqfmYu"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0epOFNiUfyON9EYx7Tpr6V"
+            },
+            "followers": {
+                "href": null,
+                "total": 4099871
+            },
+            "genres": [
+                "alternative rock",
+                "garage rock",
+                "modern rock",
+                "permanent wave",
+                "rock"
+            ],
+            "href": "https://api.spotify.com/v1/artists/0epOFNiUfyON9EYx7Tpr6V",
+            "id": "0epOFNiUfyON9EYx7Tpr6V",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb64d74f5985cb66b2f7b60e93",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517464d74f5985cb66b2f7b60e93",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17864d74f5985cb66b2f7b60e93",
+                    "width": 160
+                }
+            ],
+            "name": "The Strokes",
+            "popularity": 79,
+            "type": "artist",
+            "uri": "spotify:artist:0epOFNiUfyON9EYx7Tpr6V"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6LuN9FCkKOj5PcnpouEgny"
+            },
+            "followers": {
+                "href": null,
+                "total": 14699454
+            },
+            "genres": [
+                "pop",
+                "pop r&b"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6LuN9FCkKOj5PcnpouEgny",
+            "id": "6LuN9FCkKOj5PcnpouEgny",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb012b37d6dec8872b18524f78",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174012b37d6dec8872b18524f78",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178012b37d6dec8872b18524f78",
+                    "width": 160
+                }
+            ],
+            "name": "Khalid",
+            "popularity": 90,
+            "type": "artist",
+            "uri": "spotify:artist:6LuN9FCkKOj5PcnpouEgny"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/68kEuyFKyqrdQQLLsmiatm"
+            },
+            "followers": {
+                "href": null,
+                "total": 1477319
+            },
+            "genres": [
+                "conscious hip hop",
+                "escape room",
+                "hip hop",
+                "rap",
+                "underground hip hop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/68kEuyFKyqrdQQLLsmiatm",
+            "id": "68kEuyFKyqrdQQLLsmiatm",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb0bccae7bd80969b73a94a0d2",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051740bccae7bd80969b73a94a0d2",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1780bccae7bd80969b73a94a0d2",
+                    "width": 160
+                }
+            ],
+            "name": "Vince Staples",
+            "popularity": 72,
+            "type": "artist",
+            "uri": "spotify:artist:68kEuyFKyqrdQQLLsmiatm"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3Gm5F95VdRxW3mqCn8RPBJ"
+            },
+            "followers": {
+                "href": null,
+                "total": 1709412
+            },
+            "genres": [
+                "hip hop",
+                "pop",
+                "portland hip hop",
+                "rap",
+                "underground hip hop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/3Gm5F95VdRxW3mqCn8RPBJ",
+            "id": "3Gm5F95VdRxW3mqCn8RPBJ",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb1f98760ed5b47b21eaf56e8f",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051741f98760ed5b47b21eaf56e8f",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1781f98760ed5b47b21eaf56e8f",
+                    "width": 160
+                }
+            ],
+            "name": "Aminé",
+            "popularity": 77,
+            "type": "artist",
+            "uri": "spotify:artist:3Gm5F95VdRxW3mqCn8RPBJ"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0SwO7SWeDHJijQ3XNS7xEE"
+            },
+            "followers": {
+                "href": null,
+                "total": 2403574
+            },
+            "genres": [
+                "alternative dance",
+                "indie rock",
+                "indietronica",
+                "modern rock",
+                "rock"
+            ],
+            "href": "https://api.spotify.com/v1/artists/0SwO7SWeDHJijQ3XNS7xEE",
+            "id": "0SwO7SWeDHJijQ3XNS7xEE",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb089bb3257ef5b3fab2a3c90d",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174089bb3257ef5b3fab2a3c90d",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178089bb3257ef5b3fab2a3c90d",
+                    "width": 160
+                }
+            ],
+            "name": "MGMT",
+            "popularity": 79,
+            "type": "artist",
+            "uri": "spotify:artist:0SwO7SWeDHJijQ3XNS7xEE"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/1vyhD5VmyZ7KMfW5gqLgo5"
+            },
+            "followers": {
+                "href": null,
+                "total": 31467009
+            },
+            "genres": [
+                "latin",
+                "reggaeton",
+                "reggaeton colombiano",
+                "trap latino"
+            ],
+            "href": "https://api.spotify.com/v1/artists/1vyhD5VmyZ7KMfW5gqLgo5",
+            "id": "1vyhD5VmyZ7KMfW5gqLgo5",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb5d0fc400392250a750a9403e",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051745d0fc400392250a750a9403e",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1785d0fc400392250a750a9403e",
+                    "width": 160
+                }
+            ],
+            "name": "J Balvin",
+            "popularity": 94,
+            "type": "artist",
+            "uri": "spotify:artist:1vyhD5VmyZ7KMfW5gqLgo5"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6AQEfqGPSxZX0nJVonYxi6"
+            },
+            "followers": {
+                "href": null,
+                "total": 145645
+            },
+            "genres": [
+                "indie garage rock",
+                "indie pop",
+                "neo-psychedelic"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6AQEfqGPSxZX0nJVonYxi6",
+            "id": "6AQEfqGPSxZX0nJVonYxi6",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb36c9079bf2901b8455286f7e",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517436c9079bf2901b8455286f7e",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17836c9079bf2901b8455286f7e",
+                    "width": 160
+                }
+            ],
+            "name": "Inner Wave",
+            "popularity": 60,
+            "type": "artist",
+            "uri": "spotify:artist:6AQEfqGPSxZX0nJVonYxi6"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5IcR3N7QB1j6KBL8eImZ8m"
+            },
+            "followers": {
+                "href": null,
+                "total": 3966199
+            },
+            "genres": [
+                "gangster rap",
+                "hip hop",
+                "pop rap",
+                "rap",
+                "southern hip hop",
+                "trap",
+                "underground hip hop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/5IcR3N7QB1j6KBL8eImZ8m",
+            "id": "5IcR3N7QB1j6KBL8eImZ8m",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebe697a7ddf7af3a306428fa73",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174e697a7ddf7af3a306428fa73",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178e697a7ddf7af3a306428fa73",
+                    "width": 160
+                }
+            ],
+            "name": "ScHoolboy Q",
+            "popularity": 78,
+            "type": "artist",
+            "uri": "spotify:artist:5IcR3N7QB1j6KBL8eImZ8m"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6l3HvQ5sa6mXTsMTB19rO5"
+            },
+            "followers": {
+                "href": null,
+                "total": 15341987
+            },
+            "genres": [
+                "conscious hip hop",
+                "hip hop",
+                "north carolina hip hop",
+                "rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6l3HvQ5sa6mXTsMTB19rO5",
+            "id": "6l3HvQ5sa6mXTsMTB19rO5",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebadd503b411a712e277895c8a",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174add503b411a712e277895c8a",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178add503b411a712e277895c8a",
+                    "width": 160
+                }
+            ],
+            "name": "J. Cole",
+            "popularity": 89,
+            "type": "artist",
+            "uri": "spotify:artist:6l3HvQ5sa6mXTsMTB19rO5"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg"
+            },
+            "followers": {
+                "href": null,
+                "total": 18942014
+            },
+            "genres": [
+                "conscious hip hop",
+                "hip hop",
+                "rap",
+                "west coast rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/2YZyLoL8N0Wb9xBt1NhZWg",
+            "id": "2YZyLoL8N0Wb9xBt1NhZWg",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb2183ea958d3777d4c485138a",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051742183ea958d3777d4c485138a",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1782183ea958d3777d4c485138a",
+                    "width": 160
+                }
+            ],
+            "name": "Kendrick Lamar",
+            "popularity": 90,
+            "type": "artist",
+            "uri": "spotify:artist:2YZyLoL8N0Wb9xBt1NhZWg"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/1SCrMreNPJYSRZIlRe9SUq"
+            },
+            "followers": {
+                "href": null,
+                "total": 38663
+            },
+            "genres": [
+                "indie hip hop",
+                "indie r&b"
+            ],
+            "href": "https://api.spotify.com/v1/artists/1SCrMreNPJYSRZIlRe9SUq",
+            "id": "1SCrMreNPJYSRZIlRe9SUq",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb1d37373e66e2089fd6743a61",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051741d37373e66e2089fd6743a61",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1781d37373e66e2089fd6743a61",
+                    "width": 160
+                }
+            ],
+            "name": "Paris Texas",
+            "popularity": 53,
+            "type": "artist",
+            "uri": "spotify:artist:1SCrMreNPJYSRZIlRe9SUq"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/2CIMQHirSU0MQqyYHq0eOx"
+            },
+            "followers": {
+                "href": null,
+                "total": 2671423
+            },
+            "genres": [
+                "canadian electronic",
+                "edm",
+                "electro house",
+                "pop dance",
+                "progressive house"
+            ],
+            "href": "https://api.spotify.com/v1/artists/2CIMQHirSU0MQqyYHq0eOx",
+            "id": "2CIMQHirSU0MQqyYHq0eOx",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebc5ceb05f152103b2b70d3b07",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174c5ceb05f152103b2b70d3b07",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178c5ceb05f152103b2b70d3b07",
+                    "width": 160
+                }
+            ],
+            "name": "deadmau5",
+            "popularity": 70,
+            "type": "artist",
+            "uri": "spotify:artist:2CIMQHirSU0MQqyYHq0eOx"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2"
+            },
+            "followers": {
+                "href": null,
+                "total": 21452482
+            },
+            "genres": [
+                "beatlesque",
+                "british invasion",
+                "classic rock",
+                "merseybeat",
+                "psychedelic rock",
+                "rock"
+            ],
+            "href": "https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2",
+            "id": "3WrFJ7ztbogyGnTHbHJFl2",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebe9348cc01ff5d55971b22433",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174e9348cc01ff5d55971b22433",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178e9348cc01ff5d55971b22433",
+                    "width": 160
+                }
+            ],
+            "name": "The Beatles",
+            "popularity": 89,
+            "type": "artist",
+            "uri": "spotify:artist:3WrFJ7ztbogyGnTHbHJFl2"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+            },
+            "followers": {
+                "href": null,
+                "total": 8479688
+            },
+            "genres": [
+                "electro",
+                "filter house"
+            ],
+            "href": "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+            "id": "4tZwfgrHOc3mvqYlEYSvVi",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebca77d763703a93930c363a39",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174ca77d763703a93930c363a39",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178ca77d763703a93930c363a39",
+                    "width": 160
+                }
+            ],
+            "name": "Daft Punk",
+            "popularity": 83,
+            "type": "artist",
+            "uri": "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6nxWCVXbOlEVRexSbLsTer"
+            },
+            "followers": {
+                "href": null,
+                "total": 2220135
+            },
+            "genres": [
+                "australian dance",
+                "australian electropop",
+                "australian indie",
+                "downtempo",
+                "edm",
+                "pop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6nxWCVXbOlEVRexSbLsTer",
+            "id": "6nxWCVXbOlEVRexSbLsTer",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebaa6712affa299549ce628b6d",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174aa6712affa299549ce628b6d",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178aa6712affa299549ce628b6d",
+                    "width": 160
+                }
+            ],
+            "name": "Flume",
+            "popularity": 75,
+            "type": "artist",
+            "uri": "spotify:artist:6nxWCVXbOlEVRexSbLsTer"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0LklyUMMUhpIjMgYHlV0hN"
+            },
+            "followers": {
+                "href": null,
+                "total": 175858
+            },
+            "genres": [
+                "indie garage rock",
+                "la indie",
+                "latinx alternative",
+                "psychedelic soul",
+                "tropical alternativo"
+            ],
+            "href": "https://api.spotify.com/v1/artists/0LklyUMMUhpIjMgYHlV0hN",
+            "id": "0LklyUMMUhpIjMgYHlV0hN",
+            "images": [
+                {
+                    "height": 1000,
+                    "url": "https://i.scdn.co/image/ab6772690000c46c70dc418727a68d80d791c362",
+                    "width": 1000
+                },
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6772690000dd2270dc418727a68d80d791c362",
+                    "width": 640
+                },
+                {
+                    "height": 200,
+                    "url": "https://i.scdn.co/image/ab6772690000bac370dc418727a68d80d791c362",
+                    "width": 200
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67726900008f7470dc418727a68d80d791c362",
+                    "width": 64
+                }
+            ],
+            "name": "Chicano Batman",
+            "popularity": 54,
+            "type": "artist",
+            "uri": "spotify:artist:0LklyUMMUhpIjMgYHlV0hN"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/13ubrt8QOOCPljQ2FL1Kca"
+            },
+            "followers": {
+                "href": null,
+                "total": 10362837
+            },
+            "genres": [
+                "east coast hip hop",
+                "hip hop",
+                "rap",
+                "trap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/13ubrt8QOOCPljQ2FL1Kca",
+            "id": "13ubrt8QOOCPljQ2FL1Kca",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb62016ec6f05e26f230d2e45d",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517462016ec6f05e26f230d2e45d",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17862016ec6f05e26f230d2e45d",
+                    "width": 160
+                }
+            ],
+            "name": "A$AP Rocky",
+            "popularity": 86,
+            "type": "artist",
+            "uri": "spotify:artist:13ubrt8QOOCPljQ2FL1Kca"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/62k5LKMhymqlDNo2DWOvvv"
+            },
+            "followers": {
+                "href": null,
+                "total": 250125
+            },
+            "genres": [
+                "alternative dance",
+                "electro house",
+                "filter house",
+                "german dance",
+                "german techno",
+                "new rave"
+            ],
+            "href": "https://api.spotify.com/v1/artists/62k5LKMhymqlDNo2DWOvvv",
+            "id": "62k5LKMhymqlDNo2DWOvvv",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb9a445233849720a4e91e5824",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051749a445233849720a4e91e5824",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1789a445233849720a4e91e5824",
+                    "width": 160
+                }
+            ],
+            "name": "Boys Noize",
+            "popularity": 59,
+            "type": "artist",
+            "uri": "spotify:artist:62k5LKMhymqlDNo2DWOvvv"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/75eUSWg8Tt9PZLiFWjascC"
+            },
+            "followers": {
+                "href": null,
+                "total": 6349
+            },
+            "genres": [
+                "drift phonk"
+            ],
+            "href": "https://api.spotify.com/v1/artists/75eUSWg8Tt9PZLiFWjascC",
+            "id": "75eUSWg8Tt9PZLiFWjascC",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb53117d94f9541c5ffe4dda84",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517453117d94f9541c5ffe4dda84",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17853117d94f9541c5ffe4dda84",
+                    "width": 160
+                }
+            ],
+            "name": "FORGOTTENAGE",
+            "popularity": 55,
+            "type": "artist",
+            "uri": "spotify:artist:75eUSWg8Tt9PZLiFWjascC"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/7Ln80lUS6He07XvHI8qqHH"
+            },
+            "followers": {
+                "href": null,
+                "total": 13340550
+            },
+            "genres": [
+                "garage rock",
+                "permanent wave",
+                "rock",
+                "sheffield indie"
+            ],
+            "href": "https://api.spotify.com/v1/artists/7Ln80lUS6He07XvHI8qqHH",
+            "id": "7Ln80lUS6He07XvHI8qqHH",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb39f37a34b404169fdca52dc8",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517439f37a34b404169fdca52dc8",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17839f37a34b404169fdca52dc8",
+                    "width": 160
+                }
+            ],
+            "name": "Arctic Monkeys",
+            "popularity": 87,
+            "type": "artist",
+            "uri": "spotify:artist:7Ln80lUS6He07XvHI8qqHH"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4"
+            },
+            "followers": {
+                "href": null,
+                "total": 59665899
+            },
+            "genres": [
+                "canadian hip hop",
+                "canadian pop",
+                "hip hop",
+                "rap",
+                "toronto rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/3TVXtAsR1Inumwj472S9r4",
+            "id": "3TVXtAsR1Inumwj472S9r4",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb9e46a78c5cd2f7a8e7669980",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051749e46a78c5cd2f7a8e7669980",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1789e46a78c5cd2f7a8e7669980",
+                    "width": 160
+                }
+            ],
+            "name": "Drake",
+            "popularity": 98,
+            "type": "artist",
+            "uri": "spotify:artist:3TVXtAsR1Inumwj472S9r4"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/73sIBHcqh3Z3NyqHKZ7FOL"
+            },
+            "followers": {
+                "href": null,
+                "total": 8630017
+            },
+            "genres": [
+                "atl hip hop",
+                "hip hop",
+                "pop",
+                "pop rap",
+                "rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/73sIBHcqh3Z3NyqHKZ7FOL",
+            "id": "73sIBHcqh3Z3NyqHKZ7FOL",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb3ef779aa0d271adb2b6a3ded",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051743ef779aa0d271adb2b6a3ded",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1783ef779aa0d271adb2b6a3ded",
+                    "width": 160
+                }
+            ],
+            "name": "Childish Gambino",
+            "popularity": 80,
+            "type": "artist",
+            "uri": "spotify:artist:73sIBHcqh3Z3NyqHKZ7FOL"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0du5cEVh5yTK9QJze8zA0C"
+            },
+            "followers": {
+                "href": null,
+                "total": 36523941
+            },
+            "genres": [
+                "dance pop",
+                "pop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/0du5cEVh5yTK9QJze8zA0C",
+            "id": "0du5cEVh5yTK9QJze8zA0C",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebc36dd9eb55fb0db4911f25dd",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174c36dd9eb55fb0db4911f25dd",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178c36dd9eb55fb0db4911f25dd",
+                    "width": 160
+                }
+            ],
+            "name": "Bruno Mars",
+            "popularity": 93,
+            "type": "artist",
+            "uri": "spotify:artist:0du5cEVh5yTK9QJze8zA0C"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/1Bl6wpkWCQ4KVgnASpvzzA"
+            },
+            "followers": {
+                "href": null,
+                "total": 1902603
+            },
+            "genres": [
+                "boy band",
+                "hip hop",
+                "pop",
+                "rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/1Bl6wpkWCQ4KVgnASpvzzA",
+            "id": "1Bl6wpkWCQ4KVgnASpvzzA",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebdc3c21f68fa721ebcf439dae",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174dc3c21f68fa721ebcf439dae",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178dc3c21f68fa721ebcf439dae",
+                    "width": 160
+                }
+            ],
+            "name": "BROCKHAMPTON",
+            "popularity": 75,
+            "type": "artist",
+            "uri": "spotify:artist:1Bl6wpkWCQ4KVgnASpvzzA"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3fMbdgg4jU18AjLCKBhRSm"
+            },
+            "followers": {
+                "href": null,
+                "total": 21046025
+            },
+            "genres": [
+                "pop",
+                "r&b",
+                "soul"
+            ],
+            "href": "https://api.spotify.com/v1/artists/3fMbdgg4jU18AjLCKBhRSm",
+            "id": "3fMbdgg4jU18AjLCKBhRSm",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eba2a0b9e3448c1e702de9dc90",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174a2a0b9e3448c1e702de9dc90",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178a2a0b9e3448c1e702de9dc90",
+                    "width": 160
+                }
+            ],
+            "name": "Michael Jackson",
+            "popularity": 85,
+            "type": "artist",
+            "uri": "spotify:artist:3fMbdgg4jU18AjLCKBhRSm"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/50co4Is1HCEo8bhOyUWKpn"
+            },
+            "followers": {
+                "href": null,
+                "total": 6818696
+            },
+            "genres": [
+                "atl hip hop",
+                "atl trap",
+                "gangster rap",
+                "hip hop",
+                "melodic rap",
+                "rap",
+                "trap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/50co4Is1HCEo8bhOyUWKpn",
+            "id": "50co4Is1HCEo8bhOyUWKpn",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb547d2b41c9f2c97318aad0ed",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174547d2b41c9f2c97318aad0ed",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178547d2b41c9f2c97318aad0ed",
+                    "width": 160
+                }
+            ],
+            "name": "Young Thug",
+            "popularity": 90,
+            "type": "artist",
+            "uri": "spotify:artist:50co4Is1HCEo8bhOyUWKpn"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5L67d6oZKOOmXcBcMMJdZZ"
+            },
+            "followers": {
+                "href": null,
+                "total": 46501
+            },
+            "genres": [
+                "future bass",
+                "new french touch",
+                "vapor soul",
+                "vapor twitch"
+            ],
+            "href": "https://api.spotify.com/v1/artists/5L67d6oZKOOmXcBcMMJdZZ",
+            "id": "5L67d6oZKOOmXcBcMMJdZZ",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb77d716f188b85989f2f3c2fa",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517477d716f188b85989f2f3c2fa",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17877d716f188b85989f2f3c2fa",
+                    "width": 160
+                }
+            ],
+            "name": "Point Point",
+            "popularity": 44,
+            "type": "artist",
+            "uri": "spotify:artist:5L67d6oZKOOmXcBcMMJdZZ"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/699OTQXzgjhIYAHMy9RyPD"
+            },
+            "followers": {
+                "href": null,
+                "total": 5753758
+            },
+            "genres": [
+                "atl hip hop",
+                "plugg",
+                "rap",
+                "trap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/699OTQXzgjhIYAHMy9RyPD",
+            "id": "699OTQXzgjhIYAHMy9RyPD",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb504ff11d788162fbf8078654",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174504ff11d788162fbf8078654",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178504ff11d788162fbf8078654",
+                    "width": 160
+                }
+            ],
+            "name": "Playboi Carti",
+            "popularity": 88,
+            "type": "artist",
+            "uri": "spotify:artist:699OTQXzgjhIYAHMy9RyPD"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/738wLrAtLtCtFOLvQBXOXp"
+            },
+            "followers": {
+                "href": null,
+                "total": 6253147
+            },
+            "genres": [
+                "dance pop",
+                "edm",
+                "electro house",
+                "moombahton",
+                "pop",
+                "pop dance",
+                "pop rap",
+                "tropical house"
+            ],
+            "href": "https://api.spotify.com/v1/artists/738wLrAtLtCtFOLvQBXOXp",
+            "id": "738wLrAtLtCtFOLvQBXOXp",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb133f44ab343b35c715a4ac97",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174133f44ab343b35c715a4ac97",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178133f44ab343b35c715a4ac97",
+                    "width": 160
+                }
+            ],
+            "name": "Major Lazer",
+            "popularity": 79,
+            "type": "artist",
+            "uri": "spotify:artist:738wLrAtLtCtFOLvQBXOXp"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/7mnBLXK823vNxN3UWB7Gfz"
+            },
+            "followers": {
+                "href": null,
+                "total": 3595457
+            },
+            "genres": [
+                "alternative rock",
+                "blues rock",
+                "garage rock",
+                "modern blues rock",
+                "modern rock",
+                "punk blues",
+                "rock",
+                "roots rock"
+            ],
+            "href": "https://api.spotify.com/v1/artists/7mnBLXK823vNxN3UWB7Gfz",
+            "id": "7mnBLXK823vNxN3UWB7Gfz",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebda012e44f73353016e419282",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174da012e44f73353016e419282",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178da012e44f73353016e419282",
+                    "width": 160
+                }
+            ],
+            "name": "The Black Keys",
+            "popularity": 74,
+            "type": "artist",
+            "uri": "spotify:artist:7mnBLXK823vNxN3UWB7Gfz"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6nS5roXSAGhTGr34W6n7Et"
+            },
+            "followers": {
+                "href": null,
+                "total": 1980230
+            },
+            "genres": [
+                "house",
+                "pop",
+                "uk dance"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6nS5roXSAGhTGr34W6n7Et",
+            "id": "6nS5roXSAGhTGr34W6n7Et",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb784a17787904570df53ae9a2",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174784a17787904570df53ae9a2",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178784a17787904570df53ae9a2",
+                    "width": 160
+                }
+            ],
+            "name": "Disclosure",
+            "popularity": 77,
+            "type": "artist",
+            "uri": "spotify:artist:6nS5roXSAGhTGr34W6n7Et"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6qgnBH6iDM91ipVXv28OMu"
+            },
+            "followers": {
+                "href": null,
+                "total": 928339
+            },
+            "genres": [
+                "escape room",
+                "indie soul",
+                "lgbtq+ hip hop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6qgnBH6iDM91ipVXv28OMu",
+            "id": "6qgnBH6iDM91ipVXv28OMu",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebca674f416a581a1b19f8150a",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174ca674f416a581a1b19f8150a",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178ca674f416a581a1b19f8150a",
+                    "width": 160
+                }
+            ],
+            "name": "KAYTRANADA",
+            "popularity": 73,
+            "type": "artist",
+            "uri": "spotify:artist:6qgnBH6iDM91ipVXv28OMu"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/07UJz804RJxqNvxFXC3h9H"
+            },
+            "followers": {
+                "href": null,
+                "total": 86016
+            },
+            "genres": [
+                "electronic trap",
+                "future bass",
+                "scottish electronic",
+                "vapor twitch"
+            ],
+            "href": "https://api.spotify.com/v1/artists/07UJz804RJxqNvxFXC3h9H",
+            "id": "07UJz804RJxqNvxFXC3h9H",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eba29498c6839b35fb3cf0fcf2",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174a29498c6839b35fb3cf0fcf2",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178a29498c6839b35fb3cf0fcf2",
+                    "width": 160
+                }
+            ],
+            "name": "Sam Gellaitry",
+            "popularity": 51,
+            "type": "artist",
+            "uri": "spotify:artist:07UJz804RJxqNvxFXC3h9H"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0gXx2aQ2mfovDfqCw10MQC"
+            },
+            "followers": {
+                "href": null,
+                "total": 67083
+            },
+            "genres": [
+                "electronic trap",
+                "future bass",
+                "vapor twitch"
+            ],
+            "href": "https://api.spotify.com/v1/artists/0gXx2aQ2mfovDfqCw10MQC",
+            "id": "0gXx2aQ2mfovDfqCw10MQC",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebc2f7066632f9f3819d52d520",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174c2f7066632f9f3819d52d520",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178c2f7066632f9f3819d52d520",
+                    "width": 160
+                }
+            ],
+            "name": "G Jones",
+            "popularity": 45,
+            "type": "artist",
+            "uri": "spotify:artist:0gXx2aQ2mfovDfqCw10MQC"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/11gWrKZMBsGQWmobv3oNfW"
+            },
+            "followers": {
+                "href": null,
+                "total": 427232
+            },
+            "genres": [
+                "aussietronica",
+                "edm",
+                "electra",
+                "electro house",
+                "electronic trap",
+                "electropop",
+                "escape room",
+                "indietronica",
+                "vapor twitch"
+            ],
+            "href": "https://api.spotify.com/v1/artists/11gWrKZMBsGQWmobv3oNfW",
+            "id": "11gWrKZMBsGQWmobv3oNfW",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb037be959ee9ed56eb75a1895",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174037be959ee9ed56eb75a1895",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178037be959ee9ed56eb75a1895",
+                    "width": 160
+                }
+            ],
+            "name": "Alison Wonderland",
+            "popularity": 62,
+            "type": "artist",
+            "uri": "spotify:artist:11gWrKZMBsGQWmobv3oNfW"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/1VPmR4DJC1PlOtd0IADAO0"
+            },
+            "followers": {
+                "href": null,
+                "total": 4012594
+            },
+            "genres": [
+                "dark trap",
+                "new orleans rap",
+                "underground hip hop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/1VPmR4DJC1PlOtd0IADAO0",
+            "id": "1VPmR4DJC1PlOtd0IADAO0",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb84c3e162cc178d07010560d2",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517484c3e162cc178d07010560d2",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17884c3e162cc178d07010560d2",
+                    "width": 160
+                }
+            ],
+            "name": "$uicideboy$",
+            "popularity": 88,
+            "type": "artist",
+            "uri": "spotify:artist:1VPmR4DJC1PlOtd0IADAO0"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/33ScadVnbm2X8kkUqOkC6Z"
+            },
+            "followers": {
+                "href": null,
+                "total": 6360174
+            },
+            "genres": [
+                "latin",
+                "latin hip hop",
+                "puerto rican pop",
+                "reggaeton",
+                "trap latino"
+            ],
+            "href": "https://api.spotify.com/v1/artists/33ScadVnbm2X8kkUqOkC6Z",
+            "id": "33ScadVnbm2X8kkUqOkC6Z",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb3c1fdbec5c0f78aed920f63b",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051743c1fdbec5c0f78aed920f63b",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1783c1fdbec5c0f78aed920f63b",
+                    "width": 160
+                }
+            ],
+            "name": "Don Omar",
+            "popularity": 84,
+            "type": "artist",
+            "uri": "spotify:artist:33ScadVnbm2X8kkUqOkC6Z"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5BvJzeQpmsdsFp4HGUYUEx"
+            },
+            "followers": {
+                "href": null,
+                "total": 1766784
+            },
+            "genres": [
+                "baroque pop",
+                "indie rock",
+                "modern rock"
+            ],
+            "href": "https://api.spotify.com/v1/artists/5BvJzeQpmsdsFp4HGUYUEx",
+            "id": "5BvJzeQpmsdsFp4HGUYUEx",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb44829ac83c4538a8cf7e9f40",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517444829ac83c4538a8cf7e9f40",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17844829ac83c4538a8cf7e9f40",
+                    "width": 160
+                }
+            ],
+            "name": "Vampire Weekend",
+            "popularity": 70,
+            "type": "artist",
+            "uri": "spotify:artist:5BvJzeQpmsdsFp4HGUYUEx"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/7jy3rLJdDQY21OgRLCZ9sD"
+            },
+            "followers": {
+                "href": null,
+                "total": 9381671
+            },
+            "genres": [
+                "alternative metal",
+                "alternative rock",
+                "modern rock",
+                "permanent wave",
+                "post-grunge",
+                "rock"
+            ],
+            "href": "https://api.spotify.com/v1/artists/7jy3rLJdDQY21OgRLCZ9sD",
+            "id": "7jy3rLJdDQY21OgRLCZ9sD",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb9a43b87b50cd3d03544bb3e5",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab676161000051749a43b87b50cd3d03544bb3e5",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f1789a43b87b50cd3d03544bb3e5",
+                    "width": 160
+                }
+            ],
+            "name": "Foo Fighters",
+            "popularity": 80,
+            "type": "artist",
+            "uri": "spotify:artist:7jy3rLJdDQY21OgRLCZ9sD"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/1GImnM7WYVp95431ypofy9"
+            },
+            "followers": {
+                "href": null,
+                "total": 2532534
+            },
+            "genres": [
+                "latin alternative",
+                "latin rock",
+                "mexican rock",
+                "nu-cumbia",
+                "rock en espanol",
+                "rock urbano mexicano"
+            ],
+            "href": "https://api.spotify.com/v1/artists/1GImnM7WYVp95431ypofy9",
+            "id": "1GImnM7WYVp95431ypofy9",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb40ebf1184cbe947cda4d9a0d",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517440ebf1184cbe947cda4d9a0d",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17840ebf1184cbe947cda4d9a0d",
+                    "width": 160
+                }
+            ],
+            "name": "Caifanes",
+            "popularity": 71,
+            "type": "artist",
+            "uri": "spotify:artist:1GImnM7WYVp95431ypofy9"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3r1XkJ7vCs8kHBSzGvPLdP"
+            },
+            "followers": {
+                "href": null,
+                "total": 411422
+            },
+            "genres": [
+                "hip hop",
+                "rap",
+                "uk alternative hip hop",
+                "uk hip hop",
+                "underground hip hop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/3r1XkJ7vCs8kHBSzGvPLdP",
+            "id": "3r1XkJ7vCs8kHBSzGvPLdP",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5eb54efb6a0fe609d0cf8099a98",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab6761610000517454efb6a0fe609d0cf8099a98",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f17854efb6a0fe609d0cf8099a98",
+                    "width": 160
+                }
+            ],
+            "name": "slowthai",
+            "popularity": 68,
+            "type": "artist",
+            "uri": "spotify:artist:3r1XkJ7vCs8kHBSzGvPLdP"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4frXpPxQQZwbCu3eTGnZEw"
+            },
+            "followers": {
+                "href": null,
+                "total": 836975
+            },
+            "genres": [
+                "afrofuturism"
+            ],
+            "href": "https://api.spotify.com/v1/artists/4frXpPxQQZwbCu3eTGnZEw",
+            "id": "4frXpPxQQZwbCu3eTGnZEw",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebdfbd91e170ce6cf58b84dbbb",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174dfbd91e170ce6cf58b84dbbb",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178dfbd91e170ce6cf58b84dbbb",
+                    "width": 160
+                }
+            ],
+            "name": "Thundercat",
+            "popularity": 73,
+            "type": "artist",
+            "uri": "spotify:artist:4frXpPxQQZwbCu3eTGnZEw"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5lwmRuXgjX8xIwlnauTZIP"
+            },
+            "followers": {
+                "href": null,
+                "total": 13833095
+            },
+            "genres": [
+                "bachata",
+                "latin"
+            ],
+            "href": "https://api.spotify.com/v1/artists/5lwmRuXgjX8xIwlnauTZIP",
+            "id": "5lwmRuXgjX8xIwlnauTZIP",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab6761610000e5ebdc40b323a36b65cc750b2185",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ab67616100005174dc40b323a36b65cc750b2185",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/ab6761610000f178dc40b323a36b65cc750b2185",
+                    "width": 160
+                }
+            ],
+            "name": "Romeo Santos",
+            "popularity": 83,
+            "type": "artist",
+            "uri": "spotify:artist:5lwmRuXgjX8xIwlnauTZIP"
+        }
+    ],
+    "total": 50,
+    "limit": 50,
+    "offset": 0,
+    "previous": null,
+    "href": "https://api.spotify.com/v1/me/top/artists?limit=50&offset=0&time_range=short_term",
+    "next": null
+}

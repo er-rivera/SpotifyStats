@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.repository
+package com.erivera.apps.topcharts.repository.network
 
 import com.erivera.apps.topcharts.repository.models.api.AlbumResponse
 import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit

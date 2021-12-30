@@ -60,10 +60,6 @@ class SingleViewTouchableMotionLayout(context: Context, attributeSet: AttributeS
         transitionListenerList += listener
     }
 
-    fun removeTransitionListeners(listener: TransitionListener?){
-        transitionListenerList.clear()
-    }
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.actionMasked) {
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {

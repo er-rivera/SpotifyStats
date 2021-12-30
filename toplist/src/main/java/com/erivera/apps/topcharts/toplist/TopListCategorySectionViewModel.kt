@@ -2,9 +2,9 @@ package com.erivera.apps.topcharts.toplist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
-import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.repository.Repository
+import com.erivera.apps.topcharts.repository.persistance.artist.Artist
+import com.erivera.apps.topcharts.repository.persistance.tracks.Track
 import com.erivera.apps.topcharts.spotify.SpotifyRemoteManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -12,7 +12,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TopListCategorySectionViewModel @Inject constructor(val repository: Repository, val spotifyRemoteManager: SpotifyRemoteManager) :
+class TopListCategorySectionViewModel @Inject constructor(
+    val repository: Repository,
+    val spotifyRemoteManager: SpotifyRemoteManager
+) :
     ViewModel() {
     companion object {
         const val SONGS = "Songs"
@@ -68,22 +71,22 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
     }
 
     private fun buildTracksCategorySection(
-        shortTermTracks: List<TrackRetrofit>,
-        mediumTermTracks: List<TrackRetrofit>,
-        longTermTracks: List<TrackRetrofit>
+        shortTermTracks: List<Track>,
+        mediumTermTracks: List<Track>,
+        longTermTracks: List<Track>
     ): MutableList<CategoryItem> {
         val categoryItems = mutableListOf<CategoryItem>()
         categoryItems.add(
             SubCategoryHeader("Short Term")
         )
         categoryItems.addAll(
-            shortTermTracks.mapIndexed { index, item ->
+            shortTermTracks.map { item ->
                 SubCategoryItem.SongCategoryItem(
-                    title = item.name ?: "",
-                    artist = item.artists?.map { it.name }?.joinToString(", "),
-                    position = (index + 1).toString(),
-                    imageUrl = item.album?.images?.first()?.url ?: "",
-                    uri = item.uri.orEmpty()
+                    title = item.name,
+                    artist = item.artistConcatenated,
+                    position = item.currentShortTermPosition.toString(),
+                    imageUrl = item.imageUrl,
+                    uri = item.uri
                 )
             }
         )
@@ -91,13 +94,13 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
             SubCategoryHeader("Medium Term")
         )
         categoryItems.addAll(
-            mediumTermTracks.mapIndexed { index, item ->
+            mediumTermTracks.map { item ->
                 SubCategoryItem.SongCategoryItem(
-                    title = item.name ?: "",
-                    artist = item.artists?.map { it.name }?.joinToString(", "),
-                    position = (index + 1).toString(),
-                    imageUrl = item.album?.images?.first()?.url ?: "",
-                    uri = item.uri.orEmpty()
+                    title = item.name,
+                    artist = item.artistConcatenated,
+                    position = item.currentMidTermPosition.toString(),
+                    imageUrl = item.imageUrl,
+                    uri = item.uri
                 )
             }
         )
@@ -105,13 +108,13 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
             SubCategoryHeader("Long Term")
         )
         categoryItems.addAll(
-            longTermTracks.mapIndexed { index, item ->
+            longTermTracks.map { item ->
                 SubCategoryItem.SongCategoryItem(
-                    title = item.name ?: "",
-                    artist = item.artists?.map { it.name }?.joinToString(", "),
-                    position = (index + 1).toString(),
-                    imageUrl = item.album?.images?.first()?.url ?: "",
-                    uri = item.uri.orEmpty()
+                    title = item.name,
+                    artist = item.artistConcatenated,
+                    position = item.currentLongTermPosition.toString(),
+                    imageUrl = item.imageUrl,
+                    uri = item.uri
                 )
             }
         )
@@ -160,21 +163,21 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
     }
 
     private fun buildArtistCategorySection(
-        shortTermArtists: List<ArtistsRetrofit>,
-        mediumTermArtists: List<ArtistsRetrofit>,
-        longTermArtists: List<ArtistsRetrofit>
+        shortTermArtists: List<Artist>,
+        mediumTermArtists: List<Artist>,
+        longTermArtists: List<Artist>
     ): MutableList<CategoryItem> {
         val categoryItems = mutableListOf<CategoryItem>()
         categoryItems.add(
             SubCategoryHeader("Short Term")
         )
         categoryItems.addAll(
-            shortTermArtists.mapIndexed { index, item ->
+            shortTermArtists.map { item ->
                 SubCategoryItem.ArtistCategoryItem(
-                    title = item.name ?: "",
-                    position = (index + 1).toString(),
-                    imageUrl = item.images?.firstOrNull()?.url.orEmpty(),
-                    uri = item.uri.orEmpty()
+                    title = item.name,
+                    position = item.currentShortTermPosition.toString(),
+                    imageUrl = item.images,
+                    uri = item.uri
                 )
             }
         )
@@ -182,12 +185,12 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
             SubCategoryHeader("Medium Term")
         )
         categoryItems.addAll(
-            mediumTermArtists.mapIndexed { index, item ->
+            mediumTermArtists.map { item ->
                 SubCategoryItem.ArtistCategoryItem(
-                    title = item.name ?: "",
-                    position = (index + 1).toString(),
-                    imageUrl = item.images?.firstOrNull()?.url.orEmpty(),
-                    uri = item.uri.orEmpty()
+                    title = item.name,
+                    position = item.currentMidTermPosition.toString(),
+                    imageUrl = item.images,
+                    uri = item.uri
                 )
             }
         )
@@ -195,12 +198,12 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
             SubCategoryHeader("Long Term")
         )
         categoryItems.addAll(
-            longTermArtists.mapIndexed { index, item ->
+            longTermArtists.map { item ->
                 SubCategoryItem.ArtistCategoryItem(
-                    title = item.name ?: "",
-                    position = (index + 1).toString(),
-                    imageUrl = item.images?.firstOrNull()?.url.orEmpty(),
-                    uri = item.uri.orEmpty()
+                    title = item.name,
+                    position = item.currentLongTermPosition.toString(),
+                    imageUrl = item.images,
+                    uri = item.uri
                 )
             }
         )
@@ -208,7 +211,7 @@ class TopListCategorySectionViewModel @Inject constructor(val repository: Reposi
     }
 
     fun play(uri: String) {
-        if(uri.isNotEmpty()){
+        if (uri.isNotEmpty()) {
             spotifyRemoteManager.play(uri)
         }
     }
