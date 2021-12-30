@@ -18,5 +18,6 @@ data class Track(
     @ColumnInfo(name = "current_long_position") var currentLongTermPosition: Int = -1,
     @ColumnInfo(name = "previous_long_position") var previousLongTermPosition: Int = -1,
     @ColumnInfo(name = "image_url") val imageUrl: String,
+    @ColumnInfo(name = "updated_date") val updateDate: Long,
     @ColumnInfo val uri: String,
 )

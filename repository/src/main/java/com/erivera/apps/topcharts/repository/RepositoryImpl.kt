@@ -11,6 +11,7 @@ import com.erivera.apps.topcharts.repository.persistance.helper.PersistenceSynch
 import com.erivera.apps.topcharts.repository.persistance.tracks.Track
 import com.erivera.apps.topcharts.repository.persistance.tracks.TrackDatabase
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
@@ -78,24 +79,19 @@ class RepositoryImpl @Inject constructor(
         remoteDataSource.startSpotifyService(clientId)
     }
 
-    override suspend fun refreshDb(): Boolean {
-        if (persistenceSynchronizationHelper.shouldUpdatePersistence()) {
-            Log.d(TAG, "Should Refresh DB")
-            persistenceSynchronizationHelper.updatePersistenceTables(
-                localDbArtists = artistLocalDatabase.getArtistDao().getArtists(),
-                shortArtists = remoteDataSource.getArtists("50", TermLength.ShortTerm.key),
-                midArtists = remoteDataSource.getArtists("50", TermLength.MediumTerm.key),
-                longArtists = remoteDataSource.getArtists("50", TermLength.LongTerm.key),
-                localDbTracks = tracksLocalDatabase.getTrackDao().getTracks(),
-                shortTracks = remoteDataSource.getTracks("50", TermLength.ShortTerm.key),
-                midTracks = remoteDataSource.getTracks("50", TermLength.MediumTerm.key),
-                longTracks = remoteDataSource.getTracks("50", TermLength.LongTerm.key),
-            )
-            return true
-        } else {
-            Log.d(TAG, "DB not refreshed")
-            return false
-        }
+    override suspend fun refreshDb(refreshFlow: MutableStateFlow<Boolean>) {
+        Log.d(TAG, "refreshDb: Should Refresh DB")
+        persistenceSynchronizationHelper.updatePersistenceTables(
+            localDbArtists = artistLocalDatabase.getArtistDao().getArtists(),
+            shortArtists = remoteDataSource.getArtists("50", TermLength.ShortTerm.key),
+            midArtists = remoteDataSource.getArtists("50", TermLength.MediumTerm.key),
+            longArtists = remoteDataSource.getArtists("50", TermLength.LongTerm.key),
+            localDbTracks = tracksLocalDatabase.getTrackDao().getTracks(),
+            shortTracks = remoteDataSource.getTracks("50", TermLength.ShortTerm.key),
+            midTracks = remoteDataSource.getTracks("50", TermLength.MediumTerm.key),
+            longTracks = remoteDataSource.getTracks("50", TermLength.LongTerm.key),
+            mutableFlow = refreshFlow
+        )
     }
 
     sealed class TermLength(val key: String) {

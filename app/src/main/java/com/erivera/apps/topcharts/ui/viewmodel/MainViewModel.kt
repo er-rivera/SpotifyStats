@@ -13,6 +13,8 @@ import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -58,10 +60,13 @@ class MainViewModel @Inject constructor(
     fun handleSuccessToken(accessToken: String) {
         saveSpotifyCredential(accessToken)
         viewModelScope.launch(Dispatchers.IO) {
-            val isRefreshed = repository.refreshDb()
-            Log.d(TAG, "is DB Refreshed $isRefreshed")
-            withContext(Dispatchers.Main) {
-                navigateToNextScreen()
+            val refreshFlow = MutableStateFlow(false)
+            repository.refreshDb(refreshFlow)
+            refreshFlow.collect {
+                withContext(Dispatchers.Main) {
+                    Log.d(TAG, "handleSuccessToken: is DB Refreshed $it")
+                    navigateToNextScreen()
+                }
             }
         }
     }

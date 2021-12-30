@@ -5,6 +5,7 @@ import com.erivera.apps.topcharts.repository.models.api.AudioFeaturesResponse
 import com.erivera.apps.topcharts.repository.persistance.artist.Artist
 import com.erivera.apps.topcharts.repository.persistance.tracks.Track
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 interface Repository {
     fun saveSpotifyClientId(id: String)
@@ -29,5 +30,5 @@ interface Repository {
 
     suspend fun getAlbum(albumId: String): AlbumResponse
 
-    suspend fun refreshDb(): Boolean
+    suspend fun refreshDb(refreshFlow: MutableStateFlow<Boolean>)
 }

@@ -5,6 +5,7 @@ import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
 import com.erivera.apps.topcharts.repository.persistance.artist.Artist
 import com.erivera.apps.topcharts.repository.persistance.tracks.Track
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 interface PersistenceSynchronizationHelper {
     fun shouldUpdatePersistence(): Boolean
@@ -17,6 +18,7 @@ interface PersistenceSynchronizationHelper {
         localDbTracks: Flow<List<Track>>,
         shortTracks: Flow<List<TrackRetrofit>>,
         midTracks: Flow<List<TrackRetrofit>>,
-        longTracks: Flow<List<TrackRetrofit>>
+        longTracks: Flow<List<TrackRetrofit>>,
+        mutableFlow: MutableStateFlow<Boolean>
     )
 }

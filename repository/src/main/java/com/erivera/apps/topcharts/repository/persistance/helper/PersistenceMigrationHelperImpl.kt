@@ -38,7 +38,6 @@ class PersistenceMigrationHelperImpl(
         }
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @FlowPreview
     override suspend fun updatePersistenceTables(
         localDbArtists: Flow<List<Artist>>,
@@ -48,17 +47,127 @@ class PersistenceMigrationHelperImpl(
         localDbTracks: Flow<List<Track>>,
         shortTracks: Flow<List<TrackRetrofit>>,
         midTracks: Flow<List<TrackRetrofit>>,
-        longTracks: Flow<List<TrackRetrofit>>
+        longTracks: Flow<List<TrackRetrofit>>,
+        mutableFlow: MutableStateFlow<Boolean>
     ) {
         val currentTime = Date()
-        combine(localDbArtists, shortArtists, midArtists, longArtists) { local, short, mid, long ->
-            val map = buildMap {
-                buildMapForArtistDb(this, local, short, mid, long, currentTime)
-            }
-            map.values.toList()
-        }.collect { artists ->
-            artistDatabase.getArtistDao().addArtists(artists)
+        val artistFlow =
+            getArtistFlow(localDbArtists, shortArtists, midArtists, longArtists, currentTime)
+        val trackFlow =
+            getTrackFlow(localDbTracks, shortTracks, midTracks, longTracks, currentTime)
+        val startTime = System.currentTimeMillis()
+        combine(artistFlow, trackFlow) { artists, tracks ->
+            Pair(artists, tracks)
+        }.collect { pair ->
+            artistDatabase.getArtistDao().addArtists(pair.first)
+            trackDatabase.getTrackDao().addTracks(pair.second)
             storeDbDate(currentTime)
+            mutableFlow.emit(true)
+            Log.d(
+                TAG,
+                "updatePersistenceTables: total time to update = ${System.currentTimeMillis() - startTime}"
+            )
+        }
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    private fun getArtistFlow(
+        localDbArtists: Flow<List<Artist>>,
+        shortArtists: Flow<List<ArtistsRetrofit>>,
+        midArtists: Flow<List<ArtistsRetrofit>>,
+        longArtists: Flow<List<ArtistsRetrofit>>,
+        currentTime: Date
+    ) = combine(localDbArtists, shortArtists, midArtists, longArtists) { local, short, mid, long ->
+        val map = buildMap {
+            buildMapForArtistDb(this, local, short, mid, long, currentTime)
+        }
+        map.values.toList()
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    private fun getTrackFlow(
+        localDbTracks: Flow<List<Track>>,
+        shortTracks: Flow<List<TrackRetrofit>>,
+        midTracks: Flow<List<TrackRetrofit>>,
+        longTracks: Flow<List<TrackRetrofit>>,
+        currentTime: Date
+    ) = combine(localDbTracks, shortTracks, midTracks, longTracks) { local, short, mid, long ->
+        val map = buildMap {
+            buildMapForTracksDb(this, local, short, mid, long, currentTime)
+        }
+        map.values.toList()
+    }
+
+    private fun buildMapForTracksDb(
+        map: MutableMap<String, Track>,
+        prev: List<Track>,
+        short: List<TrackRetrofit>,
+        mid: List<TrackRetrofit>,
+        long: List<TrackRetrofit>,
+        updatedTime: Date
+    ) {
+        prev.forEach {
+            map[it.id] = it
+            it.previousShortTermPosition = it.currentShortTermPosition
+            it.currentShortTermPosition = -1
+            it.previousMidTermPosition = it.currentMidTermPosition
+            it.currentMidTermPosition = -1
+            it.previousLongTermPosition = it.currentLongTermPosition
+            it.currentLongTermPosition = -1
+        }
+        short.forEachIndexed { index, it ->
+            val track = Track(
+                id = it.id.orEmpty(),
+                name = it.name.orEmpty(),
+                artistNames = it.artists?.mapNotNull { it.name }.orEmpty(),
+                artistIds = it.artists?.mapNotNull { it.id }.orEmpty(),
+                artistConcatenated = it.artists?.mapNotNull { it.name }?.joinToString(",")
+                    .orEmpty(),
+                imageUrl = it.album?.images?.first()?.url.orEmpty(),
+                updateDate = updatedTime.time,
+                currentShortTermPosition = index + 1,
+                uri = it.externalUrls?.spotify.orEmpty()
+            )
+            val item = map[track.id]?.also {
+                it.currentShortTermPosition = index + 1
+            } ?: track
+            map[track.id] = item
+        }
+        mid.forEachIndexed { index, it ->
+            val track = Track(
+                id = it.id.orEmpty(),
+                name = it.name.orEmpty(),
+                artistNames = it.artists?.mapNotNull { it.name }.orEmpty(),
+                artistIds = it.artists?.mapNotNull { it.id }.orEmpty(),
+                artistConcatenated = it.artists?.mapNotNull { it.name }?.joinToString(",")
+                    .orEmpty(),
+                imageUrl = it.album?.images?.first()?.url.orEmpty(),
+                updateDate = updatedTime.time,
+                currentMidTermPosition = index + 1,
+                uri = it.externalUrls?.spotify.orEmpty()
+            )
+            val item = map[track.id]?.also {
+                it.currentMidTermPosition = index + 1
+            } ?: track
+            map[track.id] = item
+        }
+        long.forEachIndexed { index, it ->
+            val track = Track(
+                id = it.id.orEmpty(),
+                name = it.name.orEmpty(),
+                artistNames = it.artists?.mapNotNull { it.name }.orEmpty(),
+                artistIds = it.artists?.mapNotNull { it.id }.orEmpty(),
+                artistConcatenated = it.artists?.mapNotNull { it.name }?.joinToString(",")
+                    .orEmpty(),
+                imageUrl = it.album?.images?.first()?.url.orEmpty(),
+                updateDate = updatedTime.time,
+                currentLongTermPosition = index + 1,
+                uri = it.externalUrls?.spotify.orEmpty()
+            )
+            val item = map[track.id]?.also {
+                it.currentLongTermPosition = index + 1
+            } ?: track
+            map[track.id] = item
         }
     }
 
@@ -125,7 +234,7 @@ class PersistenceMigrationHelperImpl(
             map[artist.id] = item
         }
     }
-
+    
     private fun storeDbDate(date: Date) {
         dataStore.setLong(PREVIOUS_DATE_KEY, date.time)
     }
@@ -133,8 +242,8 @@ class PersistenceMigrationHelperImpl(
     private fun shouldUpdate(previousDate: Date, currentDate: Date): Boolean {
         val current = currentDate.time
         val previous = previousDate.time
-        val differenceInMillis = previous - current
-        Log.d(TAG, "differenceInMillis $differenceInMillis")
-        return TimeUnit.DAYS.toDays(differenceInMillis) >= DAYS_REQUIRED_TO_REFRESH
+        val daysRemaining = TimeUnit.DAYS.toDays(previous - current)
+        Log.d(TAG, "shouldUpdate: remaining days $daysRemaining")
+        return daysRemaining >= DAYS_REQUIRED_TO_REFRESH
     }
 }
