@@ -49,7 +49,6 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.kotlin_version"
 
-    implementation project(':navigation')
     implementation project(':repository')
     implementation project(':common-ui')
     implementation project(':spotify')

@@ -13,8 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TopListCategorySectionViewModel @Inject constructor(
-    val repository: Repository,
-    val spotifyRemoteManager: SpotifyRemoteManager
+    private val repository: Repository,
+    private val spotifyRemoteManager: SpotifyRemoteManager
 ) :
     ViewModel() {
     companion object {
