@@ -13,16 +13,17 @@ import kotlinx.coroutines.flow.*
 import java.util.Date
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class PersistenceMigrationHelperImpl(
+class PersistenceMigrationHelperImpl @Inject constructor(
     private val dataStore: DataStore,
     private val artistDatabase: ArtistDatabase,
-    private val trackDatabase: TrackDatabase,
-    private val DAYS_REQUIRED_TO_REFRESH: Int = 5,
-    private val PREVIOUS_DATE_KEY: String = "PREVIOUS_DATE_KEY"
+    private val trackDatabase: TrackDatabase
 ) : PersistenceSynchronizationHelper {
     companion object {
         private val TAG = PersistenceMigrationHelperImpl::class.java.name
+        private const val DAYS_REQUIRED_TO_REFRESH: Int = 5
+        private const val PREVIOUS_DATE_KEY: String = "PREVIOUS_DATE_KEY"
     }
 
     override fun shouldUpdatePersistence(): Boolean {

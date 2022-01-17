@@ -3,9 +3,10 @@ package com.erivera.apps.topcharts.repository.keyvalue
 import android.content.Context
 import android.content.SharedPreferences
 import com.erivera.apps.topcharts.repository.R
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class DataStoreImpl @Inject constructor(val context: Context) : DataStore {
+class DataStoreImpl @Inject constructor(@ApplicationContext val context: Context) : DataStore {
     private val sharedPref: SharedPreferences by lazy {
         context.getSharedPreferences(
             context.getString(

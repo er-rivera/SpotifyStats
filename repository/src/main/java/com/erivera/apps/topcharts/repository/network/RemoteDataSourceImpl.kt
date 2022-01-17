@@ -6,19 +6,24 @@ import com.erivera.apps.topcharts.repository.models.api.AlbumResponse
 import com.erivera.apps.topcharts.repository.models.api.ArtistsRetrofit
 import com.erivera.apps.topcharts.repository.models.api.AudioFeaturesResponse
 import com.erivera.apps.topcharts.repository.models.api.TrackRetrofit
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import javax.inject.Inject
 
-class RemoteDataSourceImpl @Inject constructor(val context: Context) : RemoteDataSource {
+class RemoteDataSourceImpl @Inject constructor(@ApplicationContext val context: Context) :
+    RemoteDataSource {
     private var spotifyService: SpotifyService? = null
 
     override fun startSpotifyService(clientId: String) {
         spotifyService = RetrofitFactory.makeRetrofitService(clientId, context)
     }
 
-    override suspend fun getArtists(limit: String, termLength: String): Flow<List<ArtistsRetrofit>> {
+    override suspend fun getArtists(
+        limit: String,
+        termLength: String
+    ): Flow<List<ArtistsRetrofit>> {
         val response = spotifyService?.getArtists(limit, termLength)
         try {
             if (response?.isSuccessful == true) {
@@ -86,7 +91,7 @@ class RemoteDataSourceImpl @Inject constructor(val context: Context) : RemoteDat
         try {
             if (response?.isSuccessful == true) {
                 Log.i(javaClass.simpleName, "Response: ${response.body()}")
-                return flow{ emit(response.body()?.items ?: mutableListOf<TrackRetrofit>())}
+                return flow { emit(response.body()?.items ?: mutableListOf<TrackRetrofit>()) }
                 //Do something with response e.g show to the UI.
             } else {
                 Log.e(
@@ -99,7 +104,7 @@ class RemoteDataSourceImpl @Inject constructor(val context: Context) : RemoteDat
         } catch (e: Throwable) {
             Log.e(javaClass.simpleName, "Ooops: Something else went wrong")
         }
-        return flow{ emit(mutableListOf()) }
+        return flow { emit(mutableListOf()) }
     }
 
     override suspend fun hasValidToken(): Boolean {
