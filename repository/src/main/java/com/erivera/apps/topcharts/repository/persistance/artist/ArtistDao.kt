@@ -11,6 +11,9 @@ interface ArtistDao {
     @Query("SELECT * from artists")
     fun getArtists(): Flow<List<Artist>>
 
+    @Query("SELECT * from artists")
+    suspend fun getSingleShotArtists(): List<Artist>
+
     @Query("SELECT * FROM artists WHERE current_short_position > -1 ORDER BY current_short_position LIMIT :limit")
     fun getShortTermArtists(limit: Int): Flow<List<Artist>>
 

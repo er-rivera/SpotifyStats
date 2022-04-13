@@ -12,6 +12,7 @@ import com.erivera.apps.topcharts.repository.persistance.tracks.Track
 import com.erivera.apps.topcharts.repository.persistance.tracks.TrackDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
@@ -82,11 +83,15 @@ class RepositoryImpl @Inject constructor(
     override suspend fun refreshDb(refreshFlow: MutableStateFlow<Boolean>) {
         Log.d(TAG, "refreshDb: Should Refresh DB")
         persistenceSynchronizationHelper.updatePersistenceTables(
-            localDbArtists = artistLocalDatabase.getArtistDao().getArtists(),
+            localDbArtists = flow {
+             emit(artistLocalDatabase.getArtistDao().getSingleShotArtists())
+            },
             shortArtists = remoteDataSource.getArtists("50", TermLength.ShortTerm.key),
             midArtists = remoteDataSource.getArtists("50", TermLength.MediumTerm.key),
             longArtists = remoteDataSource.getArtists("50", TermLength.LongTerm.key),
-            localDbTracks = tracksLocalDatabase.getTrackDao().getTracks(),
+            localDbTracks = flow {
+               emit(tracksLocalDatabase.getTrackDao().getSingleShotTracks())
+            },
             shortTracks = remoteDataSource.getTracks("50", TermLength.ShortTerm.key),
             midTracks = remoteDataSource.getTracks("50", TermLength.MediumTerm.key),
             longTracks = remoteDataSource.getTracks("50", TermLength.LongTerm.key),

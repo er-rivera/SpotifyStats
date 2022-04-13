@@ -52,16 +52,18 @@ class PersistenceMigrationHelperImpl @Inject constructor(
         mutableFlow: MutableStateFlow<Boolean>
     ) {
         val currentTime = Date()
-        val artistFlow =
-            getArtistFlow(localDbArtists, shortArtists, midArtists, longArtists, currentTime)
-        val trackFlow =
-            getTrackFlow(localDbTracks, shortTracks, midTracks, longTracks, currentTime)
         val startTime = System.currentTimeMillis()
+        val artistFlow =
+            getArtistFlow(localDbArtists, shortArtists, midArtists, longArtists, currentTime).onEach {
+                artistDatabase.getArtistDao().addArtists(it)
+            }
+        val trackFlow =
+            getTrackFlow(localDbTracks, shortTracks, midTracks, longTracks, currentTime).onEach {
+                trackDatabase.getTrackDao().addTracks(it)
+            }
         combine(artistFlow, trackFlow) { artists, tracks ->
             Pair(artists, tracks)
         }.collect { pair ->
-            artistDatabase.getArtistDao().addArtists(pair.first)
-            trackDatabase.getTrackDao().addTracks(pair.second)
             storeDbDate(currentTime)
             mutableFlow.emit(true)
             Log.d(
