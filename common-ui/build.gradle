@@ -20,16 +20,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures {
+        compose true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
-        useIR = true
-    }
-    buildFeatures {
-        compose true
+        jvmTarget = "1.8"
     }
     composeOptions {
         kotlinCompilerExtensionVersion "$rootProject.compose_version"
@@ -37,16 +36,8 @@ android {
 }
 
 dependencies {
-    implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
-    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
-    implementation 'com.google.android.material:material:1.5.0'
-
     implementation "androidx.compose.ui:ui:$rootProject.compose_version"
     implementation "androidx.compose.material:material:$rootProject.compose_version"
     implementation "androidx.compose.ui:ui-tooling:$rootProject.compose_version"
     implementation "androidx.compose.foundation:foundation:$rootProject.compose_version"
-    implementation "androidx.compose.runtime:runtime-livedata:$rootProject.compose_version"
-    implementation "androidx.compose.runtime:runtime-rxjava2:$rootProject.compose_version"
-
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$rootProject.compose_viewmodel_version"
 }

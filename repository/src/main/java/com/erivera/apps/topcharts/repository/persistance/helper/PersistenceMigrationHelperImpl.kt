@@ -39,7 +39,6 @@ class PersistenceMigrationHelperImpl @Inject constructor(
         }
     }
 
-    @FlowPreview
     override suspend fun updatePersistenceTables(
         localDbArtists: Flow<List<Artist>>,
         shortArtists: Flow<List<ArtistsRetrofit>>,

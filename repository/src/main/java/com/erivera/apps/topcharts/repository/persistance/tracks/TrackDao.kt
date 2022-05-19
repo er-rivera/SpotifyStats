@@ -11,8 +11,8 @@ interface TrackDao {
     @Query("SELECT * from tracks")
     fun getTracks(): Flow<List<Track>>
 
-    @Query("SELECT * from tracks")
-    suspend fun getSingleShotTracks(): List<Track>
+   /* @Query("SELECT * from tracks")
+    suspend fun getSingleShotTracks(): List<Track>*/
 
     @Query("SELECT * FROM tracks WHERE current_short_position > -1 ORDER BY current_short_position LIMIT :limit")
     fun getShortTermTracks(limit: Int): Flow<List<Track>>

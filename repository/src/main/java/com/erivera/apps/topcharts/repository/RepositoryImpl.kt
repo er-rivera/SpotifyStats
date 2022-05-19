@@ -82,7 +82,7 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun refreshDb(refreshFlow: MutableStateFlow<Boolean>) {
         Log.d(TAG, "refreshDb: Should Refresh DB")
-        persistenceSynchronizationHelper.updatePersistenceTables(
+       /* persistenceSynchronizationHelper.updatePersistenceTables(
             localDbArtists = flow {
              emit(artistLocalDatabase.getArtistDao().getSingleShotArtists())
             },
@@ -96,7 +96,7 @@ class RepositoryImpl @Inject constructor(
             midTracks = remoteDataSource.getTracks("50", TermLength.MediumTerm.key),
             longTracks = remoteDataSource.getTracks("50", TermLength.LongTerm.key),
             mutableFlow = refreshFlow
-        )
+        )*/
     }
 
     sealed class TermLength(val key: String) {

@@ -65,8 +65,8 @@ dependencies {
 
     implementation "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
 
-    implementation "com.google.dagger:hilt-android:$rootProject.hilt_android_version"
-    kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_android_version"
+    implementation "com.google.dagger:hilt-android:$rootProject.hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_version"
 
     implementation "com.google.accompanist:accompanist-coil:0.10.0"
 }
