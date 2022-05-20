@@ -62,7 +62,7 @@ class PersistenceMigrationHelperImpl @Inject constructor(
             }
         combine(artistFlow, trackFlow) { artists, tracks ->
             Pair(artists, tracks)
-        }.collect { pair ->
+        }.collect {
             storeDbDate(currentTime)
             mutableFlow.emit(true)
             Log.d(

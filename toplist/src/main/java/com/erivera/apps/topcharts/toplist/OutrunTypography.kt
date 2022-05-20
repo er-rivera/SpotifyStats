@@ -1,4 +1,4 @@
-package com.erivera.apps.topcharts.common_ui
+package com.erivera.apps.topcharts.toplist
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
@@ -9,9 +9,9 @@ import androidx.compose.ui.unit.sp
 
 fun getInconsolataTypography(): Typography {
     val inconsolata = FontFamily(
-        Font(R.font.inconsolata_regular, FontWeight.Light),
-        Font(R.font.inconsolata_regular, FontWeight.Normal),
-        Font(R.font.inconsolata_semibold, FontWeight.SemiBold),
+        Font(R.font.inconsolata_black, FontWeight.Light),
+        Font(R.font.inconsolata_black, FontWeight.Normal),
+        Font(R.font.inconsolata_extrabold, FontWeight.SemiBold),
         Font(R.font.inconsolata_bold, FontWeight.Bold),
         Font(R.font.inconsolata_extrabold, FontWeight.ExtraBold)
     )
