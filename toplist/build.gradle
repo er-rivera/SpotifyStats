@@ -28,7 +28,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        useIR = true
     }
     buildFeatures {
         viewBinding true
@@ -43,29 +42,21 @@ dependencies {
     implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
-
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigation_version"
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.kotlin_version"
-
     implementation project(':repository')
     implementation project(':spotify')
-
     implementation "androidx.compose.ui:ui:$rootProject.compose_version"
     implementation "androidx.compose.material:material:$rootProject.compose_version"
     implementation "androidx.compose.ui:ui-tooling:$rootProject.compose_version"
     implementation "androidx.compose.foundation:foundation:$rootProject.compose_version"
     implementation "androidx.compose.runtime:runtime-livedata:$rootProject.compose_version"
     implementation "androidx.compose.runtime:runtime-rxjava2:$rootProject.compose_version"
-
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$rootProject.compose_viewmodel_version"
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0"
-
     implementation "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
-
     implementation "com.google.dagger:hilt-android:$rootProject.hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_version"
-
     implementation "com.google.accompanist:accompanist-coil:0.10.0"
 }

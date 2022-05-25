@@ -38,26 +38,20 @@ android {
 }
 
 dependencies {
-
     implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
-
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-
     implementation "com.google.dagger:hilt-android:$rootProject.hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_version"
-
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
-
     implementation "androidx.room:room-runtime:$rootProject.room_version"
-    kapt "androidx.room:room-compiler:$rootProject.room_version"
+    kapt("androidx.room:room-compiler:$rootProject.room_version")
     implementation "androidx.room:room-ktx:$rootProject.room_version"
-
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutines"
     testImplementation 'junit:junit:4.13.2'
     testImplementation "androidx.test:core:$rootProject.test_core"

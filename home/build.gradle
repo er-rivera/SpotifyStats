@@ -24,7 +24,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        useIR = true
     }
     buildFeatures {
         viewBinding true
@@ -36,22 +35,18 @@ android {
 }
 
 dependencies {
-
     implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
-
     implementation "androidx.compose.ui:ui:$rootProject.compose_version"
     implementation "androidx.compose.material:material:$rootProject.compose_version"
     implementation "androidx.compose.ui:ui-tooling:$rootProject.compose_version"
     implementation "androidx.compose.foundation:foundation:$rootProject.compose_version"
     implementation "androidx.compose.runtime:runtime-livedata:$rootProject.compose_version"
     implementation "androidx.compose.runtime:runtime-rxjava2:$rootProject.compose_version"
-
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$rootProject.compose_viewmodel_version"
     implementation "com.google.dagger:hilt-android:$rootProject.hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_version"
-
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigation_version"
 }

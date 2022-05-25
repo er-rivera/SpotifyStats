@@ -28,9 +28,7 @@ android {
 
 dependencies {
     implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
-
     implementation project(':spotify-app-remote')
-
     implementation "com.google.dagger:hilt-android:$rootProject.hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_version"
 }
